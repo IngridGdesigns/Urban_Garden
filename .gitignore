@@ -1,0 +1,12 @@
+#ignore this!
+
+/NewProject.bmpr
+/resources
+.DS_store
+
+#development
+/node_modules
+
+.DS_Store
+.env.local
+.env
