@@ -1,8 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 import './index.css';
 import App from './App'
 import * as serviceWorker from './serviceWorker'
+
+
+import 'jquery/dist/jquery.js';
+import 'popper.js/dist/umd/popper.js'; //need components of it
+import 'bootstrap/dist/js/bootstrap.js';
 
 
 ReactDOM.render(<App/>,

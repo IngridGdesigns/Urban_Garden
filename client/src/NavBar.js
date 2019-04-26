@@ -1,7 +1,9 @@
 import React from 'react';
 import { Link, NavLink, withRouter } from 'react-router-dom';
+import './App.css';
+import { FaEnvira } from 'react-icons/fa'
 
-import Login from './components/Login'
+import Login from './components/LoginForm'
 
 
 const NavBar = (props) => {
@@ -11,15 +13,18 @@ const NavBar = (props) => {
         
         return(
            
-    
-            <nav className='navbar navbar-dark bg-primary fixed-top'>
+           <div style={{marginBottom: "100px"}}> 
+            <nav className='theNav navbar fixed-top' >
                 <div className='container'>
-                    <Link to='/home' className='navbar-brand'>Urbangarden app</Link>
-                <ul className='right'>
+               
+                    <Link to='/home' className='navbar-brand'> <FaEnvira/> Urbangarden app</Link>
+                    
+                <ul className='nav right'>
                 { /* link to loads component without reloading/to link to the page */}
-                    <li><Link to='/home'>Home</Link></li>
-                    <li><NavLink to='/aboutpage'>About</NavLink></li>
-                    <li><NavLink to='/login'>Login</NavLink></li>
+                    <li className='nav-item'><NavLink to='/home'>Home</NavLink></li>
+                    <li className='nav-item'><NavLink to='/aboutpage'>About</NavLink></li>
+                    <li className='nav-item'><NavLink to='/login'>Login</NavLink></li>
+                    
                 </ul>
    
                 {/* <button onClick={() => history.push('/Login')} type='button' 
@@ -34,6 +39,8 @@ const NavBar = (props) => {
                 </li> */}
                 </div>
             </nav>
+        </div>
+          
         )
     }
 
@@ -43,6 +50,26 @@ export default withRouter (NavBar);
 /* 
 {
 <li>
-<button to='/Login' type="button" class="btn btn-primary">Login</button> }
+<button to='/Login' type="button" className="btn btn-primary">Login</button> }
     <Link to='/Login' component={Login}>Login</Link>
 </li>*/
+
+//             <nav className="navbar navbar-expand-sm bg-dark navbar-dark">
+//   <a className="navbar-brand" href="#">Navbar</a>
+//   <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+//     <span className="navbar-toggler-icon"></span>
+//   </button>
+//   <div className="collapse navbar-collapse" id="collapsibleNavbar">
+//     <ul className="navbar-nav">
+//       <li className="nav-item">
+//         <a className="nav-link" href="#">Link</a>
+//       </li>
+//       <li className="nav-item">
+//         <a className="nav-link" href="#">Link</a>
+//       </li>
+//       <li className="nav-item">
+//         <a className="nav-link" href="#">Link</a>
+//       </li>    
+//     </ul>
+//   </div>  
+// </nav>
