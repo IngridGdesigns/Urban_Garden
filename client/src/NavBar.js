@@ -3,7 +3,7 @@ import { Link, NavLink, withRouter } from 'react-router-dom';
 import './App.css';
 import { FaEnvira } from 'react-icons/fa'
 
-import Login from './components/LoginForm'
+
 
 
 const NavBar = (props) => {
@@ -24,7 +24,6 @@ const NavBar = (props) => {
                     <li className='nav-item'><NavLink to='/home'>Home</NavLink></li>
                     <li className='nav-item'><NavLink to='/aboutpage'>About</NavLink></li>
                     <li className='nav-item'><NavLink to='/login'>Login</NavLink></li>
-                    
                 </ul>
    
                 {/* <button onClick={() => history.push('/Login')} type='button' 
@@ -37,6 +36,7 @@ const NavBar = (props) => {
                    UserProfile id man
                    </Link>
                 </li> */}
+                
                 </div>
             </nav>
         </div>
