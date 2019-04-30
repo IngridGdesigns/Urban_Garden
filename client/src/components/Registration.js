@@ -6,21 +6,52 @@ class Registration extends React.Component {
         this.state = {
             users: [],
             //user_id | username| email| password| zipcode 
-            // username: '',
-            // email: '',
-            // passOne: '',
-            // passTwo: ''
+          
         }
     }
 
 
 //user_id | username| email| password| zipcode 
-    handleChange = (e) => {
-        const itemName = e.target.name;
-        const itemValue = e.target.value;
+componentDidMount = () => {
+    fetch('/users')
+        .then(res => res.json())
+        .then(users => this.setState({users}, () => console.log(users, 'User items showing to add new Posts?'))
+)}
 
-        this.setState({[itemName]: itemValue})
+// componentDidUpdate = (prevProps) => {
+//     if(this.props.users !== this.props.users)
+//         this.setState({ ...this.props.users})
+// }
+
+handleChange = (users) => {
+    users.preventDefault(); //prevents from page reloading
+    this.setState({ users: [...users.target.value]})
+    console.log('was this added now??')
+}
+
+handleSubmit(event) {
+    event.preventDefault();
+    alert('A post was submitted: ' + this.state.value);
+}
+
+//Add new user to users table  - username| email| password| zipcode 
+addNewUser = () => {
+    let data = {
+        username: document.getElementById('usernameInput').value,
+        email: document.getElementById('emailInput').value,
+        password: document.getElementById('passInput').value,
+        zipcode: document.getElementById('zipInput').value
     }
+    fetch('/users', {
+        method: 'POST',
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data),
+    })
+    .then(res => res.json())
+    .then(newUser => this.setState({ users: [...this.state.users, newUser]})) //Adding user to db
+}
 
     render(){
         return (
@@ -32,7 +63,7 @@ class Registration extends React.Component {
                     <div className="card bg-light">
                     <div className="card-body">
                         <h3 className="font-weight-light mb-3">Register</h3>
-                        <div className="form-row">
+                        <div className="form-row" onSubmit={this.handleSubmit}>
                         <section className="col-sm-12 form-group">
                             <label
                             className="form-control-label sr-only"
@@ -43,7 +74,7 @@ class Registration extends React.Component {
                             <input
                             className="form-control"
                             type="text"
-                            id="nameInput"
+                            id="usernameInput"
                             placeholder="Pick a username"
                             name="username"
                             required
@@ -92,7 +123,8 @@ class Registration extends React.Component {
                         </section>
                         </div>
                         <div className="form-group text-right mb-0">
-                        <button className="btn btn-success" type="submit">
+                        <button className="btn btn-success" type="submit" 
+                        onClick={this.addNewUser} id="newUserReg">
                             Register
                         </button>
                         </div>
