@@ -4,20 +4,23 @@ class Registration extends React.Component {
     constructor() {
         super();
         this.state = {
-            username: '',
-            email: '',
-            passOne: '',
-            passTwo: ''
+            users: [],
+            //user_id | username| email| password| zipcode 
+            // username: '',
+            // email: '',
+            // passOne: '',
+            // passTwo: ''
         }
     }
 
-    handleChange(e) {
+
+//user_id | username| email| password| zipcode 
+    handleChange = (e) => {
         const itemName = e.target.name;
         const itemValue = e.target.value;
 
         this.setState({[itemName]: itemValue})
     }
-
 
     render(){
         return (
@@ -40,7 +43,7 @@ class Registration extends React.Component {
                             <input
                             className="form-control"
                             type="text"
-                            id="userName"
+                            id="nameInput"
                             placeholder="Pick a username"
                             name="username"
                             required
@@ -58,7 +61,7 @@ class Registration extends React.Component {
                         <input
                             className="form-control"
                             type="email"
-                            id="email"
+                            id="emailInput"
                             placeholder="Email Address"
                             required
                             name="email"
@@ -69,23 +72,27 @@ class Registration extends React.Component {
                         <section className="col-sm-6 form-group">
                             <input
                             className="form-control"
-                            type="password"
-                            name="passOne"
+                            type="passWord"
+                            id="passInput"
+                            name="password"
                             placeholder="choose a Password"
+                            value={this.state.password}
                             />
                         </section>
                         <section className="col-sm-6 form-group">
                             <input
                             className="form-control"
-                            type="password"
+                            type="zipcode"
                             required
-                            name="passTwo"
-                            placeholder="Repeat Password"
+                            name="zipcode"
+                            id="zipInput"
+                            placeholder="Enter Zipcode"
+                            value={this.state.zipcode}
                             />
                         </section>
                         </div>
                         <div className="form-group text-right mb-0">
-                        <button className="btn btn-primary" type="submit">
+                        <button className="btn btn-success" type="submit">
                             Register
                         </button>
                         </div>

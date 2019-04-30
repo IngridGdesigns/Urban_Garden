@@ -1,5 +1,6 @@
 import React from 'react';
-import { FaPlus } from 'react-icons/fa';
+import { FaRegLemon } from 'react-icons/fa';
+import { FaLemon } from 'react-icons/fa';
 
 class AddPosts extends React.Component {
 
@@ -8,9 +9,9 @@ class AddPosts extends React.Component {
 
         this.state={
             user_items: [],
-            item_name: " ",
-            zipcode: " ",
-            description: " ",
+            // item_name: " ",
+            // zipcode: " ",
+            // description: " ",
         }
     }
     //grabbing user items table
@@ -26,15 +27,15 @@ class AddPosts extends React.Component {
     }
 
     handleChange = (user_items) => {
-        // e.preventDefault(); //prevents from page reloading
+        // user_items.preventDefault(); //prevents from page reloading
         this.setState({ user_items: [...user_items.target.value]})
         console.log('was this added now??')
     }
 
-    // // handleSubmit(event) {
-    // //     event.preventDefault();
-    // //     this.setState({ ...this.state.user_items})
-    // // }
+    handleSubmit(event) {
+        event.preventDefault();
+        alert('A post was submitted: ' + this.state.value);
+    }
 
     //Add new post to user_item table
     addPost = () => {
@@ -58,49 +59,108 @@ class AddPosts extends React.Component {
       
         return(
             <div>
-                {/* {this.state.user_items.map((item, index) => {
-                    return(
-                        <div>
-                            <ul>
-                            <li>{item.item_name}</li>
-                            <li>{item.description}</li>
-                            <li>{item.username}</li>
-                            </ul>
-                        </div>
-                    )
-                })} */}
-            <FaPlus/>
-           <form >
-               <input type="text" 
-               value={this.state.user_items.item_name} 
-               id="itemInput"
-               name="item_name"
-               placeholder="Item name" 
-               onClick={this.handleChange}
-            />
-               <br/>
-               <input type="text" 
-               value={this.state.user_items.zipcode} 
-               id="zipInput" 
-               name="zipcode" 
-               placeholder="Zipcode" 
-               onClick={this.handleChange}
-            />
-               <br/>
-               <textarea type="text" 
-                rows="4"
-                cols="50"
-                value={this.state.user_items.description} 
-                id="desInput" 
-                name="description" 
-                placeholder="Description" 
-                onClick={this.handleChange}
-               />
-               {/* <h1>{this.state.item_name} {this.state.zipcode} {this.state.description}</h1> */}
-               
-           </form>
-           <button onClick={this.addPost} id="addNewPost">Submit</button>
+           
+            <hr/>
+            <h2>AddPosts to Barter stuff</h2>
+            <p>so stylish</p>
+
+            <div className='card textcenter mt-3 '>
+            <div className="apt-addheading card-header bg-success text-white">
+                <FaLemon/> Add new item to barter
             </div>
+
+                    <div className="card-body">
+                    {/* id="addItem"  */}
+                    <form  onSubmit={this.handleSubmit}>
+                        <div className="form-group form-row">
+                        <label
+                            className="col-md-2 col-form-label text-md-right"
+                            // htmlFor="itemName"
+                            readOnly
+                        >
+                            Item Name
+                        </label>
+                        <div className="col-md-10">
+                            <input type="text"
+                                className="form-control"
+                                name="item_name"
+                                id="itemInput"
+                                placeholder="Item Name"
+                                value={this.state.user_items.item_name}
+                                onClick={this.handleChange}
+                            />
+                        </div>
+                        </div>
+                
+                        <div className="form-group form-row">
+                        <label
+                            className="col-md-2 col-form-label text-md-right"
+                            htmlFor="zipcode"
+                        >
+                            Zipcode
+                        </label>
+                        <div className="col-md-4">
+                            <input
+                            type="zipcode"
+                            className="form-control"
+                            name="zipcode"
+                            id="zipInput"
+                            value={this.state.user_items.zipcode}
+                            onClick={this.handleChange}
+                            />
+                        </div>
+
+                        <label
+                            className="col-md-2 col-form-label text-md-right"
+                            htmlFor="aptTime"
+                        >
+                            Time
+                        </label>
+                        <div className="col-md-4">
+                        <FaRegLemon/> 
+                            {/* <input
+                            type="time"
+                            className="form-control"
+                            name="createdAt"
+                            id="createdOn"
+                            //   value={this.state.createdOn}
+                            //   onChange={this.handleChange}
+                            /> */}
+                        </div>
+                        </div>
+
+                        <div className="form-group form-row">
+                        <label className="col-md-2 text-md-right" htmlFor="description">
+                        Description
+                        </label>
+                        <div className="col-md-10">
+                            <textarea
+                            className="form-control"
+                            rows="4"
+                            cols="50"
+                            name="description"
+                            id="desInput"
+                            placeholder="Tell us about the item"
+                            value={this.state.user_items.description}
+                            onChange={this.handleChange}
+                            />
+                        </div>
+                        </div>
+
+                        <div className="form-group form-row mb-0">
+                        <div className="offset-md-2 col-md-10">
+                        
+                        </div>
+                        </div>
+                    </form>
+                    <button className="btn btn-success d-block ml-auto"
+                        id="addNewPost"
+                        onClick={this.addPost}>
+                            Submit and add a New item
+                    </button>
+                    </div>
+                </div>
+                        </div>
         )
     }
 }

@@ -6,30 +6,33 @@ class LoginForm extends React.Component {
         return(
             
             <div>
-            <div className="row">
-            {/* <div className="row justify-content-center"> */}
+            <div className='row'>
+            {/* <div className='row justify-content-center'> */}
                 {/* <h2>Login</h2>
                 <h2>Welcome to your Login</h2> */}
             <form>
-                <div className="form-group row col-sm-6">
-                    <label for="emailaddress">Email address</label>
-                    <input type="email" className="form-control" id="InputEmail" aria-describedby="email" placeholder="Enter email"></input>
-                    <small id="email" className="form-text text-muted">We'll never share your email with anyone else.</small>
+                <div className='form-group row col-sm-6'>
+                    <label for='emailaddress'>Email address</label>
+                    <input type='email' className='form-control' id='InputEmail' aria-describedby='email' placeholder='Enter email'></input>
+                    <small id='email' className='form-text text-muted'>We'll never share your email with anyone else.</small>
                 </div>
 
-                <div className="form-group row col-sm-6">
-                    <label for="password">Password</label>
-                    <input type="password" className="form-control" id="InputPassword" placeholder="Password"></input>
+                <div className='form-group row col-sm-6'>
+                    <label for='password'>Password</label>
+                    <input type='password' className='form-control' id='InputPassword' placeholder='Password'></input>
                 </div>
                     
-                    <button type="submit" className="btn btn-outline-success mr-4">
-                    {/* <span class="spinner-border spinner-border-sm"></span> */}
+                    <button type='submit' className='btn btn-outline-success mr-4'>
+                    {/* <span class='spinner-border spinner-border-sm'></span> */}
                     {/* Loading.. */}
                     Submit</button>
                     <hr/>
-                    <div className="row col-sm-6 color2">
+                    <div className='row col-sm-6 color2'>
                     <p>New to Urban Garden?</p>
-                    <button type="register" className='btn btn-success'>Create Account</button>
+                    <a href='/register'  type='register' className='btn btn-success mr-2'>
+                       Create Account
+                    </a>
+                    
                     
                     </div>
             </form>
