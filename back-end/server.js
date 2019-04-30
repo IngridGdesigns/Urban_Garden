@@ -213,12 +213,12 @@ app.post('/user_items', async (req, res) => {
     const client = await pool.connect();
     let item_name = req.body.item_name;
     let username = req.body.username;
-    let email = req.body.email;
+    let description = req.body.description;
     let zipcode = req.body.zipcode;
     let available_status = req.body.available_status;
     
-    await client.query('INSERT INTO user_items(item_name, username, email, zipcode, available_status) VALUES($1, $2, $3, $4, $5) RETURNING *', 
-    [item_name, username, email, zipcode, available_status], (err, result) => {
+    await client.query('INSERT INTO user_items(item_name, username, description, zipcode, available_status) VALUES($1, $2, $3, $4, $5) RETURNING *', 
+    [item_name, username, description, zipcode, available_status], (err, result) => {
         if(err){
             res.status(500).send('Server error')
             client.release()
@@ -377,6 +377,63 @@ app.delete('/offers/:barter_id', async(req, res) => {
        }
    })
 })
+///////////////// test timestamp
+
+app.get('/desserts', async (req, res) => {
+    const client = await pool.connect()
+
+    await client.query('SELECT * FROM desserts', (err, results) => {
+        if(err){
+            console.log('Oh noes you have an error!!')
+            res.status(500).send('There is a server error')
+            client.release()
+        }
+        else {
+            console.log('tchau, it was deleted')
+            res.status(200).json(results.rows)
+            client.release()//closes database
+        }
+    })
+})
+//get by id
+app.get('/desserts/:id', async (req, res) => {
+    const client = await pool.connect()
+    let id = parseInt(req.params.id)
+
+    await client.query('SELECT * FROM desserts WHERE id = $1', [id], (err, results) => {
+        if(err){
+            console.log('Oh noes you have an error!!')
+            res.status(500).send('There is a server error')
+            client.release()
+        }
+        else {
+            console.log('tchau, it was deleted')
+            res.status(200).json(results.rows[0])
+            client.release()//closes database
+        }
+    })
+})
+
+//post
+app.post('/desserts', async (req, res) => {
+    const client = await pool.connect();
+    let item = req.body.item;
+    
+    
+    await client.query('INSERT INTO desserts(item) VALUES($1) RETURNING *', 
+    [item], (err, result) => {
+        if(err){
+            console.log(err)
+            res.status(500).send('Server error')
+            client.release()
+        }
+        else {
+            res.status(200).json(result.rows[0])
+            client.release()
+        }
+    })
+})
+
 
 
 

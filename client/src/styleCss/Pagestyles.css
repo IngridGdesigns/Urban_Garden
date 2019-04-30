@@ -90,6 +90,9 @@
     max-width: 42em;
   }
   
+  a {
+    color: rgb(78, 76, 76);
+  }
   
   /*
    * Header
@@ -123,7 +126,23 @@
     color: #fff;
     border-bottom-color: #fff;
   }
+
+  .breadcrumb {
+    color: blue;
+  }
+  .breadcrumb .breadcrumb-item:hover{
+    color: yellowgreen;
+  }
+
+  .breadcrumb-item .active {
+    color: rgba(163, 42, 147, 0.829);
   
+  }
+
+
+  
+
+
   @media (min-width: 48em) {
     .masthead-brand {
       float: left;
