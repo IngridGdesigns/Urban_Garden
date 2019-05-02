@@ -12,12 +12,18 @@ class ListPosts extends Component {
         }
     }
 
-    componentDidMount() {
-        fetch('/user_items')
-            .then(res => res.json())
-            .then(user_items => this.setState({user_items}, console.log(user_items, 'User items showing??'))
-        )       
+    componentWillMount() {
+        const { getAccessToken } = this.props.auth;
+        const headers = { 'Authorization': 'Bearer ${getAccessToken()}'}
+        const url = 'http://localhost:3005/user_items';
     }
+
+    // componentDidMount() {
+    //     fetch('/user_items')
+    //         .then(res => res.json())
+    //         .then(user_items => this.setState({user_items}, console.log(user_items, 'User items showing??'))
+    //     )       
+    // }
 
     render(){
         const {user_items} = this.state

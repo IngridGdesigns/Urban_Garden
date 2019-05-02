@@ -8,9 +8,9 @@ class SearchPosts extends React.Component {
             
             <div style={{color: "purple"}}>
                
-            <h2>Profile</h2>
-            <h2>Welcome to your SearchPosts page</h2>
-            <button>4356 ID</button>
+            <h4>Profile</h4>
+            <h6>Welcome to your SearchPosts page</h6>
+            
 
             <hr />
 

@@ -12,11 +12,11 @@ class Registration extends React.Component {
 
 
 //user_id | username| email| password| zipcode 
-componentDidMount = () => {
-    fetch('/users')
-        .then(res => res.json())
-        .then(users => this.setState({users}, () => console.log(users, 'User items showing to add new Posts?'))
-)}
+// componentDidMount(){
+//     fetch('/users')
+//         .then(res => res.json())
+//         .then(users => this.setState({users}, () => console.log(users, 'User items showing to add new Posts?'))
+// )}
 
 // componentDidUpdate = (prevProps) => {
 //     if(this.props.users !== this.props.users)

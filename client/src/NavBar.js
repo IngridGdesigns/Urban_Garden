@@ -7,9 +7,9 @@ import { FaEnvira } from 'react-icons/fa'
 
 
 const NavBar = (props) => {
-        const { history, location, match } = props;
-        console.log('location', location)
-        console.log('match', match);
+        // const { history, location, match } = props;
+        // console.log('location', location)
+        // console.log('match', match);
         
         return(
            
