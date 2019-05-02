@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 // import { Panel, Label} from 'react-bootstrap';
 import { FaLemon } from 'react-icons/fa';
 import './Profile.css';
+// import AddPosts from '../AddPosts';
 // import Dashboard from '../Dashboard';
 
 class Profile extends Component {
@@ -27,17 +28,18 @@ class Profile extends Component {
     return (
       <div className="container">
         <div className="profile-area">
-          <h1>{profile.name}</h1>
+          {/* <h1>{profile.name}</h1> */}
           <header header="Profile">
             <img src={profile.picture} alt="profile" />
             <div>
-              <label><FaLemon glyph="user" /> Nickname</label>
-              <h3>{profile.nickname}</h3>
+              <label><FaLemon glyph="user" /> Donut Evangelist</label>
+              <h2>{profile.nickname}</h2>
             </div>
-            <pre>{JSON.stringify(profile, null, 2)}</pre>
+            {/* json string stuff */}
+            <pre>{JSON.stringify(profile, null, 2)}</pre> 
           </header>
         </div>
-       
+       {/* <AddPosts  auth={this.props.auth}/> */}
       </div>
     );
   }

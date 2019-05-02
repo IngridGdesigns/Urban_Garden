@@ -2,6 +2,8 @@ import React from 'react';
 import AddPosts from './AddPosts'
 // photos of foood for future use - https://www.pexels.com/search/fruit%20icon/
 //http://www.varunaweb.com
+
+
 class Dashboard extends React.Component {
     
     // constructor(props){
@@ -12,7 +14,20 @@ class Dashboard extends React.Component {
     //     }
     // }
 
+    // componentWillMount() {
+    //     this.setState({ profile: {} });
+    //     const { userProfile, getProfile } = this.props.auth;
+    //     if (!userProfile) {
+    //       getProfile((err, profile) => {
+    //         this.setState({ profile });
+    //       });
+    //     } else {
+    //       this.setState({ profile: userProfile });
+    //     }
+    //   }
+
     render() {
+        
         return(
         <div>
             <h2>Welcome UNIQUE USER BLAH BLAH - Dashboard</h2>
@@ -24,6 +39,7 @@ class Dashboard extends React.Component {
                 alt="Avatar "/>
 
             <AddPosts auth={this.props.auth}/>
+            
         </div>
         )
     }
