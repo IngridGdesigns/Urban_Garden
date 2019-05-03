@@ -15,7 +15,7 @@ export default class Auth {
     redirectUri: AUTH_CONFIG.callbackUrl,
     audience: AUTH_CONFIG.apiUrl, //audience added
     responseType: 'token id_token',
-    scope: 'openid profile read:user_items' //scopes for users
+    scope: 'openid profile email write:user_items' //scopes for users
   });
 
   constructor() {
@@ -38,6 +38,7 @@ export default class Auth {
     this.auth0.parseHash((err, authResult) => {
 
       if (authResult && authResult.accessToken && authResult.idToken) {
+        console.log(authResult)
         this.setSession(authResult);
         // history.replace('/dashboard');//i added this line,delete after test
       } else if (err) {
