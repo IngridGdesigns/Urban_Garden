@@ -15,41 +15,39 @@ class AddPosts extends React.Component {
             // description: " ",
             
         }
-    }
-    
 
-    //grabbing user items table
-    componentDidMount() { 
-        // console.log(this.props.auth.accessToken);
+        this.handleChange = this.handleChange.bind(this)
+    }
+
+    componentDidMount() {
         const headers = { 'Authorization': `Bearer ${this.props.auth.accessToken}`}
-        // const url = '/user_items'; console.log(url)
-        // return axios.get(url, { headers})
-        //     .then(response => this.setState({ user_items: response.data}))
         fetch('http://localhost:3005/user_items', {
             method: 'GET',
-            // body: JSON.stringify(user_items),
-            headers: headers,// }, body: JSON.stringify(user_items, )
+            headers: headers, 
         })
-        .then(res => res.json())
-        .then(user_items => this.setState({user_items}, console.log('User items showing??', user_items)))
-        .catch(error => console.error('Error:', error)); 
-        //axios stuff
-        // const { getAccessToken } = this.props.auth;
-    }
+          .then(res => res.json())
+          .then(user_items => this.setState({ user_items }))
+            //   result => {
+            //   console.log(result.json())
+            //   console.log(result)
+            //   console.log('is it working')
+        //   })//res.json())
+        //   .then(res => this.setState({ user_items: res }));
+      }
 
-  
-    // handleChange = (user_items) => {
-    //     // user_items.preventDefault(); //prevents from page reloading
-    //     this.setState({ user_items: [...user_items.target.value]})
-    //     console.log('was this added now??')
-    // }
+
+    handleChange = (user_items) => {
+        user_items.preventDefault(); //prevents from page reloading
+        this.setState({ user_items: [...user_items.target.value]})
+        console.log('handlechange function on?? was this added now??')
+    }
 
     // // handleSubmit(event) {
     // //     event.preventDefault();
     // //     alert('A post was submitted: ' + this.state.value);
     // // }
 
-    // //Add new post to user_item table
+    // //Add new post to user_item table -- before Auth0
     // addPost = () => {
     //     let data = {
     //     item_name: document.getElementById('itemInput').value,
@@ -67,9 +65,52 @@ class AddPosts extends React.Component {
     // }
     
 
+    addPost = () => {
+        const headers = { 'Authorization': `Bearer ${this.props.auth.accessToken}`}
+        
+        let data = {
+            item_name: document.getElementById('itemInput').value,
+            zipcode: document.getElementById('zipInput').value,
+            description: document.getElementById('desInput').value}
+
+        fetch('http://localhost:3005/user_items', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json', headers},
+            body: JSON.stringify(data),
+        }).then(result => this.setState({ user_items: [...this.state.user_items, result.data()]})
+        // .catch(error => console.log('Error', error))
+        )
+      
+        }
+
     render() {
+        
+        
+
         return(
+            
         <div>
+
+    <table>
+        {this.state.user_items.map((items) => {
+            return (
+            <tr>
+            <td>
+            {items.username}
+            </td>
+            
+            <td>
+            {items.description}
+            </td>
+           <td>
+            {items.zipcode}
+            </td>
+            </tr>)})
+        }
+        </table>
+
+
+
             <h2>Is this working??</h2>
         {/* </div>
          <div> */}
@@ -102,7 +143,7 @@ class AddPosts extends React.Component {
                              name="item_name"
                              id="itemInput"
                              placeholder="Item Name"
-                             value={this.state.user_items.item_name}
+                             value={this.state.item_name}
                              onClick={this.handleChange}
                          />
                      </div>
@@ -121,7 +162,7 @@ class AddPosts extends React.Component {
                          className="form-control"
                          name="zipcode"
                          id="zipInput"
-                         value={this.state.user_items.zipcode}
+                         value={this.state.zipcode}
                          onClick={this.handleChange}
                          />
                      </div>
@@ -157,7 +198,7 @@ class AddPosts extends React.Component {
                          name="description"
                          id="desInput"
                          placeholder="Tell us about the item"
-                         value={this.state.user_items.description}
+                         value={this.state.description}
                          onChange={this.handleChange}
                          />
                      </div>
@@ -176,13 +217,13 @@ class AddPosts extends React.Component {
                  </button>
                  </div>
              </div>
-                     </div>
+            </div>
 
         )
     }
 }
 
-export default AddPosts
+export default AddPosts;
 
 
 

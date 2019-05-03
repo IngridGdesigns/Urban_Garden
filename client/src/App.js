@@ -58,18 +58,20 @@ class App extends Component {
 <div style={{marginBottom: 120}}>
   <h1>hello this is working now</h1>
   
+
+
+
+  
   <Navbar className='theNav navbar fixed-top fluid'>
           <header>
-            <logo>
-              <a href="/home">Home</a>
-            </logo>
-            <Button
+          <Link to='/home' className='navbar-brand' onClick={this.goTo.bind(this, '/home')}><FaEnvira/> Urbangarden app</Link>
+            {/* <Button
               // style="primary"
               className="btn-margin btn-primary"
               onClick={this.goTo.bind(this, 'home')}
             >
               Home
-            </Button>
+            </Button> */}
             {
               !isAuthenticated() && (
                   <Button
@@ -96,7 +98,7 @@ class App extends Component {
                       to='/profile'>Profile</NavLink></li>
                       <li className='nav-item'><NavLink to='/dashboard'>dashboard</NavLink></li>
                       <li className='nav-item'><NavLink to='/browse'>browse</NavLink></li>
-                      <li className='btn btn-primary'onClick={this.logout.bind(this)}>Logout</li>
+                      <li className='btn btn-primary' id="qsLogoutBtn" onClick={this.logout.bind(this)}>Logout</li>
                     </ul>
                 </div>
                </nav>
