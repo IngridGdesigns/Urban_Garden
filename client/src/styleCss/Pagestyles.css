@@ -4,7 +4,7 @@
     color: white;
     /* background-blend-mode: color; */
     background-color:  #00B1A5;
-    margin-bottom: 100px;
+    margin-bottom: 60px;
     display: flex;
     flex-flow: row wrap;
     list-style: none;
@@ -138,9 +138,6 @@
     color: rgba(163, 42, 147, 0.829);
   
   }
-
-
-  
 
 
   @media (min-width: 48em) {

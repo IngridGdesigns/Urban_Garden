@@ -2,6 +2,7 @@ import history from '../history';
 import auth0 from 'auth0-js';
 
 import { AUTH_CONFIG } from './auth0-variables';
+//require('dotenv').config({ path: '/Users/tpl3/Desktop/Urban_Garden/.env'})
 
 export default class Auth {
   accessToken;
@@ -15,7 +16,7 @@ export default class Auth {
     redirectUri: AUTH_CONFIG.callbackUrl,
     audience: AUTH_CONFIG.apiUrl, //audience added
     responseType: 'token id_token',
-    scope: 'openid profile email write:user_items' //scopes for users
+    scope: 'openid profile email write:user_items read:messages' //scopes for users
   });
 
   constructor() {
