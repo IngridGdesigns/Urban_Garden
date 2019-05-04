@@ -19,7 +19,7 @@ const Pool = require('pg').Pool;
 const app = express()
 
 //create port to connect to
-const PORT = process.env.DB_PORT || 3005
+const PORT = process.env.PORT || 3005;
 
 //MAKING SURE AUTH0 IS IN .env
 if (!process.env.AUTH0_DOMAIN || !process.env.AUTH0_AUDIENCE) {
@@ -63,7 +63,7 @@ const pool = new Pool({
     host: process.env.DB_HOST,
     database: process.env.DB_DATABASE,
     password: process.env.DB_PASSWORD,
-    port: process.env.DB_PORT,
+    port: 5432,
 })
 ////////////////////////////// get -authorized & connection ///////////////
 
@@ -556,13 +556,3 @@ app.post('/desserts', async (req, res) => {
 //////////////////////////////////////////////
 
 app.listen(PORT, () => console.log(`We are live from the foggiest place in Cali, on port ${PORT}`))
-//reading material
-//https://blog.cloudboost.io/how-to-make-an-oauth-2-server-with-node-js-a6db02dc2ce7
-
-//https://levelup.gitconnected.com/testing-the-component-surface-with-react-testing-library-b7d1bc2bec4f
-//requiere expres
-//https://scotch.io/tutorials/build-simple-authentication-in-express-in-15-minutes
-//https://blog.risingstack.com/node-hero-node-js-authentication-passport-js/
-//https://zhenyong.github.io/react/docs/top-level-api.html
-//https://github.com/auth0-samples/auth0-spring-security-api-resource-server-sample
-//https://dustinpfister.github.io/2018/05/27/express-body-parser/
