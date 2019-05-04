@@ -1,30 +1,75 @@
-//https://blog.cloudboost.io/how-to-make-an-oauth-2-server-with-node-js-a6db02dc2ce7
-
-//https://levelup.gitconnected.com/testing-the-component-surface-with-react-testing-library-b7d1bc2bec4f
-//requiere expres
-//https://scotch.io/tutorials/build-simple-authentication-in-express-in-15-minutes
+//Dependencies
 const express = require('express')
+const jwt = require('express-jwt') //authentication middleware 
+//authenticates callers using a JWT. If the token is valid, req.user will be set with the JSON object decoded to be used by later middleware for authorization and access control.
+
+const jwksRsa = require('jwks-rsa');
+const jwtAuthz = require('express-jwt-authz') //express jwt authz
+
+const morgan = require('morgan') //
+const cors = require('cors') //cors
+
+const bodyParser = require('body-parser') //parsing body
+require('dotenv').config({ path: '/Users/tpl3/Desktop/Urban_Garden/.env'})//use dotenv to read .env vars
 
 //require posgresql
 const Pool = require('pg').Pool;
 
-//intitialise express app
+//instantiate express app
 const app = express()
 
 //create port to connect to
-const PORT = 3007;
+const PORT = process.env.DB_PORT || 3005
 
-//parse to json
-app.use(express.json()) //to print out in json
+//MAKING SURE AUTH0 IS IN .env
+if (!process.env.AUTH0_DOMAIN || !process.env.AUTH0_AUDIENCE) {
+    throw 'Make sure you have AUTH0_DOMAIN, and AUTH0_AUDIENCE in your .env file'
+}
+
+//Middleware
+// app.use(morgan('dev'));
+app.use(express.json()) //to print out / parse to json
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true}));
+
+app.use(cors())
+app.use(morgan('API Request (port 3005): :method :url :status :response-time ms - :res[content-length]'));
+
+// //validations
+const secureApi = jwt({
+     // Dynamically provide a signing key based on the kid in the header and the singing keys provided by the JWKS endpoint.
+  secret: jwksRsa.expressJwtSecret({
+    cache: true,
+    rateLimit: true,
+    jwksRequestsPerMinute: 5,
+    jwksUri: `https://${process.env.AUTH0_DOMAIN}/.well-known/jwks.json`
+  }),
+
+  // Validate the audience and the issuer.
+  audience: process.env.AUTH0_AUDIENCE,
+  issuer: `https://${process.env.AUTH0_DOMAIN}/`,
+  algorithms: ['RS256']
+});
+
+const checkScopes = jwtAuthz(['openid', 'profile', 'email', 'write:user_items', 'read:messages']) //linkedin tutorial
+
+app.use(secureApi);
+
+//Routes
+// app.use('/users', require('./routes/users'));
 
 //Posgresql connection configuration
 const pool = new Pool({
-    // user: 'me',
-    host: 'localhost',
-    database: 'urbangarden',
-    password: 'password',
-    port: 5432,
+    host: process.env.DB_HOST,
+    database: process.env.DB_DATABASE,
+    password: process.env.DB_PASSWORD,
+    port: process.env.DB_PORT,
 })
+////////////////////////////// get -authorized & connection ///////////////
+
+app.get('/authorized', function (req, res) {
+    res.send('Secured Resource');
+  });
 
 app.get('/', async(req, res ) => {
     res.send('We are live from the foggiest place in Cali')
@@ -51,8 +96,8 @@ app.get('/users', async(req, res) => {
     })
 })
 
-//GET all from user_items table -- DONE
-app.get('/user_items', async(req, res) => {
+//GET all from user_items table -- DONE checkScopes,
+app.get('/user_items', checkScopes, secureApi, async(req, res) => {
     const client = await pool.connect();
     
      await client.query('SELECT * FROM user_items', (err, result) => {
@@ -124,7 +169,7 @@ app.get('/offers/:barter_id', async(req, res) => {
 });
 
 //GET user_items by id - a single item - DONE
-app.get('/user_items/:item_id', async(req, res) => {
+app.get('/user_items/:item_id',async(req, res) => {
     const client = await pool.connect()
     let id = parseInt(req.params.item_id)
 
@@ -184,6 +229,67 @@ app.get('/user_items/search/:item_name', async(req, res) => {
 
 //SELECT item_name, email, username, available_status FROM user_items WHERE zipcode BETWEEN 94100 AND 94110;
 
+//GET usersDATA by id - a single item - AUTH0 stuff /////////
+//Gets the whole users table --DONE
+app.get('/usersdata', checkScopes, secureApi, async(req, res) => {
+    const client = await pool.connect();
+    
+     await client.query('SELECT * FROM usersdata', (err, results) => {
+        if (err) {
+            console.log('error oh noes!!')
+            res.status(500).send('Server error');
+            client.release()
+        } 
+        else {
+            res.status(200).json(results.rows) // res.json(dbitems.rows)
+            client.release()//closes database
+        }
+    })
+})
+
+app.get('/usersdata/:id', checkScopes, secureApi, async(req, res) => {
+    const client = await pool.connect()
+
+    let id = parseInt(req.params.id)
+    let email = req.body.email;
+    let sub_auth0 = req.body.sub;
+    let name = req.body.name;
+
+    await client.query('SELECT * FROM usersdata WHERE sub_auth0 =$1', [id, email, sub_auth0, name], (err, result) => {
+      if (err) {
+          res.status(500).send(err);
+          client.release()
+      } 
+      else { //res.json(dbitems.rows[0] )
+          res.status(200).json(result.rows[0])
+          client.release()
+      }
+    })
+});
+
+///post to Auth0
+app.post('/usersdata', checkScopes, secureApi, async(req, res) => {
+    const client = await pool.connect();
+    
+    let email = req.body.email;
+    let sub_auth0 = req.body.sub;
+    let name = req.body.name;
+    
+    await client.query('INSERT INTO usersdata(name, sub_auth0, email) VALUES($1, $2, $3, $4) RETURNING *', 
+    [email, sub_auth0, name], (err, result) => {
+        if(err){
+            res.status(500).send('Server error')
+            client.release()
+        }
+        else {
+            res.status(200).json(result.rows[0])
+            client.release()
+        }
+    })
+})
+
+
+
 
 /////////////////////////////////////////// POST //////////////////
 
@@ -209,7 +315,7 @@ app.post('/users', async (req, res) => {
 })
 
 //POST - Add a New item to user_items table -- food to barter posts
-app.post('/user_items', async (req, res) => {
+app.post('/user_items', secureApi, checkScopes, async(req, res) => {
     const client = await pool.connect();
     let item_name = req.body.item_name;
     let username = req.body.username;
@@ -450,3 +556,13 @@ app.post('/desserts', async (req, res) => {
 //////////////////////////////////////////////
 
 app.listen(PORT, () => console.log(`We are live from the foggiest place in Cali, on port ${PORT}`))
+//reading material
+//https://blog.cloudboost.io/how-to-make-an-oauth-2-server-with-node-js-a6db02dc2ce7
+
+//https://levelup.gitconnected.com/testing-the-component-surface-with-react-testing-library-b7d1bc2bec4f
+//requiere expres
+//https://scotch.io/tutorials/build-simple-authentication-in-express-in-15-minutes
+//https://blog.risingstack.com/node-hero-node-js-authentication-passport-js/
+//https://zhenyong.github.io/react/docs/top-level-api.html
+//https://github.com/auth0-samples/auth0-spring-security-api-resource-server-sample
+//https://dustinpfister.github.io/2018/05/27/express-body-parser/
