@@ -1,21 +1,18 @@
 import React from 'react';
 import { FaRegLemon } from 'react-icons/fa';
 import { FaLemon } from 'react-icons/fa';
+//import Profile from './Profile/Profile'
 // import axios from 'axios';
 
 class AddPosts extends React.Component {
-
     constructor(props) {
         super(props);
-
-        this.state={
-            user_items: [],
+            this.state={
+                user_items: [],
             // item_name: " ",
             // zipcode: " ",
-            // description: " ",
-            
+            // description: " ", 
         }
-
         this.handleChange = this.handleChange.bind(this)
     }
 
@@ -94,7 +91,7 @@ class AddPosts extends React.Component {
     <table>
         {this.state.user_items.map((items) => {
             return (
-            <tr>
+            <tbody>
             <td>
             {items.username}
             </td>
@@ -105,7 +102,7 @@ class AddPosts extends React.Component {
            <td>
             {items.zipcode}
             </td>
-            </tr>)})
+            </tbody>)})
         }
         </table>
 

@@ -1,17 +1,20 @@
 import React from 'react';
 import ListPosts from './ListPosts';
+// import AddPosts from './AddPosts';
 
 
 
 class BrowseItems extends React.Component {
     
-    constructor(props){
-        super(props);
+    // constructor(props){
+    //     super(props);
 
-        this.state = {
-            user_items: [], 
-        }
-    }
+    //     this.state = {
+    //         user_items: [], 
+    //     }
+    // }
+    
+
 
     render() {
         return(
@@ -20,7 +23,7 @@ class BrowseItems extends React.Component {
             <h1>BrowseItems</h1>
             <h2>Welcome to your BrowseItems</h2>
             
-            <ListPosts />
+            <ListPosts auth={this.props.auth}/>
             
             </div>
         )

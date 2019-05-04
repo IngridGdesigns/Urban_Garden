@@ -12,11 +12,11 @@ class ListPosts extends Component {
         }
     }
 
-    componentWillMount() {
-        const { getAccessToken } = this.props.auth;
-        const headers = { 'Authorization': 'Bearer ${getAccessToken()}'}
-        const url = 'http://localhost:3005/user_items';
-    }
+    // componentWillMount() {
+    //     const { getAccessToken } = this.props.auth;
+    //     const headers = { 'Authorization': 'Bearer ${getAccessToken()}'}
+    //     const url = 'http://localhost:3005/user_items';
+    // }
 
     // componentDidMount() {
     //     fetch('/user_items')
@@ -24,6 +24,18 @@ class ListPosts extends Component {
     //         .then(user_items => this.setState({user_items}, console.log(user_items, 'User items showing??'))
     //     )       
     // }
+
+    componentDidMount() {
+        const headers = { 'Authorization': `Bearer ${this.props.auth.accessToken}`}
+        fetch('http://localhost:3005/user_items', {
+            method: 'GET',
+            headers: headers, 
+        })
+          .then(res => res.json())
+          .then(user_items => this.setState({ user_items }, console.log({user_items}))
+        ).catch(error => console.log('Error', error))
+      }
+
 
     render(){
         const {user_items} = this.state
