@@ -96,8 +96,8 @@ class App extends Component {
                       <li className='nav-item'><NavLink 
                       onClick={this.goTo.bind(this, 'profile')} 
                       to='/profile'>Profile</NavLink></li>
-                      <li className='nav-item'><NavLink to='/dashboard'>dashboard</NavLink></li>
-                      <li className='nav-item'><NavLink to='/browse'>browse</NavLink></li>
+                      <li className='nav-item'><NavLink to='/dashboard'>Dashboard</NavLink></li>
+                      <li className='nav-item'><NavLink to='/browseitems'>Browse</NavLink></li>
                       <li className='btn btn-primary' id="qsLogoutBtn" onClick={this.logout.bind(this)}>Logout</li>
                     </ul>
                 </div>

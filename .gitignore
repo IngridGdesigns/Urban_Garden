@@ -1,6 +1,8 @@
 #ignore this!
-
+#wireframes
 /NewProject.bmpr
+
+#resource folder
 /resources
 .DS_store
 
@@ -8,5 +10,31 @@
 /node_modules
 
 .DS_Store
-.env.local
+
+#secrets
 .env
+
+# testing
+coverage
+
+# production
+build
+
+# misc
+.DS_Store
+.env
+npm-debug.log
+/client/src/components/TestPage.js
+/client/src/Auth/auth0-variables.js
+/client/src/components/LandingPage.js
+
+/node_modules
+
+/back-end/.babelrc
+/back-end/routes/
+/01-login/
+/02-user-profile/
+Screen Shot 2019-04-17 at 1.40.37 PM.png
+
+# misc
+npm-debug.log
