@@ -1,4 +1,5 @@
 import React from 'react';
+import { FaRegStar} from 'react-icons/fa';
 
 
 
@@ -7,13 +8,8 @@ class SearchPosts extends React.Component {
         return(
             
             <div style={{color: "purple"}}>
-               
-            <h4>Profile</h4>
-            <h6>Welcome to your SearchPosts page</h6>
-            
-
             <hr />
-
+            <h6><FaRegStar/>Welcome to your SearchPosts page</h6>
             <div className="search-appointments row justify-content-center my-4">
             <div className="col-md-6">
               <div className="input-group">
@@ -77,8 +73,9 @@ class SearchPosts extends React.Component {
               </div>
             </div>
           </div>
-           
-            </div>
+          <h6>end of searchpost component</h6>
+          <hr />
+    </div>
         )
     }
 }

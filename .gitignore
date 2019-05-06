@@ -28,6 +28,7 @@ npm-debug.log
 /client/src/components/TestPage.js
 /client/src/Auth/auth0-variables.js
 /client/src/components/LandingPage.js
+client/src/components/LandingPage.js
 
 /node_modules
 

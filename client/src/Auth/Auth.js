@@ -16,7 +16,7 @@ export default class Auth {
     redirectUri: AUTH_CONFIG.callbackUrl,
     audience: AUTH_CONFIG.apiUrl, //audience added
     responseType: 'token id_token',
-    scope: 'openid profile email write:user_items read:messages' //scopes for users
+    scope: 'openid profile email write:user_items post:usersdata read:usersdata read:messages' //scopes for users
   });
 
   constructor() {
@@ -34,16 +34,18 @@ export default class Auth {
     this.auth0.authorize();
   }
 
-//changed from linkedin video
+//changed from linkedin video ---fix this code 5/5
   handleAuthentication() {
     this.auth0.parseHash((err, authResult) => {
 
       if (authResult && authResult.accessToken && authResult.idToken) {
         console.log(authResult)
         this.setSession(authResult);
+        // this.getProfile();//modified 5/4/19
+        // setTimeout( function() { history.replace('/dashboard')}, 2000);//modified read top
         // history.replace('/dashboard');//i added this line,delete after test
       } else if (err) {
-        history.replace('/home');
+        history.replace('/home'); //history.replace('/');
         console.log(err);
         debugger;
         alert(`Error: ${err.error}. Check the console for further details.`);
@@ -93,14 +95,29 @@ export default class Auth {
     });
   }
 
-  getProfile(cb) {
-    this.auth0.client.userInfo(this.accessToken, (err, profile) => {
-      if (profile) {
-        this.userProfile = profile;
-      }
-      cb(err, profile);
-    });
+getProfile(cb) {
+    let accessToken = this.getAccessToken();
+    if(accessToken) {
+      this.auth0.client.userInfo(this.accessToken, (err, profile) => {
+        if (profile) {
+          this.userProfile =  profile; //modified 5/5 
+          console.log('WHAT is it?')
+          //console.log(this.userProfile)
+        }
+        cb(err, profile);
+      });
+    }
   }
+
+
+  // getProfile(cb) { //original code
+  //   this.auth0.client.userInfo(this.accessToken, (err, profile) => {
+  //     if (profile) {
+  //       this.userProfile = profile;
+  //     }
+  //     cb(err, profile);
+  //   });
+  // }
 
 
   logout() {
@@ -111,6 +128,7 @@ export default class Auth {
 
      // Remove user profile
      this.userProfile = null;
+     console.log('Logged Out')
 
     // Remove isLoggedIn flag from localStorage
     localStorage.removeItem('isLoggedIn');
@@ -119,8 +137,8 @@ export default class Auth {
       returnTo: window.location.origin
     });
 
-    // navigate to the home route
-    history.replace('/home');
+    // navigate to the home route - modified to authcheck
+    history.replace('/authcheck');
   }
 
   //can be used to authenticate people

@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 //import { Link } from 'react-router-dom'
-import axios from 'axios'
+// import axios from 'axios'
+import { FaLemon} from 'react-icons/fa';
 
 class Listing extends Component {
     constructor(props) {
@@ -38,9 +39,23 @@ componentDidMount() {
             <div>
               <div className='container'>
                 <div className='row'>
-                  <div className='jumbotron col-8'>
-                  <h1>Listing: {user_items.username}</h1>
-                      <h4 className='display-3'>{user_items.item_name}</h4>
+                  <div className='jumbotron'>
+
+                  <div className='row'>
+    
+                      <div className='col-sm-6 font-weight-bold color1'>
+                      <FaLemon/> Item id:  {user_items.item_id}</div>
+                      <div className='col-sm-3 text-right color3'> {user_items.zipcode}</div>
+                  </div>
+
+                    {/* <section className='col-9'>
+                    <h3>lets start testing how much space we have</h3>
+                    </section>
+                    <section className='col-3'>
+                      <h3>cookies desserts and cream, cronuts and croissants are good</h3>
+                    </section> */}
+                  <h6 className='color1'>Listing: {user_items.username}</h6>
+                      <h4 className='display-3 text-center color2'>{user_items.item_name}</h4>
                       <p className='lead'>{user_items.description}</p>
                     <hr/>
                   </div>
@@ -53,3 +68,15 @@ componentDidMount() {
 }
 
 export default Listing;
+
+//happy accident
+/* <div className='container'>
+<div className='row'>
+  <div className='jumbotron text-center'>
+  <h1>Listing: {user_items.username}</h1>
+      <h4 className='display-3 text-success'>{user_items.item_name}</h4>
+      <p className='lead'>{user_items.description}</p>
+    <hr/>
+  </div>
+</div>
+</div> */

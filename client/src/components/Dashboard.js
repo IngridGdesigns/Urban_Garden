@@ -6,13 +6,13 @@ import AddPosts from './AddPosts'
 
 class Dashboard extends React.Component {
     
-    // constructor(props){
-    //     super(props);
+    constructor(props){
+        super(props);
 
-    //     this.state = {
-    //         user_items: []
-    //     }
-    // }
+        this.state = {
+            user_items: []
+        }
+    }
 
     // componentWillMount() {
     //     this.setState({ profile: {} });
@@ -27,10 +27,11 @@ class Dashboard extends React.Component {
     //   }
 
     render() {
-        
+   
         return(
         <div>
-            <h2>Welcome UNIQUE USER BLAH BLAH - Dashboard</h2>
+            <h2>Welcome unique user - Dashboard</h2>
+            <h2>cant add yet...</h2>
             <img
                 className="mr-3 rounded-circle img-fluid" //img fluid to make image responsive
                 style={{height: 180, width: 180, radius: 160 }}

@@ -48,11 +48,13 @@ class ListPosts extends Component {
                 <div className='row'>
                     <h1>Browse a the ListPosts page, wow so cool</h1>
                 </div>
+                
+
                 <hr/> 
 
                 <div className='container'>
                 <div className='row'> 
-                {/* {this.state.user_items === null && <p>Loading questions...</p>} */}
+                {this.state.user_items === null && <p>Loading posts...</p>}
                 {/* col-sm-6 col-md-4 */}
                 {this.state.user_items && user_items.map(listed => 
                     <div className='thumbnail w-45'style={{paddingRight: '15px'}} key={listed.item_id}> 

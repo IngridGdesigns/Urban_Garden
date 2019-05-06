@@ -1,9 +1,9 @@
 //Dependencies
 const express = require('express')
-const jwt = require('express-jwt') //authentication middleware 
+const jwt = require('express-jwt') //authentication middleware  - lets you authenticate HTTP requests using JWT tokens
 //authenticates callers using a JWT. If the token is valid, req.user will be set with the JSON object decoded to be used by later middleware for authorization and access control.
 
-const jwksRsa = require('jwks-rsa');
+const jwksRsa = require('jwks-rsa'); //A library to retrieve RSA signing keys from a JWKS (JSON Web Key Set) endpoint.
 const jwtAuthz = require('express-jwt-authz') //express jwt authz
 
 const morgan = require('morgan') //
@@ -36,7 +36,7 @@ app.use(cors())
 app.use(morgan('API Request (port 3005): :method :url :status :response-time ms - :res[content-length]'));
 
 // //validations
-const secureApi = jwt({
+const jwtSecrets = jwt({
      // Dynamically provide a signing key based on the kid in the header and the singing keys provided by the JWKS endpoint.
   secret: jwksRsa.expressJwtSecret({
     cache: true,
@@ -51,9 +51,9 @@ const secureApi = jwt({
   algorithms: ['RS256']
 });
 
-const checkScopes = jwtAuthz(['openid', 'profile', 'email', 'write:user_items', 'read:messages']) //linkedin tutorial
+const checkScopes = jwtAuthz(['openid', 'profile', 'email', 'write:user_items', 'read:messages', 'post:usersdata', 'read:usersdata']) //linkedin tutorial
 
-app.use(secureApi);
+app.use(jwtSecrets);
 
 //Routes
 // app.use('/users', require('./routes/users'));
@@ -67,12 +67,37 @@ const pool = new Pool({
 })
 ////////////////////////////// get -authorized & connection ///////////////
 
-app.get('/authorized', function (req, res) {
-    res.send('Secured Resource');
+// var request = require("request");
+
+// var options = { method: 'GET',
+//   url: 'http://localhost:3010/api/private',
+//   headers: { authorization: 'Bearer YOUR_ACCESS_TOKEN' } };
+
+// request(options, function (error, response, body) {
+//   if (error) throw new Error(error);
+
+//   console.log(body);
+// });
+
+// This route need authentication
+app.get('/api/private', jwtSecrets, function(req, res) {
+    res.json({
+      message: 'Hello from a private endpoint! You need to be authenticated to see this.'
+    });
   });
 
+
+app.get('/authorized', function (req, res) {
+    res.send(`Secured Resource`);
+    
+  });
+
+
 app.get('/', async(req, res ) => {
-    res.send('We are live from the foggiest place in Cali')
+    // console.log(req.user)
+    console.log(req.body.sub)
+    // console.log(req.idTokenPayload.name)
+    res.send('We are live from the foggiest place in Cali' + { hello: 'world' })
     console.log('This is on now yay!!')
 })
 
@@ -97,7 +122,7 @@ app.get('/users', async(req, res) => {
 })
 
 //GET all from user_items table -- DONE checkScopes,
-app.get('/user_items', checkScopes, secureApi, async(req, res) => {
+app.get('/user_items', checkScopes, jwtSecrets, async(req, res) => {
     const client = await pool.connect();
     
      await client.query('SELECT * FROM user_items', (err, result) => {
@@ -169,7 +194,7 @@ app.get('/offers/:barter_id', async(req, res) => {
 });
 
 //GET user_items by id - a single item - DONE
-app.get('/user_items/:item_id',async(req, res) => {
+app.get('/user_items/:item_id', checkScopes, jwtSecrets, async(req, res) => {
     const client = await pool.connect()
     let id = parseInt(req.params.item_id)
 
@@ -231,7 +256,7 @@ app.get('/user_items/search/:item_name', async(req, res) => {
 
 //GET usersDATA by id - a single item - AUTH0 stuff /////////
 //Gets the whole users table --DONE
-app.get('/usersdata', checkScopes, secureApi, async(req, res) => {
+app.get('/usersdata', checkScopes, jwtSecrets, async(req, res) => {
     const client = await pool.connect();
     
      await client.query('SELECT * FROM usersdata', (err, results) => {
@@ -247,7 +272,7 @@ app.get('/usersdata', checkScopes, secureApi, async(req, res) => {
     })
 })
 
-app.get('/usersdata/:id', checkScopes, secureApi, async(req, res) => {
+app.get('/usersdata/:id', checkScopes, jwtSecrets, async(req, res) => {
     const client = await pool.connect()
 
     let id = parseInt(req.params.id)
@@ -268,14 +293,14 @@ app.get('/usersdata/:id', checkScopes, secureApi, async(req, res) => {
 });
 
 ///post to Auth0
-app.post('/usersdata', checkScopes, secureApi, async(req, res) => {
+app.post('/usersdata', checkScopes, jwtSecrets, async(req, res) => {
     const client = await pool.connect();
     
     let email = req.body.email;
     let sub_auth0 = req.body.sub;
     let name = req.body.name;
     
-    await client.query('INSERT INTO usersdata(name, sub_auth0, email) VALUES($1, $2, $3, $4) RETURNING *', 
+    await client.query('INSERT INTO usersdata(name, sub_auth0, email) VALUES($1, $2, $3) RETURNING *', 
     [email, sub_auth0, name], (err, result) => {
         if(err){
             res.status(500).send('Server error')
@@ -315,7 +340,7 @@ app.post('/users', async (req, res) => {
 })
 
 //POST - Add a New item to user_items table -- food to barter posts
-app.post('/user_items', secureApi, checkScopes, async(req, res) => {
+app.post('/user_items', jwtSecrets, checkScopes, async(req, res) => {
     const client = await pool.connect();
     let item_name = req.body.item_name;
     let username = req.body.username;
@@ -540,7 +565,41 @@ app.post('/desserts', async (req, res) => {
     })
 })
 
+////////////////////// 
+app.post('/userprofiletodb', checkScopes, jwtSecrets, async(req, res, next) => {
+    const client = await pool.connect();
+    console.log('we are in the server side')
 
+    const values = [req.body.profile.nickname, req.body.profile.email, req.body.profile.email_verified]
+    await pool.query('INSERT INTO usersAuth(username, email, date_created, email_verified) VALUES($1, $2, NOW(), $3) ON CONFLICT DO NOTHING', values, (err, results) => {
+        if(err){
+            res.status(500).send('server error')
+            client.release()
+        } else {
+            res.status(200).json(result.rows[0])
+            client.release()
+        }
+        //   if (err) return next(err);
+    //   console.log(results)
+    //   res.json(results.rows);
+    });
+  });
+  
+  /* Retrieve user profile from db */
+app.get('/userprofilefromdb/email', async(req, res, next) => {
+    const client = await pool.connect();
+    // const email = [ "%" + req.query.email + "%"]
+    const email = String(req.query.email)
+    await pool.query("SELECT * FROM usersAuth WHERE email = $1", [ email ], (err, results) => {
+        if(err){
+            res.status(500).send('server error')
+            client.release()
+        } else {
+            res.status(200).json(results.rows)
+            client.release()
+        }
+    });
+  });
 
 
 

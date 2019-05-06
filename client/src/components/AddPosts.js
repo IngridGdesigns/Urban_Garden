@@ -7,106 +7,60 @@ import { FaLemon } from 'react-icons/fa';
 class AddPosts extends React.Component {
     constructor(props) {
         super(props);
-            this.state={
-                user_items: [],
-            // item_name: " ",
-            // zipcode: " ",
-            // description: " ", 
-        }
-        this.handleChange = this.handleChange.bind(this)
-    }
+        this.state = {
+          offers: [],
+          user_items: [],
+        };
 
-    componentDidMount() {
-        const headers = { 'Authorization': `Bearer ${this.props.auth.accessToken}`}
-        fetch('http://localhost:3005/user_items', {
-            method: 'GET',
-            headers: headers, 
-        })
-          .then(res => res.json())
-          .then(user_items => this.setState({ user_items }))
-            //   result => {
-            //   console.log(result.json())
-            //   console.log(result)
-            //   console.log('is it working')
-        //   })//res.json())
-        //   .then(res => this.setState({ user_items: res }));
-      }
+}
+
+    // componentDidMount() {
+    //     const headers = { 'Authorization': `Bearer ${this.props.auth.accessToken}`}
+    //     fetch('http://localhost:3005/user_items', {
+    //         method: 'GET',
+    //         headers: headers, 
+    //     })
+    //       .then(res => res.json())
+    //       .then(user_items => this.setState({ user_items })
+    //     ).catch(err => res.send(err + 'you have rror'))
+    // }
 
 
-    handleChange = (user_items) => {
-        user_items.preventDefault(); //prevents from page reloading
-        this.setState({ user_items: [...user_items.target.value]})
+    handleChange = (e) => {
+        e.preventDefault(); //prevents from page reloading
+        //const headers = { 'Authorization': `Bearer ${this.props.auth.accessToken}`}
+        this.setState({ user_items: [...e.target.value]})
         console.log('handlechange function on?? was this added now??')
     }
 
-    // // handleSubmit(event) {
-    // //     event.preventDefault();
-    // //     alert('A post was submitted: ' + this.state.value);
-    // // }
+    handleSubmit= (e) => {
+        e.preventDefault();
+        this.props.addPost(this.state.user_items)
+        alert('A post was submitted: ' + this.state.value);
+        // this.setState({ user_items: ''})
+    }
+
 
     // //Add new post to user_item table -- before Auth0
-    // addPost = () => {
-    //     let data = {
-    //     item_name: document.getElementById('itemInput').value,
-    //     zipcode: document.getElementById('zipInput').value,
-    //     description: document.getElementById('desInput').value}
-    //     fetch('/user_items', {
-    //         method: 'POST',
-    //         headers: {
-    //             "Content-Type": "application/json"
-    //         },
-    //         body: JSON.stringify(data),
-    //     })
-    //     .then(res => res.json())
-    //     .then(newPost => this.setState({ user_items: [...this.state.user_items, newPost]}))
-    // }
-    
-
     addPost = () => {
         const headers = { 'Authorization': `Bearer ${this.props.auth.accessToken}`}
+        const header2 = {'Content-Type': 'application/json'}
         
         let data = {
-            item_name: document.getElementById('itemInput').value,
-            zipcode: document.getElementById('zipInput').value,
-            description: document.getElementById('desInput').value}
+        item_name: document.getElementById('itemInput').value}
 
         fetch('http://localhost:3005/user_items', {
             method: 'POST',
-            headers: {'Content-Type': 'application/json', headers},
+            headers: headers, header2,
             body: JSON.stringify(data),
-        }).then(result => this.setState({ user_items: [...this.state.user_items, result.data()]})
-        // .catch(error => console.log('Error', error))
-        )
-      
-        }
-
+        })
+        .then(res => res.json())
+        .then(response => this.setState({ user_items: [...this.state.user_items, response]}))
+    }
+  
     render() {
-        
-        
-
-        return(
-            
+        return(     
         <div>
-
-    <table>
-        {this.state.user_items.map((items) => {
-            return (
-            <tbody>
-            <td>
-            {items.username}
-            </td>
-            
-            <td>
-            {items.description}
-            </td>
-           <td>
-            {items.zipcode}
-            </td>
-            </tbody>)})
-        }
-        </table>
-
-
 
             <h2>Is this working??</h2>
         {/* </div>
@@ -143,6 +97,7 @@ class AddPosts extends React.Component {
                              value={this.state.item_name}
                              onClick={this.handleChange}
                          />
+                         <h1>{this.state.user_items.item_name}</h1>
                      </div>
                      </div>
              
@@ -222,8 +177,30 @@ class AddPosts extends React.Component {
 
 export default AddPosts;
 
+/* old code 
 
+ //     fetch('http://localhost:3005/user_items', {
+    //         method: 'POST',
+    //         headers: headers, 
+    //     })
 
+    // addPost = () => {
+    //     const headers = { 'Authorization': `Bearer ${this.props.auth.accessToken}`}
+         //  const contJson = 'Content-Type': 'application/json'
+    //     let data = {
+    //         item_name: document.getElementById('itemInput').value,
+    //         zipcode: document.getElementById('zipInput').value,
+    //         description: document.getElementById('desInput').value}
+
+    //     fetch('http://localhost:3005/user_items', {
+    //         method: 'POST',
+    //         headers: {headers, contJson},
+    //         body: JSON.stringify(data),
+    //     }).then(result => this.setState({ user_items: [...this.state.user_items, result.data()]})
+    //      .catch(error => console.log('Error', error))
+    //     )
+      
+    //     }*/
 
 
 
