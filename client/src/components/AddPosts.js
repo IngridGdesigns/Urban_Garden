@@ -35,23 +35,28 @@ class AddPosts extends React.Component {
 
     handleSubmit= (e) => {
         e.preventDefault();
-        this.props.addPost(this.state.user_items)
+        this.props.addPost(...this.state.user_items)
         alert('A post was submitted: ' + this.state.value);
         // this.setState({ user_items: ''})
     }
 
 
     // //Add new post to user_item table -- before Auth0
-    addPost = () => {
-        const headers = { 'Authorization': `Bearer ${this.props.auth.accessToken}`}
-        const header2 = {'Content-Type': 'application/json'}
+    addPost = (e) => {
+        e.preventDefault(); //prevents page from reloading -- 'e' is for event
+        const headers = { 'Authorization': `Bearer ${this.props.auth.accessToken}`, 'Content-Type': 'application/json'}
+       
         
         let data = {
-        item_name: document.getElementById('itemInput').value}
+                    item_name: document.getElementById('itemInput').value,
+                    description: document.getElementById('desInput').value,
+                    zipcode: document.getElementById('zipInput').value,
+                    username: document.getElementById('nameInput').value
+        }
 
         fetch('http://localhost:3005/user_items', {
             method: 'POST',
-            headers: headers, header2,
+            headers: headers,
             body: JSON.stringify(data),
         })
         .then(res => res.json())
@@ -70,30 +75,42 @@ class AddPosts extends React.Component {
          <h2>AddPosts to Barter stuff</h2>
          <p>so stylish</p>
 
-         <div className='card textcenter mt-3 '>
-         <div className="apt-addheading card-header bg-success text-white">
+         <div className='card textcenter mt-3 container'>
+         <div className='card-header bg-success text-white container-fluid'>
              <FaLemon/> Add new item to barter
          </div>
 
-                 <div className="card-body">
-                 {/* id="addItem"  */}
+                 <div className='card-body'>
+                 {/* id='addItem'  */}
                  <form 
                  // onSubmit={this.handleSubmit}
                  >
-                     <div className="form-group form-row">
+                     <div className='form-group form-row'>
                      <label
-                         className="col-md-2 col-form-label text-md-right"
-                         // htmlFor="itemName"
+                         className='col-md-2 col-form-label text-md-right'
+                         htmlFor='itemName'
                          readOnly
                      >
-                         Item Name
+                    Username
                      </label>
-                     <div className="col-md-10">
-                         <input type="text"
-                             className="form-control"
-                             name="item_name"
-                             id="itemInput"
-                             placeholder="Item Name"
+                     <div className='col-md-4'>
+                         <input 
+                            type='text'
+                            className='form-control'
+                            name='username'
+                            id='nameInput'
+                            placeholder='write username'
+                            value={this.state.username}
+                            onClick={this.handleChange}
+                         />
+                         </div>
+                    Item Name
+                     <div className='col-md-4'>
+                         <input type='text'
+                             className='form-control'
+                             name='item_name'
+                             id='itemInput'
+                             placeholder='Item Name'
                              value={this.state.item_name}
                              onClick={this.handleChange}
                          />
@@ -101,72 +118,74 @@ class AddPosts extends React.Component {
                      </div>
                      </div>
              
-                     <div className="form-group form-row">
+                     <div className='form-group form-row'>
                      <label
-                         className="col-md-2 col-form-label text-md-right"
-                         htmlFor="zipcode"
+                         className='col-md-2 col-form-label text-md-right'
+                         htmlFor='zipcode'
                      >
                          Zipcode
                      </label>
-                     <div className="col-md-4">
+                     <div className='col-md-4'>
                          <input
-                         type="zipcode"
-                         className="form-control"
-                         name="zipcode"
-                         id="zipInput"
+                         type='text'
+                         className='form-control'
+                         name='zipcode'
+                         id='zipInput'
                          value={this.state.zipcode}
                          onClick={this.handleChange}
                          />
                      </div>
 
                      <label
-                         className="col-md-2 col-form-label text-md-right"
-                         htmlFor="aptTime"
+                         className='col-md-2 col-form-label text-md-right'
+                         htmlFor='aptTime'
                      >
                          Time
                      </label>
-                     <div className="col-md-4">
+                     <div className='col-md-4'>
                      <FaRegLemon/> 
                          {/* <input
-                         type="time"
-                         className="form-control"
-                         name="createdAt"
-                         id="createdOn"
+                         type='time'
+                         className='form-control'
+                         name='createdAt'
+                         id='createdOn'
                          //   value={this.state.createdOn}
                          //   onChange={this.handleChange}
                          /> */}
                      </div>
                      </div>
 
-                     <div className="form-group form-row">
-                     <label className="col-md-2 text-md-right" htmlFor="description">
+                     <div className='form-group form-row'>
+                     <label className='col-md-2 text-md-right' htmlFor='description'>
                      Description
                      </label>
-                     <div className="col-md-10">
+                     <div className='col-md-10'>
                          <textarea
-                         className="form-control"
-                         rows="4"
-                         cols="50"
-                         name="description"
-                         id="desInput"
-                         placeholder="Tell us about the item"
+                         className='form-control'
+                         rows='4'
+                         cols='50'
+                         name='description'
+                         type='text'
+                         id='desInput'
+                         placeholder='Tell us about the item'
                          value={this.state.description}
                          onChange={this.handleChange}
                          />
                      </div>
                      </div>
 
-                     <div className="form-group form-row mb-0">
-                     <div className="offset-md-2 col-md-10">
+                     <div className='form-group form-row mb-0'>
+                     <div className='offset-md-2 col-md-10'>
                      
                      </div>
                      </div>
-                 </form>
-                 <button className="btn btn-success d-block ml-auto"
-                     id="addNewPost"
+                     <button className='btn btn-success d-block ml-auto'
+                     id='addNewPost'
                      onClick={this.addPost}>
                          Submit and add a New item
                  </button>
+                 </form>
+                 
                  </div>
              </div>
             </div>
