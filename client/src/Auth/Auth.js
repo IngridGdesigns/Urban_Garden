@@ -39,7 +39,7 @@ export default class Auth {
     this.auth0.parseHash((err, authResult) => {
 
       if (authResult && authResult.accessToken && authResult.idToken) {
-        console.log(authResult)
+        //console.log(authResult)
         this.setSession(authResult);
         // this.getProfile();//modified 5/4/19
         // setTimeout( function() { history.replace('/dashboard')}, 2000);//modified read top
@@ -67,6 +67,7 @@ export default class Auth {
 
   getIdToken() {
     return this.idToken;
+    //console.log(this.idToken)
   }
 
   setSession(authResult) {
@@ -95,30 +96,39 @@ export default class Auth {
     });
   }
 
-getProfile(cb) {
-    let accessToken = this.getAccessToken();
-    if(accessToken) {
-      this.auth0.client.userInfo(this.accessToken, (err, profile) => {
-        if (profile) {
-          this.userProfile =  profile; //modified 5/5 
-          console.log('WHAT is it?')
-          //console.log(this.userProfile)
-        }
-        cb(err, profile);
-      });
-    }
+// getProfile(cb) {
+//     let accessToken = this.getAccessToken();
+//     if(accessToken) {
+//       this.auth0.client.userInfo(this.accessToken, (err, profile) => {
+//         if (profile) {
+//           this.userProfile =  profile; //modified 5/5 
+//           console.log('WHAT is it?')
+//           console.log(this.userProfile)
+//         }
+//         cb(err, profile);
+//       });
+//     }
+//   }
+
+
+  getProfile(cb) { //original code
+    this.auth0.client.userInfo(this.accessToken, (err, profile) => {
+      if (profile) {
+        this.userProfile = profile;
+      }
+      cb(err, profile);
+    });
   }
 
 
-  // getProfile(cb) { //original code
-  //   this.auth0.client.userInfo(this.accessToken, (err, profile) => {
-  //     if (profile) {
-  //       this.userProfile = profile;
-  //     }
-  //     cb(err, profile);
-  //   });
-  // }
-
+  //get profile @2
+  getProfile2(){
+    if(localStorage.getItem('isLoggedIn')){
+        return this.userProfile;
+    } else {
+      return ('im crazy or something, !')
+    }
+  }
 
   logout() {
     // Remove tokens and expiry time

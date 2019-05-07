@@ -6,6 +6,12 @@ import axios from 'axios'
 
 
 class Profile extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      profile: {}
+    }
+  }
  
 
   componentWillMount() {
@@ -16,8 +22,9 @@ class Profile extends Component {
         this.setState({ profile });
       });
     } else {
-      console.log({userProfile})
+      
       this.setState({ profile: userProfile });
+      console.log({userProfile}, 'cool user profile from Profile page')
     }
   }
 
@@ -34,25 +41,37 @@ class Profile extends Component {
 // }
 
 
-postingToDB = () => { //CHISOM HELPED
-  const { getProfile, getAccessToken } = this.props.auth;
-  const headers = { 'Authorization': `Bearer ${getAccessToken}`}
+// postingToDB = () => { //CHISOM HELPED
+//   const { getProfile, getAccessToken } = this.props.auth;
+//   const headers = { 'Authorization': `Bearer ${getAccessToken}`}
  
-  getProfile((err, profile) => {
-    console.log(profile + "its not posting")
-    if(err){
-      console.log(err)
-    } else {
-      axios({
-        method: 'POST',
-        headers,
-        url: 'http://localhost:3005/usersdata',
-        data: profile
-      })
-    }
-  });
-}
+//   getProfile((err, profile) => {
+//     console.log(profile + "Unsuccessful in my posting")
+//     if(err){
+//       console.log(err)
+//     } else {
+//       axios({
+//         method: 'POST',
+//         headers: headers, 
+//         body: JSON.stringify(data),
+//         url: 'http://localhost:3005/usersdata',
+//         data: profile
+//       })
+//     }
+//   });
+// }
 
+// addUsertoDB = () => { 
+//   const headers = { 'Authorization': `Bearer ${this.props.auth.accessToken}`, 'Content-Type': 'application/json'}
+//   //const id = this.props.match.params.item_id // we grab the ID from the URL
+//   getProfile((err, profile) => {
+//     console.log(profile + "Unsuccessful in my posting")
+//     if(err){
+//       console.log(err)
+//     } else {
+//   axios.post({method: 'POST', headers: headers,
+//    url:`http://localhost:3005/usersdata/`}).data
+// }
   // console.log(data + 'is this even working?')
   // fetch('http://localhost:3005/usersdata', {
   //         method: 'POST',
@@ -62,7 +81,27 @@ postingToDB = () => { //CHISOM HELPED
   //     .then(res => res.json(), (console.log(data + 'not working')))
   // }
 
-
+  postingToDB = () => { //CHISOM HELPED
+  
+  const { getProfile, getAccessToken } = this.props.auth;
+  const headers = { 'Authorization': `Bearer ${this.props.auth.accessToken}`}
+  console.log(this.props.auth.accessToken)
+ 
+    getProfile((err, profile) => {
+      console.log(profile + "its not posting")
+      if(err){
+        console.log(err)
+      } else {
+        console.log(profile)
+        axios({
+          method: 'POST',
+          headers,
+          url: 'http://localhost:3005/usersdata',
+         data: profile
+        })
+      }
+    });
+  }
 
   render() {
     const { profile } = this.state;
@@ -91,7 +130,7 @@ postingToDB = () => { //CHISOM HELPED
                 </span>
             </div>
             {/* json string stuff */}
-            <button onClick={this.postingToDB}>posting user button</button>
+            <button onClick={this.postingToDB} auth={this.props.auth}>posting user button</button>
             <pre>{JSON.stringify(profile, null, 2)}</pre> 
           </header>
          
