@@ -9,6 +9,8 @@ const jwtAuthz = require('express-jwt-authz') //express jwt authz
 const morgan = require('morgan') //
 const cors = require('cors') //cors
 
+const DARK_SKY_APIKEY = process.env.DARK_SKY_APIKEY //weather api
+
 const bodyParser = require('body-parser') //parsing body
 require('dotenv').config({ path: '/Users/tpl3/Desktop/Urban_Garden/.env'})//use dotenv to read .env vars
 
@@ -29,8 +31,9 @@ if (!process.env.AUTH0_DOMAIN || !process.env.AUTH0_AUDIENCE) {
 //Middleware
 // app.use(morgan('dev'));
 app.use(express.json()) //to print out / parse to json
-app.use(bodyParser.json())
+
 app.use(bodyParser.urlencoded({ extended: true}));
+app.use(bodyParser.json())
 
 app.use(cors())
 app.use(morgan('API Request (port 3005): :method :url :status :response-time ms - :res[content-length]'));
@@ -100,6 +103,13 @@ app.get('/', async(req, res ) => {
     res.send('We are live from the foggiest place in Cali' + { hello: 'world' })
     console.log('This is on now yay!!')
 })
+//////////////////////////// dark sky api /////////////////////
+// app.post('/weather', async(req, res) => {
+//     console.log('server started')
+// })
+
+
+/////////////////////////end of dark sky api calls /////////////
 
 ///////////////// GET THE WHOLE TABLE FROM USERS, USER_ITEMS & OFFERS //////////////////////////////////
 
@@ -140,7 +150,7 @@ app.get('/user_items', checkScopes, jwtSecrets, async(req, res) => {
 
 
 //GET all from offer table -- DONE
-app.get('/offers', async(req, res) => {
+app.get('/offers', jwtSecrets, async(req, res) => {
     const client = await pool.connect();
     
      await client.query('SELECT * FROM offers', (err, result) => {
@@ -151,10 +161,46 @@ app.get('/offers', async(req, res) => {
         } 
         else {
             res.status(200).json(result.rows) // res.json(dbitems.rows)
+
             client.release()//closes database
         }
     })
 })
+//GET offers by barter_id - a single item -
+// app.get('/offers/:barter_id', jwtSecrets, async(req, res) => {
+//     const client = await pool.connect()
+//     let id = parseInt(req.params.barter_id)
+//     console.log(id)
+//     await client.query('SELECT * FROM offers WHERE barter_id =$1', [id], (err, result) => {
+//       if (err) {
+//           res.status(500).send(err);
+//           client.release()
+//       } 
+//       else { //res.json(dbitems.rows[0] )
+//           res.status(200).json(result.rows[0])
+//           client.release()
+//       }
+//     })
+// });
+
+//GET offers by item_id - a single item -
+app.get('/offers/:item_id', jwtSecrets, async(req, res) => {
+    const client = await pool.connect()
+    let id = parseInt(req.params.item_id)
+
+    await client.query('SELECT * FROM offers WHERE item_id =$1', [id], (err, result) => {
+      if (err) {
+          res.status(500).send(err);
+          client.release()
+      } 
+      else { //res.json(dbitems.rows[0] )
+          res.status(200).json(result.rows[0])
+          client.release()
+      }
+    })
+});
+
+
 
 
 //////////////////////////////////////////// GET BY ID & ZIPCODE //////////////
@@ -176,22 +222,6 @@ app.get('/users/:id', async(req, res) => {
     })
 });
 
-//GET offers by barter_id - a single item -
-app.get('/offers/:barter_id', async(req, res) => {
-    const client = await pool.connect()
-    let id = parseInt(req.params.barter_id)
-
-    await client.query('SELECT * FROM offers WHERE barter_id =$1', [id], (err, result) => {
-      if (err) {
-          res.status(500).send(err);
-          client.release()
-      } 
-      else { //res.json(dbitems.rows[0] )
-          res.status(200).json(result.rows[0])
-          client.release()
-      }
-    })
-});
 
 //GET user_items by id - a single item - DONE
 app.get('/user_items/:item_id', checkScopes, jwtSecrets, async(req, res) => {
@@ -212,7 +242,7 @@ app.get('/user_items/:item_id', checkScopes, jwtSecrets, async(req, res) => {
 
 
 // GET users_items by ZIPCODE (NEAR ME..try to connect with location api) -- DONE
-app.get('/user_items/find/:zipcode', async(req, res) => {
+app.get('/user_items/find/:zipcode', jwtSecrets, async(req, res) => {
     const client = await pool.connect()
     let zipcode = parseInt(req.params.zipcode)
     // let item_name = req.body.item_name;
@@ -254,7 +284,7 @@ app.get('/user_items/search/:item_name', async(req, res) => {
 
 //SELECT item_name, email, username, available_status FROM user_items WHERE zipcode BETWEEN 94100 AND 94110;
 
-//GET usersDATA by id - a single item - AUTH0 stuff /////////
+//AUTHO DATABASE - GETTING IT FROM THEM....GET usersDATA by id - a single item - AUTH0 stuff /////////
 //Gets the whole users table --DONE
 app.get('/usersdata', checkScopes, jwtSecrets, async(req, res) => {
     const client = await pool.connect();
@@ -277,7 +307,7 @@ app.get('/usersdata/:id', checkScopes, jwtSecrets, async(req, res) => {
 
     let id = parseInt(req.params.id)
     let email = req.body.email;
-    let sub_auth0 = req.body.sub;
+    let sub_auth0 = parseInt(req.body.sub);
     let name = req.body.name;
 
     await client.query('SELECT * FROM usersdata WHERE sub_auth0 =$1', [id, email, sub_auth0, name], (err, result) => {
@@ -292,13 +322,14 @@ app.get('/usersdata/:id', checkScopes, jwtSecrets, async(req, res) => {
     })
 });
 
-///post to Auth0
-app.post('/usersdata', checkScopes, jwtSecrets, async(req, res) => {
+///post to Auth0 -http://www.postgresqltutorial.com/postgresql-upsert/
+app.post('/usersdata', async(req, res) => {
     const client = await pool.connect();
     
     let email = req.body.email;
     let sub_auth0 = req.body.sub;
     let name = req.body.name;
+    console.log(req.body.name)
     
     await client.query('INSERT INTO usersdata(name, sub_auth0, email) VALUES($1, $2, $3) RETURNING *', 
     [email, sub_auth0, name], (err, result) => {
@@ -314,8 +345,6 @@ app.post('/usersdata', checkScopes, jwtSecrets, async(req, res) => {
 })
 
 
-
-
 /////////////////////////////////////////// POST //////////////////
 
 //POST - add new user
@@ -323,11 +352,11 @@ app.post('/users', async (req, res) => {
     const client = await pool.connect();
     let username = req.body.username;
     let email = req.body.email;
-    let password = req.body.password;
+    //let password = req.body.password;
     let zipcode = req.body.zipcode;
     
-    await client.query('INSERT INTO users(username, email, password, zipcode) VALUES($1, $2, $3, $4) RETURNING *', 
-    [username, email, password, zipcode], (err, result) => {
+    await client.query('INSERT INTO users(username, email, zipcode) VALUES($1, $2, $3) RETURNING *', 
+    [username, email, zipcode], (err, result) => {
         if(err){
             res.status(500).send('Server error')
             client.release()
@@ -347,9 +376,12 @@ app.post('/user_items', jwtSecrets, checkScopes, async(req, res) => {
     let description = req.body.description;
     let zipcode = req.body.zipcode;
     let available_status = req.body.available_status;
-    
+    console.log(req)
+    console.log(req.body)
     await client.query('INSERT INTO user_items(item_name, username, description, zipcode, available_status) VALUES($1, $2, $3, $4, $5) RETURNING *', 
     [item_name, username, description, zipcode, available_status], (err, result) => {
+
+        console.log(result.rows)
         if(err){
             res.status(500).send('Server error')
             client.release()
@@ -364,17 +396,21 @@ app.post('/user_items', jwtSecrets, checkScopes, async(req, res) => {
 //POST - Add a New barter offers to offers table -- food to barter posts -- DONE
 // item_id |  item_name   | user_id_offering | 
 //user2_asking | offer_accepted | *barter_id  -- PRIMARY SERIAL KEY
-app.post('/offers', async (req, res) => {
+app.post('/offers', jwtSecrets, async (req, res) => {
     const client = await pool.connect();
    
-    let id = parseInt(req.body.item_id);
+    // let id = parseInt(req.body.item_id)
+
     let item = req.body.item_name;
     let offering = parseInt(req.body.user_id_offering)
-    let asking = parseInt(req.body.user2_asking);
-    let offer_accepted = req.body.offer_accepted;
+    let queryAsk = parseInt(req.body.user2_asking)
+    let offer_accepted = req.body.offer_accepted
+    let asking = req.body.asking
+    let writer = req.body.author
+    console.log(req.body)
     
-    await client.query('INSERT INTO offers(item_id, item_name, user_id_offering, user2_asking, offer_accepted) VALUES($1, $2, $3, $4, $5) RETURNING *', 
-    [id, item, offering, asking, offer_accepted], (err, result) => {
+    await client.query('INSERT INTO offers(item_name, user_id_offering, user2_asking, offer_accepted, asking, author) VALUES($1, $2, $3, $4, $5, $6) RETURNING *', 
+    [item, offering, queryAsk, offer_accepted, asking, writer], (err, result) => {
         if(err){
             console.log(err)
             res.status(500).send('Server error')
@@ -387,10 +423,50 @@ app.post('/offers', async (req, res) => {
     })
 })
 
+// app.post('/rooms/:id/messages', function(req, res){
+//     var room = rooms[req.params.id];
+//     var newMessage = {
+//         username:req.body.username,
+//         timestamp: new Date(),
+//         message: req.body.message
+//     }
+//     room.messages.push(newMessage);
+//     res.json(room);
+// });
+
+
+app.post('/offers/:item_id', jwtSecrets, async(req, res) => {
+    const client = await pool.connect();
+
+    let id = parseInt(req.body.item_id)
+    let item = req.body.item_name
+    let offering = parseInt(req.body.user_id_offering)
+    let username = parseInt(req.body.user2_asking)
+    let asking  = req.body.asking
+    let accept = req.body.offer_accepted 
+    let author = req.user.author
+    console.log(req.body)
+    console.log(req.body.item_name + 'is this ok');
+
+    await client.query('INSERT INTO offers(item_name, user_id_offering, user2_asking, asking, offer_accepted, author) VALUES ($1, $2, $3, $4, $5, $6) WHERE item_id =$7 RETURNING *',
+    [id, offering, item, username, asking, accept, author], (err, result) => {
+        if(err){
+            res.status(500).send('Server error')
+            client.release()
+        } 
+        else {
+            res.status(200).json(result.rows[0])
+            client.release()
+        }
+    })
+})
+
+
+
 /////////PUT - UPDATE ////////////////
 
 //PUT -- Update users by id - DONE
-app.put('/users/:user_id', async(req, res) => {
+app.put('/users/:user_id', jwtSecrets, async(req, res) => {
     const client = await pool.connect();
     const id = parseInt(req.params.user_id) //turns string into a integer
     const { username, email, password, zipcode } = req.body
@@ -430,16 +506,16 @@ console.log(req.body)
 })
 
 //Edit - UPDATE offers by barter id
-app.put('/offers/:barter_id', async(req, res) => {
+app.put('/offers/:barter_id', jwtSecrets, async(req, res) => {
     const client = await pool.connect();
-    const id = parseInt(req.params.barter_id)
+    const id = parseInt(req.params.item_id)
    
     const { item_name, user_id_offering, user2_asking, offer_accepted } = req.body
     console.log(req.body)
     try {
     let results = await client.query(
         'UPDATE offers SET item_name = $1, user_id_offering = $2, user2_asking = $3, offer_accepted = $4 WHERE barter_id = $5 RETURNING *',
-        [item_name, user_id_offering, user2_asking, offer_accepted, id])
+        [item_name, user_id_offering, user2_asking, offer_accepted, item_id])
         res.status(200).json(`This item was updated with id: ${id}`)
     } catch (err) {
         console.log('you have an error')
@@ -508,107 +584,14 @@ app.delete('/offers/:barter_id', async(req, res) => {
        }
    })
 })
-///////////////// test timestamp
-
-app.get('/desserts', async (req, res) => {
-    const client = await pool.connect()
-
-    await client.query('SELECT * FROM desserts', (err, results) => {
-        if(err){
-            console.log('Oh noes you have an error!!')
-            res.status(500).send('There is a server error')
-            client.release()
-        }
-        else {
-            console.log('tchau, it was deleted')
-            res.status(200).json(results.rows)
-            client.release()//closes database
-        }
-    })
-})
-//get by id
-app.get('/desserts/:id', async (req, res) => {
-    const client = await pool.connect()
-    let id = parseInt(req.params.id)
-
-    await client.query('SELECT * FROM desserts WHERE id = $1', [id], (err, results) => {
-        if(err){
-            console.log('Oh noes you have an error!!')
-            res.status(500).send('There is a server error')
-            client.release()
-        }
-        else {
-            console.log('tchau, it was deleted')
-            res.status(200).json(results.rows[0])
-            client.release()//closes database
-        }
-    })
-})
-
-//post
-app.post('/desserts', async (req, res) => {
-    const client = await pool.connect();
-    let item = req.body.item;
-    
-    
-    await client.query('INSERT INTO desserts(item) VALUES($1) RETURNING *', 
-    [item], (err, result) => {
-        if(err){
-            console.log(err)
-            res.status(500).send('Server error')
-            client.release()
-        }
-        else {
-            res.status(200).json(result.rows[0])
-            client.release()
-        }
-    })
-})
-
-////////////////////// 
-app.post('/userprofiletodb', checkScopes, jwtSecrets, async(req, res, next) => {
-    const client = await pool.connect();
-    console.log('we are in the server side')
-
-    const values = [req.body.profile.nickname, req.body.profile.email, req.body.profile.email_verified]
-    await pool.query('INSERT INTO usersAuth(username, email, date_created, email_verified) VALUES($1, $2, NOW(), $3) ON CONFLICT DO NOTHING', values, (err, results) => {
-        if(err){
-            res.status(500).send('server error')
-            client.release()
-        } else {
-            res.status(200).json(result.rows[0])
-            client.release()
-        }
-        //   if (err) return next(err);
-    //   console.log(results)
-    //   res.json(results.rows);
-    });
-  });
-  
-  /* Retrieve user profile from db */
-app.get('/userprofilefromdb/email', async(req, res, next) => {
-    const client = await pool.connect();
-    // const email = [ "%" + req.query.email + "%"]
-    const email = String(req.query.email)
-    await pool.query("SELECT * FROM usersAuth WHERE email = $1", [ email ], (err, results) => {
-        if(err){
-            res.status(500).send('server error')
-            client.release()
-        } else {
-            res.status(200).json(results.rows)
-            client.release()
-        }
-    });
-  });
-
-
-
-
-
 
 //amazon-api - cloudinary storing of images and grabs links in db
 
-
+app.get('/user', function (req, res, next){
+    res.render('user', {
+        user: req.user
+    })
+})
 
 
 

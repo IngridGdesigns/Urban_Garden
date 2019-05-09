@@ -1,10 +1,127 @@
+/* home styles */ 
+
+/*home bg image */
+/* body, html{
+  height: 100%
+} */
+
+/*the image used  Photo by rawpixel.com from Pexels
+*/
+.homeBg {
+  
+
+/*full heigh*/
+height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+}
+
+
+.btn {
+  background-color:  rgb(23, 154, 45); /* teal background */
+  border: none; /* Remove borders */
+  color: white; /* White text */
+  padding: 12px 16px; /* Some padding */
+  font-size: 16px; /* Set a font size */
+  cursor: pointer; /* Mouse pointer on hover */
+}
+
+/* Darker background on mouse-over */
+.btn:hover {
+  background-color: rgb(12, 138, 136);
+}
+
+
+/* Centered text */
+.centered {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: whitesmoke;
+}
+
+
+.featured-crops {
+  background-color: #f0f5f0;
+  padding: 40px inherit 20px
+}
+
+.featured-crops h2 {
+  color: #333333;
+  text-shadow: none;
+  font-size: 2em;
+  padding-top: 1em;
+  margin: 0
+}
+
+.featured-crops .featured-crops-grid {
+  margin-top: 30px
+}
+
+.featured-crops .featured-crops-grid .featured-crop-container {
+  margin-bottom: 30px
+}
+
+.featured-crops .featured-crops-grid .featured-crop-container .featured-crop {
+  position: relative;
+  height: 280px
+}
+
+.featured-crops .featured-crops-grid .featured-crop-container .featured-crop .row {
+  margin: 0;
+  width: 100%
+}
+
+.featured-crops .featured-crops-grid .featured-crop-container .featured-crop:hover .blackness {
+  opacity: 1;
+  -moz-transition: opacity 200ms ease-in-out;
+  -o-transition: opacity 200ms ease-in-out;
+  -webkit-transition: opacity 200ms ease-in-out;
+  transition: opacity 200ms ease-in-out
+}
+
+.featured-crops .featured-crops-grid .featured-crop-container .blackness {
+  background-color: rgba(0,0,0,0.45);
+  opacity: .5
+}
+
+.featured-crops .featured-crops-grid .featured-crop-container .crop-image {
+  background-color: #f5f5f5;
+  background-size: cover;
+  background-position: center
+}
+
+.featured-crops .featured-crops-grid .featured-crop-container .crop-name {
+  color: #ffffff;
+  font-weight: 800;
+  text-align: center;
+  padding: 30px
+}
+
+
+
+
+/*  end of home styles */
+
+
+
+body {
+  /* ... other rules ... */
+  margin-top: 5px;
+}
+
 .theNav {
     /* padding: 10px; */
     font-size: 18px;
     color: white;
     /* background-blend-mode: color; */
     background-color:  #00B1A5;
-    margin-bottom: 60px;
+    margin-bottom: 30px;
     display: flex;
     flex-flow: row wrap;
     list-style: none;
@@ -39,6 +156,9 @@
     color: #018C8F;
   }
   
+  .color4 {
+    color: rgb(202, 3, 202);
+  }
   /* #00BAB5; */
   
   /* Landing Page */
@@ -57,7 +177,7 @@
   .btn-secondary,
   .btn-secondary:hover,
   .btn-secondary:focus {
-    color: #333;
+    color: rgb(255, 255, 255);
     text-shadow: none; /* Prevent inheritance from `body` */
     background-color: #fff;
     border: .05rem solid #fff;
@@ -179,10 +299,7 @@
     height: 100%;
   }
 
-  body {
-    margin: 0;
-    padding: 0;
-  }
+  
   /*
    * Footer
    */
