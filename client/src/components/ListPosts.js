@@ -1,7 +1,9 @@
 import React, {Component} from 'react'
-import SearchPosts from './SearchPosts'
+// import SearchPosts from './SearchPosts'
 import { Link } from 'react-router-dom'
-import { FaComment, FaRegStar} from 'react-icons/fa';
+// import { FaComment, FaRegStar} from 'react-icons/fa';
+// import imageData from './imageData';
+// import Image from './Image'
 
 
 class ListPosts extends Component {
@@ -10,6 +12,7 @@ class ListPosts extends Component {
 
         this.state = {
             user_items: null,
+        
             
         }
     }
@@ -38,64 +41,80 @@ class ListPosts extends Component {
         ).catch(error => console.log('Error', error))
       }
 
+     
 
     render(){
         const {user_items} = this.state
+        // let ranNum = Math.floor(Math.random() * 20)
+
+        // function randomWholeNum() {
+
+        //     // Only change code below this line.
+          
+        //     return Math.floor(Math.random() * 10);
+        //   }
+
+          
+
+        let smallImages = [
+            "https://mdbootstrap.com/img/Others/documentation/img%20(145)-mini.jpg",
+            "https://mdbootstrap.com/img/Others/documentation/img%20(20)-mini.jpg",
+            "https://mdbootstrap.com/img/Others/documentation/img%20(150)-mini.jpg",
+            "https://mdbootstrap.com/img/Others/documentation/img%20(40)-mini.jpg",
+            "https://mdbootstrap.com/img/Others/documentation/img%20(10)-mini.jpg"
+            
+          ];
+        
+         // const randomImga = [  "https://mdbootstrap.com/img/Others/documentation/img%20(" + Math.floor(Math.random() * 50)+ ")-mini.jpg"]
+      //    let arr = ['avocado', 'lemon', 'mint', 'mango', 'watermelon', 'blackberry']
+      //    let images = arr.map( (name, index) => {
+      //       return <img key={index} className="img-responsive" alt="food" src={require(`./food/${name}.jpg`)} />
+      //   } );                                                    //src={require(`./public/food/${name}.jpg`)} />
+      //   // const imageFruit = imageData.map(item => <Image key={item.id} item={item}/>)
+    
+      // const {images } = this.state
+          
+                
+         
+   //let randomImg = Math.floor(Math.random() * 60);
+
+ 
+          let imageCount = smallImages.length;
+          let i = 0;
 
         return(
-            <div className='container'>
-                <SearchPosts/>
-                <div className='row'>
-                    <h1>Browse a the ListPosts page, wow so cool</h1>
-                </div>
-                
-
-                <hr/> 
-
-                <div className='container'>
-                <div className='row'> 
-                {this.state.user_items === null && <p>Loading posts...</p>}
+        <div className='container-fluid'>
+            <div className='row'>
+            {this.state.user_items === null && <p>Loading posts...</p>}
                 {/* col-sm-6 col-md-4 */}
                 {this.state.user_items && user_items.map(listed => 
-                    <div className='thumbnail w-45'style={{paddingRight: '15px'}} key={listed.item_id}> 
-                    {/* //list-group-item  */}
-                    {/* <h2>Offered by: {item.username}</h2> */}
-                
-                    <div className='card text-white bg-success mb-3'>
-                        <div className='card text-success bg-green mb-3'> 
-                        <div className='card-header font-weight-bold'>{listed.item_name} 
-                            <FaRegStar className='color4' style={{'fontSize': '20px'}}/>
-                            <Link to={`/listing/${listed.item_id}`}>this is a link</Link>
+                <div className='card-column col-md-6 col-lg-4' 
+                        style={{'paddingTop': '10px'}}
+                        key={listed.item_id}>
+                    <Link to={`/listing/${listed.item_id}`}>
+              
+                <img className='card-img-top fluid' 
+                     alt='Card top'
+                     
+                      src={smallImages[i++ % imageCount]}
+                    
+                     
+                     />  
+                   
+                    <div className='card-img-overlay'>
+    
+                        <div className='card-subtitle centered' style={{backgroundColor: 'black',  opacity: '0.5'}}>
+                            <h3 className='text-center'>{listed.item_name} </h3>
                         </div>
-
-                        <div className='card-body'>
-                        <img 
-                            className='mr-1 rounded-circle img-fluid'
-                            style={{height: 240, width: 240, radius: 20 }}
-                            src='https://www.bbcgoodfood.com/sites/default/files/guide/guide-image/2018/09/avocados-title.jpg' 
-                            alt='avocado placeholder'
-                        />
-                        <h5 className='card-title'>Offered by: {listed.username}</h5>
-                        {/* <p className='card-text'> {listed.description}
-                        Read more stuff about the post
-                            {/* <a href='/barter'>Link</a> 
-                            <a href='#' className='btn btn-default' role='button'>Button</a> 
-                </p> */}
-                        <h6 className="card-text">Read more stuff about the post</h6>
-                        </div>
-                            <div className="card-footer">
-                                <a href='/'
-                                    className="btn btn-success" 
-                                    role="button"><FaComment/>Barter
-                                </a> 
-                        </div>
+                         {/* <h3 className='card-title text-right'></h3>  */}
+                         {/* <button className='btn-success'>barter</button></Link> */}
                     </div>
+  {/* <p className='card-text'>This is a simple Card example</p> */}
+  </Link>
                 </div>
-            <hr/>
-                </div>
-                )}
-                </div>
+                 )}
             </div>
+            
         </div>
         )
     }
@@ -103,3 +122,28 @@ class ListPosts extends Component {
 
 export default ListPosts;
 //https://facebook.github.io/create-react-app/docs/adding-custom-environment-variables
+
+
+
+
+/* <div className='featured-crops'>
+    <div id='community-favorites' className='explore-community-favorites text-center'>
+        <h2>Community Favorites</h2>
+    </div>
+    <div className='featured-crops-grid'>
+  <div className='row '>
+    <!-- Only the first 3 will display on mobile -->
+    <div className='medium-4 columns '>
+  <div className='featured-crop-container'>
+    <a href='/en/crops/tomato'>
+    <div className='featured-crop'>
+      <div className='crop-image full-cover' style='background-image: url('/lemon.png');'></div>
+      <div className='blackness full-cover'></div>
+      <div className='row row-table row-full-height'>
+        <div className='small-12 column-middle columns'>
+          <h3 className='crop-name'>Tomato</h3>
+        </div>
+      </div>
+    </div>
+</a>  </div>
+</div> */
