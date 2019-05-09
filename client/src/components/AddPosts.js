@@ -10,8 +10,15 @@ class AddPosts extends React.Component {
         this.state = {
           offers: [],
           user_items: [],
+          isHidden: false,
         };
 
+}
+
+toggleFormHidden() {
+    this.setState({
+        isHidden: !this.state.isHidden
+    })
 }
 
     // componentDidMount() {
@@ -67,17 +74,17 @@ class AddPosts extends React.Component {
         return(     
         <div>
 
-            <h2>Is this working??</h2>
-        {/* </div>
-         <div> */}
-           
          <hr/>
          <h2>AddPosts to Barter stuff</h2>
-         <p>so stylish</p>
 
          <div className='card textcenter mt-3 container'>
          <div className='card-header bg-success text-white container-fluid'>
-             <FaLemon/> Add new item to barter
+         <button onClick={this.toggleFormHidden.bind(this)}
+         class="btn" 
+         src={{color : 'white'}}><FaLemon/>
+         </button>
+             {/* <FaLemon data-toggle="collapse"/> Add new item to barter */}
+             {!this.state.isHidden}
          </div>
 
                  <div className='card-body'>

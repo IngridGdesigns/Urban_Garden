@@ -49,7 +49,8 @@ class Home extends React.Component {
                 </Alert>
 
             <div className="jumbotron text-center">
-                <h1>jumbotron</h1>
+                <h1 >jumbotron</h1>
+                
                 <p>Welcome to Urgan garden soo cool! Resize this responsive page to see the effect!</p> 
             </div>
                  <h1 className="color1">This is the cool Home Page!</h1>

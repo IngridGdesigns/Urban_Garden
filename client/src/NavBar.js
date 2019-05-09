@@ -28,8 +28,10 @@ const NavBar = (props) => {
    
                 {/* <button onClick={() => history.push('/Login')} type='button' 
                 className='btn btn-secondary'>Login now!!</button> */}
-              {/* Asi es, cuando el path de una ruta tiene dos puntos como :id, automaticamente se registra una ruta que permite una variable en esa parte, asi como tu dices. 
-              Solamente que para que el Link funcione tiene que usar template strings asi: <Link to={`reports/${this.props.id}`} />﻿
+              {/* Asi es, cuando el 'path' de una ruta tiene dos puntos como :id, automaticamente 
+              se registra una ruta que permite una variable en esa parte, asi como tu dices. 
+              Solamente que para que el Link funciona, tiene que usar template strings asi: 
+              <Link to={`reports/${this.props.id}`} />﻿
                 */}
                {/* <li>
                    <Link to='/UserProfile/:id'>

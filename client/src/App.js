@@ -3,13 +3,16 @@ import React, { Component } from 'react';
 import { NavLink, Link} from 'react-router-dom'
 import { FaEnvira } from 'react-icons/fa'
 import { Navbar, Button } from 'react-bootstrap'
+
+
+
 // import history from './history'
 
 
 // import NavBar from './NavBar';
 // import UserBreadCrumb from './components/UserBreadCrumb'
 
-// import LandingPage from './components/LandingPage'
+import LandingPage from './components/LandingPage'
 // import AboutPage from './components/AboutPage'
 // import Home from './components/Home'
 // import LoginForm from './components/LoginForm'
@@ -45,7 +48,6 @@ class App extends Component {
 
   componentDidMount() {
     const { renewSession } = this.props.auth;
-
     if (localStorage.getItem('isLoggedIn') === 'true') {
       renewSession();
     }
@@ -55,7 +57,7 @@ class App extends Component {
     const { isAuthenticated} = this.props.auth;
 
     return (
-<div style={{marginBottom: 120}}>
+<div style={{marginBottom: 120}} className='homeBg'>
   <h1>hello this is working now</h1>
   
 
@@ -64,7 +66,11 @@ class App extends Component {
   
   <Navbar className='theNav navbar fixed-top fluid'>
           <header>
-          <Link to='/home' className='navbar-brand' onClick={this.goTo.bind(this, '/home')}><FaEnvira/> Urbangarden app</Link>
+         
+          <Link to='/home' className='navbar-brand' 
+          onClick={this.goTo.bind(this, '/home')}><FaEnvira/> Urbangarden app</Link>
+          {/* <img src="https://www.pngarts.com/files/3/Fruit-PNG-Photo.png"/> */}
+          
             {/* <Button
               // style="primary"
               className="btn-margin btn-primary"
@@ -74,20 +80,24 @@ class App extends Component {
             </Button> */}
             {
               !isAuthenticated() && (
-                  <Button
-                    id="qsLoginBtn"
-                    // style="primary"
+              <div src={<LandingPage auth={this.props.auth}/>} >
+                
+                  <Button id="qsLoginBtn" // style="primary"
                     className="btn-margin btn-primary"
                     onClick={this.login.bind(this)}
                   >
                     Log In
                   </Button>
+                  
+                  </div>
+                  
                 )
             }
             {
               isAuthenticated() && (
               <div>
                 <div style={{marginBottom: "100px"}}> 
+                
                 <nav className='theNav navbar fixed-top'>
                   <div className='container'>
                     <Link to='/home' className='navbar-brand'> <FaEnvira/> Urbangarden app</Link>   
@@ -96,6 +106,7 @@ class App extends Component {
                       <li className='nav-item'><NavLink 
                       onClick={this.goTo.bind(this, 'profile')} 
                       to='/profile'>Profile</NavLink></li>
+                      {/* <label className="mr-2 text-white">{getProfile().name}</label> */}
                       <li className='nav-item'><NavLink to='/dashboard'>Dashboard</NavLink></li>
                       <li className='nav-item'><NavLink to='/browseitems'>Browse</NavLink></li>
                       <li className='btn btn-primary' id="qsLogoutBtn" onClick={this.logout.bind(this)}>Logout</li>

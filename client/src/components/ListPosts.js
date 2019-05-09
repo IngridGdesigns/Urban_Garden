@@ -45,17 +45,7 @@ class ListPosts extends Component {
 
     render(){
         const {user_items} = this.state
-        // let ranNum = Math.floor(Math.random() * 20)
-
-        // function randomWholeNum() {
-
-        //     // Only change code below this line.
-          
-        //     return Math.floor(Math.random() * 10);
-        //   }
-
-          
-
+ 
         let smallImages = [
             "https://mdbootstrap.com/img/Others/documentation/img%20(145)-mini.jpg",
             "https://mdbootstrap.com/img/Others/documentation/img%20(20)-mini.jpg",
@@ -65,18 +55,7 @@ class ListPosts extends Component {
             
           ];
         
-         // const randomImga = [  "https://mdbootstrap.com/img/Others/documentation/img%20(" + Math.floor(Math.random() * 50)+ ")-mini.jpg"]
-      //    let arr = ['avocado', 'lemon', 'mint', 'mango', 'watermelon', 'blackberry']
-      //    let images = arr.map( (name, index) => {
-      //       return <img key={index} className="img-responsive" alt="food" src={require(`./food/${name}.jpg`)} />
-      //   } );                                                    //src={require(`./public/food/${name}.jpg`)} />
-      //   // const imageFruit = imageData.map(item => <Image key={item.id} item={item}/>)
-    
-      // const {images } = this.state
-          
-                
-         
-   //let randomImg = Math.floor(Math.random() * 60);
+
 
  
           let imageCount = smallImages.length;

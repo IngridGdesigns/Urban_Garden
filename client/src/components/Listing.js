@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 //import { Link } from 'react-router-dom'
 // import axios from 'axios'
 import { FaLemon} from 'react-icons/fa';
+import SubmitBarter from './SubmitBarter';
 
 class Listing extends Component {
     constructor(props) {
@@ -9,7 +10,8 @@ class Listing extends Component {
       this.state = {
         offers: [],
         user_items: [],
-      };
+      }
+     //this.submitAsk = this.submitAsk.bind(this)
     }
 
 componentDidMount() { 
@@ -33,6 +35,9 @@ componentDidMount() {
 // }
 
 
+
+
+
     render() {
       const {user_items} = this.state
         return (
@@ -42,7 +47,7 @@ componentDidMount() {
                   <div className='jumbotron'>
 
                   <div className='row'>
-    
+                  
                       <div className='col-sm-6 font-weight-bold color1'>
                       <FaLemon/> Item id:  {user_items.item_id}</div>
                       <div className='col-sm-3 text-right color3'> {user_items.zipcode}</div>
@@ -58,8 +63,19 @@ componentDidMount() {
                       <h4 className='display-3 text-center color2'>{user_items.item_name}</h4>
                       <p className='lead'>{user_items.description}</p>
                     <hr/>
+                   
+                     
+                    
                   </div>
                 </div>
+             <SubmitBarter auth={this.props.auth}/>
+             <p>Offers:</p>
+             {/* {
+                user_items.offers.map((offer, idx) => (
+                  <p className='lead' key={idx}>{offer.asking}</p>
+                ))
+
+             } */}
               </div>
             </div>
         )

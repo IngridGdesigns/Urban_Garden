@@ -3,14 +3,19 @@ import React from 'react'
 
 class LandingPage extends React.Component {
     render(){
-      let imgUrl = 'http://www.varunaweb.com/wp-content/uploads/tomato-growing-secrets-11-pro-secrets-for-growing-the-sweetest-tastiest-tomatoes-1.jpg';
+       
+      //let imgUrl = 
+    //   //lemon - 
+    //   'https://www.google.com/search?biw=1522&bih=798&tbm=isch&sa=1&ei=mqHRXLHyGLXd9APls6GwDw&q=lemon+illustrated+png+images&oq=lemon+illustrated+png+images&gs_l=img.3...6663.8607..8853...0.0..0.135.706.11j1......0....1..gws-wiz-img.FOfvguvMwTA#imgrc=xNkHUK7xjEHgOM:'
+    //'http://www.varunaweb.com/wp-content/uploads/tomato-growing-secrets-11-pro-secrets-for-growing-the-sweetest-tastiest-tomatoes-1.jpg';
         return(
         
           // Full page intro
           <div className="view" 
-          style={{backgroundImage: 'url('+ imgUrl + ')', 
-          backgroundRepeat: 'no-repeat', backgroundSize: 'cover', 
-          backgroundPosition: 'center center'}}>
+          // style={{backgroundImage: 'url('+ imgUrl + ')', 
+          //backgroundRepeat: 'no-repeat', backgroundSize: 'cover', 
+         // backgroundPosition: 'center center'}}
+          >
     
    
         
@@ -24,14 +29,13 @@ class LandingPage extends React.Component {
                 <div className="row">
                   {/* <!--Grid column--> */}
                   <div className="col-md-6 white-text text-center text-md-left mt-xl-5 mb-5 wow fadeInLeft" data-wow-delay="0.3s">
-                    <h1 className="h1-responsive font-weight-bold mt-sm-5">Make purchases 
-                    with our app </h1>
+                    <h1 className="h1-responsive font-weight-bold mt-sm-5">Start Bartering!</h1>
                     <hr className="hr-light"/>
                     <h6 className="mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem repellendus quasi fuga nesciunt
                     dolorum nulla magnam veniam sapiente, fugiat! Commodi sequi non animi ea dolor molestiae
                     iste.</h6>
-                    <a className="btn btn-white">Download</a>
-                    <a className="btn btn-outline-white">Learn more</a>
+                    {/* <a className="btn btn-white">Download</a>
+                    <a className="btn btn-outline-white">Learn more</a> */}
                   </div>
                   {/* <!--Grid column--> */}
                   {/* <!--Grid column--> */}
@@ -103,3 +107,5 @@ export default LandingPage;
     </div>
     </div>
     </div> */
+
+    //https://www.contentful.com/developers/docs/javascript/tutorials/using-js-cda-sdk/

@@ -1,18 +1,26 @@
 import React from 'react';
 import ListPosts from './ListPosts';
-// import AddPosts from './AddPosts';
+
 
 
 
 class BrowseItems extends React.Component {
     
+    
 
     render() {
+
         return(
-            <div>
+            <div className='container-fluid'>
+           
+            <div className='row'>
+                <h1>Unique user browse item component</h1>
                
-         
-            <h2>Welcome to your BrowseItems</h2>
+            </div>
+            
+
+            <hr/> 
+            
             
             <ListPosts auth={this.props.auth}/>
             

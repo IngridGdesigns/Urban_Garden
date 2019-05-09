@@ -1,0 +1,309 @@
+/* home styles */ 
+
+/*home bg image */
+/* body, html{
+  height: 100%
+} */
+
+/*the image used  Photo by rawpixel.com from Pexels
+*/
+.homeBg {
+   
+  
+  /*full heigh*/
+  height: 100%;
+  
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  
+  }
+  
+  
+  .btn {
+    background-color:  rgb(23, 154, 45); /* teal background */
+    border: none; /* Remove borders */
+    color: white; /* White text */
+    padding: 12px 16px; /* Some padding */
+    font-size: 16px; /* Set a font size */
+    cursor: pointer; /* Mouse pointer on hover */
+  }
+  
+  /* Darker background on mouse-over */
+  .btn:hover {
+    background-color: rgb(12, 138, 136);
+  }
+  
+  
+  /* Centered text */
+  .centered {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: whitesmoke;
+  }
+  
+  
+  .featured-crops {
+    background-color: #f0f5f0;
+    padding: 40px inherit 20px
+  }
+  
+  .featured-crops h2 {
+    color: #333333;
+    text-shadow: none;
+    font-size: 2em;
+    padding-top: 1em;
+    margin: 0
+  }
+  
+  .featured-crops .featured-crops-grid {
+    margin-top: 30px
+  }
+  
+  .featured-crops .featured-crops-grid .featured-crop-container {
+    margin-bottom: 30px
+  }
+  
+  .featured-crops .featured-crops-grid .featured-crop-container .featured-crop {
+    position: relative;
+    height: 280px
+  }
+  
+  .featured-crops .featured-crops-grid .featured-crop-container .featured-crop .row {
+    margin: 0;
+    width: 100%
+  }
+  
+  .featured-crops .featured-crops-grid .featured-crop-container .featured-crop:hover .blackness {
+    opacity: 1;
+    -moz-transition: opacity 200ms ease-in-out;
+    -o-transition: opacity 200ms ease-in-out;
+    -webkit-transition: opacity 200ms ease-in-out;
+    transition: opacity 200ms ease-in-out
+  }
+  
+  .featured-crops .featured-crops-grid .featured-crop-container .blackness {
+    background-color: rgba(0,0,0,0.45);
+    opacity: .5
+  }
+  
+  .featured-crops .featured-crops-grid .featured-crop-container .crop-image {
+    background-color: #f5f5f5;
+    background-size: cover;
+    background-position: center
+  }
+  
+  .featured-crops .featured-crops-grid .featured-crop-container .crop-name {
+    color: #ffffff;
+    font-weight: 800;
+    text-align: center;
+    padding: 30px
+  }
+  
+  
+  
+  
+  /*  end of home styles */
+  
+  
+  
+  body {
+    /* ... other rules ... */
+    margin-top: 5px;
+  }
+  
+  .theNav {
+      /* padding: 10px; */
+      font-size: 18px;
+      color: white;
+      /* background-blend-mode: color; */
+      background-color:  #00B1A5;
+      margin-bottom: 30px;
+      display: flex;
+      flex-flow: row wrap;
+      list-style: none;
+      
+    }
+    
+    .theNav li {
+      padding: 0 12px;
+    }
+    
+    .theNav li {
+      padding: 0 12px;
+      list-style: none;
+    }
+    
+    .theNav a {
+      color:   rgb(252, 244, 190);
+    }
+    /* Form accessibility - unstead of whit it will be transparent*/
+    input { 
+      background-color: transparent !important;
+    }
+    
+    .color1 {
+      color: #00B1A5;
+    }
+    
+    .color2{
+      color: #FFDE74;
+    }
+    .color3 {
+      color: #018C8F;
+    }
+    
+    .color4 {
+      color: rgb(202, 3, 202);
+    }
+    /* #00BAB5; */
+    
+    /* Landing Page */
+    /*
+     * Globals
+     */
+    
+    /* Links */
+    a,
+    a:focus,
+    a:hover {
+      color: #fff;
+    }
+    
+    /* Custom default button */
+    .btn-secondary,
+    .btn-secondary:hover,
+    .btn-secondary:focus {
+      color: rgb(255, 255, 255);
+      text-shadow: none; /* Prevent inheritance from `body` */
+      background-color: #fff;
+      border: .05rem solid #fff;
+    }
+    
+    
+    /*
+     * Base structure
+     */
+    
+    /* html,
+    body {
+      height: 100%;
+      background-color: #333;
+    } */
+    
+    /* body {
+      display: -ms-flexbox;
+      display: -webkit-box;
+      display: flex;
+      -ms-flex-pack: center;
+      -webkit-box-pack: center;
+      justify-content: center;
+      color: #fff;
+      text-shadow: 0 .05rem .1rem rgba(0, 0, 0, .5);
+      box-shadow: inset 0 0 5rem rgba(0, 0, 0, .5);
+    } */
+    
+    .cover-container {
+      max-width: 42em;
+    }
+    
+    a {
+      color: rgb(78, 76, 76);
+    }
+    
+    /*
+     * Header
+     */
+    .masthead {
+      margin-bottom: 2rem;
+    }
+    
+    .masthead-brand {
+      margin-bottom: 0;
+    }
+    
+    .nav-masthead .nav-link {
+      padding: .25rem 0;
+      font-weight: 700;
+      color: rgba(255, 255, 255, .5);
+      background-color: transparent;
+      border-bottom: .25rem solid transparent;
+    }
+    
+    .nav-masthead .nav-link:hover,
+    .nav-masthead .nav-link:focus {
+      border-bottom-color: rgba(21, 207, 67, 0.25);
+    }
+    
+    .nav-masthead .nav-link + .nav-link {
+      margin-left: 1rem;
+    }
+    
+    .nav-masthead .active {
+      color: #fff;
+      border-bottom-color: #fff;
+    }
+  
+    .breadcrumb {
+      color: blue;
+    }
+    .breadcrumb .breadcrumb-item:hover{
+      color: yellowgreen;
+    }
+  
+    .breadcrumb-item .active {
+      color: rgba(163, 42, 147, 0.829);
+    
+    }
+  
+  
+    @media (min-width: 48em) {
+      .masthead-brand {
+        float: left;
+      }
+      .nav-masthead {
+        float: right;
+      }
+    }
+    
+    
+    /*
+     * Cover
+     */
+    .cover {
+      padding: 0 1.5rem;
+    }
+    .cover .btn-lg {
+      padding: .75rem 1.25rem;
+      font-weight: 700;
+    }
+    .jumbotron{
+      background-size: cover;
+     }
+    
+    .rgba-gradient {
+      background: -moz-linear-gradient(45deg, rgba(42, 27, 161, 0.7), rgba(29, 210, 177, 0.7) 100%);
+      background: -webkit-linear-gradient(45deg, rgba(42, 27, 161, 0.7), rgba(29, 210, 177, 0.7) 100%);
+      background: -webkit-gradient(linear, 45deg, from(rgba(42, 27, 161, 0.7)), to(rgba(29, 210, 177, 0.7)));
+      background: -o-linear-gradient(45deg, rgba(42, 27, 161, 0.7), rgba(29, 210, 177, 0.7) 100%);
+      background: linear-gradient(to 45deg, rgba(42, 27, 161, 0.7), rgba(29, 210, 177, 0.7) 100%);
+    }
+  
+    html,
+    body,
+    header,
+    .view {
+      height: 100%;
+    }
+  
+    
+    /*
+     * Footer
+     */
+    /* .mastfoot {
+      color: rgba(255, 255, 255, .5);
+    } */
+    

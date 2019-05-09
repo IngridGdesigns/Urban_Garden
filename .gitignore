@@ -24,6 +24,7 @@ build
 # misc
 .DS_Store
 .env
+.env.local
 npm-debug.log
 /client/src/components/TestPage.js
 /client/src/Auth/auth0-variables.js
@@ -37,6 +38,7 @@ client/src/components/LandingPage.js
 /01-login/
 /02-user-profile/
 Screen Shot 2019-04-17 at 1.40.37 PM.png
+/Oldcode.js
 
 # misc
 npm-debug.log

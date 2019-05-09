@@ -3,6 +3,20 @@ import { FaLemon } from 'react-icons/fa';
 import Moment from 'react-moment';
 import './Profile.css';
 import axios from 'axios'
+// import '../src/styleCss/styles'
+
+
+// function (user, context, callback) {
+//   var namespace = 'https://my-domain.my-company.com/';
+//   if (context.idToken && user.user_metadata) {
+//     context.idToken[namespace + 'user_metadata'] = user.user_metadata;
+//   }
+//   if (context.idToken && user.app_metadata) {
+//     context.idToken[namespace + 'app_metadata'] = user.app_metadata;
+//   }
+//   callback(null, user, context);
+// }
+
 
 
 class Profile extends Component {
@@ -22,8 +36,10 @@ class Profile extends Component {
         this.setState({ profile });
       });
     } else {
-      
+      // console.log(profile.user_metadata)
       this.setState({ profile: userProfile });
+     // document.getElementById('picture').textContent = userProfile.user_metadata
+      
       console.log({userProfile}, 'cool user profile from Profile page')
     }
   }
@@ -83,7 +99,7 @@ class Profile extends Component {
 
   postingToDB = () => { //CHISOM HELPED
   
-  const { getProfile, getAccessToken } = this.props.auth;
+  const { getProfile } = this.props.auth;
   const headers = { 'Authorization': `Bearer ${this.props.auth.accessToken}`}
   console.log(this.props.auth.accessToken)
  
@@ -92,6 +108,7 @@ class Profile extends Component {
       if(err){
         console.log(err)
       } else {
+        //document.getElementById('picture').textContent = profile.user_metadata
         console.log(profile)
         axios({
           method: 'POST',
@@ -103,6 +120,13 @@ class Profile extends Component {
     });
   }
 
+  // auth0.client.userInfo(authResult.accessToken, function(err, user) {
+  //   // Now you have the user's information
+  //   console.log(auth.client.userInfo)
+  //   console.log(authResult.accessToken)
+  // });
+
+
   render() {
     const { profile } = this.state;
     return (
@@ -110,7 +134,8 @@ class Profile extends Component {
         <div className="profile-area">
           <h1>{profile.name}</h1>
           <header header="Profile">
-            <img src={profile.picture} alt="profile" />
+          {/* <img src="<%= user.user_metadata.picture || user.picture %>"> */}
+            <img src={profile.picture || profile.user_metadata} alt="profile" /> 
             <div>
               <label><FaLemon glyph="user" /> Donut Evangelist</label>
               <h2>{profile.nickname}</h2>
@@ -133,9 +158,10 @@ class Profile extends Component {
             <button onClick={this.postingToDB} auth={this.props.auth}>posting user button</button>
             <pre>{JSON.stringify(profile, null, 2)}</pre> 
           </header>
-         
+        
         </div>
        {/* <AddPosts  auth={this.props.auth}/> */}
+       {/* https://stackoverflow.com/questions/51795272/auth0-create-user-in-local-database-after-auth0-sign-up */}
       </div>
     );
   }
