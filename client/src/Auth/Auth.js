@@ -16,7 +16,7 @@ export default class Auth {
     redirectUri: AUTH_CONFIG.callbackUrl,
     audience: AUTH_CONFIG.apiUrl, //audience added
     responseType: 'token id_token',
-    scope: 'openid profile email write:user_items post:usersdata read:usersdata read:messages' //scopes for users
+    scope: 'openid profile email write:user_items post:usersdata read:usersdata read:messages user_metadata' //scopes for users
   });
 
   constructor() {
@@ -110,8 +110,19 @@ export default class Auth {
 //     }
 //   }
 
+// getUser() {
+//   if (localStorage.getItem('user')) {
+//     console.log(localStorage.getItem('user') + 'What is the information?? MAY 5')
+//     return JSON.parse(localStorage.getItem('user'));
+//   }
+// }
 
-  getProfile(cb) { //original code
+// getUserName() {
+//   if (this.getUser()) {
+//     return this.getUser().name + console.log(this.getUser().name);
+//   }
+// }
+  getProfile(cb) { //original code //https://curtistimson.co.uk/post/nodejs/auth0-access-user-details-email-nodejs/
     this.auth0.client.userInfo(this.accessToken, (err, profile) => {
       if (profile) {
         this.userProfile = profile;
@@ -147,8 +158,8 @@ export default class Auth {
       returnTo: window.location.origin
     });
 
-    // navigate to the home route - modified to authcheck
-    history.replace('/authcheck');
+    // navigate to the home route 
+    history.replace('/');
   }
 
   //can be used to authenticate people
@@ -159,3 +170,4 @@ export default class Auth {
     return new Date().getTime() < expiresAt;
   }
 }
+
