@@ -1,29 +1,17 @@
 import React from 'react';
 import ListPosts from './ListPosts';
-
-
-
+import SearchPosts from './SearchPosts';
 
 class BrowseItems extends React.Component {
     
     
-
     render() {
 
         return(
             <div className='container-fluid'>
-           
-            <div className='row'>
-                <h1>Unique user browse item component</h1>
-               
-            </div>
-            
-
-            <hr/> 
-            
-            
-            <ListPosts auth={this.props.auth}/>
-            
+               <SearchPosts auth={this.props.auth}/>
+                <hr/> 
+                <ListPosts auth={this.props.auth}/>
             </div>
         )
     }

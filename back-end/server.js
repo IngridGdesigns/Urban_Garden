@@ -186,15 +186,17 @@ app.get('/offers', jwtSecrets, async(req, res) => {
 //GET offers by item_id - a single item -
 app.get('/offers/:item_id', jwtSecrets, async(req, res) => {
     const client = await pool.connect()
-    let id = parseInt(req.params.item_id)
-
-    await client.query('SELECT * FROM offers WHERE item_id =$1', [id], (err, result) => {
+    let item_id = req.params.item_id
+    
+    await client.query('SELECT * FROM offers WHERE item_id =$1', [item_id], (err, result) => {
       if (err) {
           res.status(500).send(err);
           client.release()
       } 
       else { //res.json(dbitems.rows[0] )
-          res.status(200).json(result.rows[0])
+            console.log(result.rows)
+          res.status(200).json(result.rows)
+         
           client.release()
       }
     })
@@ -242,16 +244,16 @@ app.get('/user_items/:item_id', checkScopes, jwtSecrets, async(req, res) => {
 
 
 // GET users_items by ZIPCODE (NEAR ME..try to connect with location api) -- DONE
-app.get('/user_items/find/:zipcode', jwtSecrets, async(req, res) => {
+app.get('/user_items/find/:zipcode', checkScopes, jwtSecrets, async(req, res) => {
     const client = await pool.connect()
-    let zipcode = parseInt(req.params.zipcode)
+    let zipcode = req.params.zipcode
+    console.log(req.params.zipcode)
     // let item_name = req.body.item_name;
     // let username = req.body.username;
     // let description = req.body.description;
     // let available_status = req.body.available_status;
 
-    await client.query('SELECT item_name, username, available_status FROM user_items WHERE zipcode = $1',
-    [zipcode], (err, result) => {
+    await client.query('SELECT * FROM user_items WHERE zipcode = $1',[zipcode], (err, result) => {
         if (err) {
             res.status(500).send('Server error');
             client.release()
@@ -265,7 +267,7 @@ app.get('/user_items/find/:zipcode', jwtSecrets, async(req, res) => {
 });
 
 // // By item name - need help here
-app.get('/user_items/search/:item_name', async(req, res) => {
+app.get('/user_items/search/:item_name', checkScopes, jwtSecrets, async(req, res) => {
     const client = await pool.connect()
     let item_name = req.params.item_name;
 //SELECT item_name, email, username, available_status FROM user_items WHERE item_name = $1
@@ -396,32 +398,46 @@ app.post('/user_items', jwtSecrets, checkScopes, async(req, res) => {
 //POST - Add a New barter offers to offers table -- food to barter posts -- DONE
 // item_id |  item_name   | user_id_offering | 
 //user2_asking | offer_accepted | *barter_id  -- PRIMARY SERIAL KEY
-app.post('/offers', jwtSecrets, async (req, res) => {
-    const client = await pool.connect();
+// app.post('/offers', jwtSecrets, checkScopes, async (req, res) => {
+//     const client = await pool.connect();
    
-    // let id = parseInt(req.body.item_id)
+//     // let id = parseInt(req.body.item_id)
 
-    let item = req.body.item_name;
-    let offering = parseInt(req.body.user_id_offering)
-    let queryAsk = parseInt(req.body.user2_asking)
-    let offer_accepted = req.body.offer_accepted
-    let asking = req.body.asking
-    let writer = req.body.author
-    console.log(req.body)
+//     // let item = req.item_name;
+//     // let offering = parseInt(req.body.user_id_offering)
+//     // let queryAsk = parseInt(req.body.user2_asking)
+//     // let offer_accepted = req.body.offer_accepted
+//     let asking = req.asking
+//     // let writer = req.body.author
+//     console.log("HERE WE SHOULD SEE THE ASKING TEXT")
+//     console.log(req)
     
-    await client.query('INSERT INTO offers(item_name, user_id_offering, user2_asking, offer_accepted, asking, author) VALUES($1, $2, $3, $4, $5, $6) RETURNING *', 
-    [item, offering, queryAsk, offer_accepted, asking, writer], (err, result) => {
-        if(err){
-            console.log(err)
-            res.status(500).send('Server error')
-            client.release()
-        }
-        else {
-            res.status(200).json(result.rows[0])
-            client.release()
-        }
-    })
-})
+//     // await client.query('INSERT INTO offers(item_name, user_id_offering, user2_asking, offer_accepted, asking, author) VALUES($1, $2, $3, $4, $5, $6) RETURNING *', 
+//     // [item, offering, queryAsk, offer_accepted, asking, writer], (err, result) => {
+//     //     if(err){
+//     //         console.log(err)
+//     //         res.status(500).send('Server error')
+//     //         client.release()
+//     //     }
+//     //     else {
+//     //         res.status(200).json(result.rows[0])
+//     //         client.release()
+//     //     }
+//     // })
+
+//     await client.query('INSERT INTO offers(asking) VALUES($1) RETURNING *', 
+//     [asking], (err, result) => {
+//         if(err){
+//             console.log(err)
+//             res.status(500).send('Server error')
+//             client.release()
+//         }
+//         else {
+//             res.status(200).json(result.rows[0])
+//             client.release()
+//         }
+//     })
+// })
 
 // app.post('/rooms/:id/messages', function(req, res){
 //     var room = rooms[req.params.id];
@@ -435,21 +451,29 @@ app.post('/offers', jwtSecrets, async (req, res) => {
 // });
 
 
-app.post('/offers/:item_id', jwtSecrets, async(req, res) => {
+app.post('/offers/:item_id', jwtSecrets, checkScopes, async(req, res) => {
     const client = await pool.connect();
 
-    let id = parseInt(req.body.item_id)
-    let item = req.body.item_name
-    let offering = parseInt(req.body.user_id_offering)
-    let username = parseInt(req.body.user2_asking)
+    //let id = parseInt(req.body.barter_id)
+    let item_id = req.params.item_id
+    // let offering = parseInt(req.body.user_id_offering)
+    // let username = parseInt(req.body.user2_asking)
     let asking  = req.body.asking
-    let accept = req.body.offer_accepted 
-    let author = req.user.author
+    // let accept = req.body.offer_accepted 
+    // let author = req.user.author
+    console.log("HELLLOOOOOOOOOO SERVER and body is")
     console.log(req.body)
+    console.log("and just req.asking is")
+    console.log(req.body.asking)
+    console.log("111111111111111")
     console.log(req.body.item_name + 'is this ok');
+    console.log("2222222222222")
+    console.log(req.body.barter_id)
+    console.log("3333333333333")
+    console.log(req.params.item_id)
 
-    await client.query('INSERT INTO offers(item_name, user_id_offering, user2_asking, asking, offer_accepted, author) VALUES ($1, $2, $3, $4, $5, $6) WHERE item_id =$7 RETURNING *',
-    [id, offering, item, username, asking, accept, author], (err, result) => {
+    await client.query('INSERT INTO offers(item_id, asking) VALUES ($1, $2) RETURNING *',
+    [item_id, asking], (err, result) => {
         if(err){
             res.status(500).send('Server error')
             client.release()

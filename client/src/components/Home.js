@@ -48,7 +48,7 @@ class Home extends React.Component {
             </p> */}
                 </Alert>
 
-            <div className="jumbotron text-center">
+            <div className="jumbotron text-center" style={{color: "purple", backgroundPosition: "center center", backgroundImage:"url('https://images.pexels.com/photos/1493378/pexels-photo-1493378.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940')"}}>
                 <h1 >jumbotron</h1>
                 
                 <p>Welcome to Urgan garden soo cool! Resize this responsive page to see the effect!</p> 

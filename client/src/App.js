@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-//import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import { NavLink, Link} from 'react-router-dom'
 import { FaEnvira } from 'react-icons/fa'
 import { Navbar, Button } from 'react-bootstrap'
+
+
 
 
 
@@ -12,7 +13,7 @@ import { Navbar, Button } from 'react-bootstrap'
 // import NavBar from './NavBar';
 // import UserBreadCrumb from './components/UserBreadCrumb'
 
-import LandingPage from './components/LandingPage'
+//import LandingPage from './components/LandingPage'
 // import AboutPage from './components/AboutPage'
 // import Home from './components/Home'
 // import LoginForm from './components/LoginForm'
@@ -57,7 +58,7 @@ class App extends Component {
     const { isAuthenticated} = this.props.auth;
 
     return (
-<div style={{marginBottom: 120}} className='homeBg'>
+<div style={{marginBottom: 100}} className='homeBg'>
   <h1>hello this is working now</h1>
   
 
@@ -80,7 +81,7 @@ class App extends Component {
             </Button> */}
             {
               !isAuthenticated() && (
-              <div src={<LandingPage auth={this.props.auth}/>} >
+              <div>
                 
                   <Button id="qsLoginBtn" // style="primary"
                     className="btn-margin btn-primary"
@@ -143,16 +144,24 @@ class App extends Component {
             } */}
           </header>
         </Navbar>
+        
         <div className="container">
           {this.props.children}
+          
         </div>
-
-
 </div>
 
 
 
 
+
+
+
+    );
+  }
+}
+
+export default App;
 
 
       // what i had before linkedin and auth0
@@ -178,11 +187,9 @@ class App extends Component {
       //   </div>
       //   </div>
       // </BrowserRouter>
-    );
-  }
-}
 
-export default App;
+
+
 
 
 //from AuthO

@@ -80,7 +80,7 @@ toggleFormHidden() {
          <div className='card textcenter mt-3 container'>
          <div className='card-header bg-success text-white container-fluid'>
          <button onClick={this.toggleFormHidden.bind(this)}
-         class="btn" 
+         className="btn" 
          src={{color : 'white'}}><FaLemon/>
          </button>
              {/* <FaLemon data-toggle="collapse"/> Add new item to barter */}

@@ -12,6 +12,8 @@ import Listing from '../components/Listing';
 import SubmitBarter from '../components/SubmitBarter'
 
 
+
+
 import Callback from './Callback/Callback';
 import Auth from '../Auth/Auth';
 import history from '../history';
@@ -39,6 +41,7 @@ export const makeMainRoutes = () => {
       <Route path='/dashboard' render={(props) => <Dashboard auth={auth} {...props} />} />
       <Route path='/browseitems' render={(props) => <BrowseItems auth={auth} {...props} />} />
       <Route exact path='/listing/:item_id' render={(props) => <Listing auth={auth} {...props}/>} />
+      
     
       <Route path='/profile' render={(props) => (
         !auth.isAuthenticated() ? (

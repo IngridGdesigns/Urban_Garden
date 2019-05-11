@@ -3,6 +3,7 @@ import { FaLemon } from 'react-icons/fa';
 import Moment from 'react-moment';
 import './Profile.css';
 import axios from 'axios'
+
 // import '../src/styleCss/styles'
 
 
@@ -37,10 +38,10 @@ class Profile extends Component {
       });
     } else {
       // console.log(profile.user_metadata)
-      this.setState({ profile: userProfile });
+      this.setState({ profile: userProfile});
      // document.getElementById('picture').textContent = userProfile.user_metadata
       
-      console.log({userProfile}, 'cool user profile from Profile page')
+      console.log({userProfile},'cool user profile from Profile page')
     }
   }
 
@@ -134,8 +135,9 @@ class Profile extends Component {
         <div className="profile-area">
           <h1>{profile.name}</h1>
           <header header="Profile">
-          {/* <img src="<%= user.user_metadata.picture || user.picture %>"> */}
-            <img src={profile.picture || profile.user_metadata} alt="profile" /> 
+          {/* <img src="<%= user.user_metadata.picture || user.picture %>">  profile.picture || */}
+            <img src={profile.picture} alt="profile" /> 
+            {/* <img src={profile.user_metadata.picture}/> */}
             <div>
               <label><FaLemon glyph="user" /> Donut Evangelist</label>
               <h2>{profile.nickname}</h2>
