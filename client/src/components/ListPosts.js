@@ -1,34 +1,25 @@
 import React, {Component} from 'react'
 import { Link } from 'react-router-dom'
 import { FaGrinHearts } from 'react-icons/fa';
-// import { FaComment, FaRegStar} from 'react-icons/fa';
-// import imageData from './imageData';
-// import Image from './Image'
+
+
 
 
 class ListPosts extends Component {
     constructor(props){
         super(props);
         this.state = {
-            user_items: null,
+            user_items: [],
+           
+            
         }
     }
 
-    componentDidMount() {
-        const headers = { 'Authorization': `Bearer ${this.props.auth.accessToken}`}
-        fetch('http://localhost:3005/user_items', {
-            method: 'GET',
-            headers: headers, 
-        })
-          .then(res => res.json())
-          .then(user_items => this.setState({ user_items }, console.log({user_items}))
-        ).catch(err => console.log(err))
-      }
-
     render(){
-        const {user_items} = this.state
+     
+        
  //place images from web to here...
-        let smallImages = [
+        let smallImages = [ 
             "https://foodrevolution.org/wp-content/uploads/2019/01/iStock-950322084-olindana.jpg",
             "https://www.naturehills.com/media/catalog/product/cache/74c1057f7991b4edb2bc7bdaa94de933/m/e/meyer-lemon-close-768x768.jpg",
             //"https://mdbootstrap.com/img/Others/documentation/img%20(145)-mini.jpg",
@@ -41,9 +32,9 @@ class ListPosts extends Component {
             //"https://www.strongertogether.coop/sites/default/files/Get_Healthy_and_Save_Money_by_Food_Gardening_0.jpg",
             "https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Ripe%2C_ripening%2C_and_green_blackberries.jpg/1200px-Ripe%2C_ripening%2C_and_green_blackberries.jpg",
             "https://www.york.ac.uk/media/research/in-focus/agrifood/news-events/fruit&veg.jpg",
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTD-d3c0Augz1wOUEg6-hfU0wkdxWO58R9HWOnux9DRVuH8FoNe",
+           // "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTD-d3c0Augz1wOUEg6-hfU0wkdxWO58R9HWOnux9DRVuH8FoNe",
             "https://foodrevolution.org/wp-content/uploads/2018/04/blog-featured-diabetes-20180406-1330.jpg",
-            "https://images.immediate.co.uk/volatile/sites/10/2018/02/71171e9b-d496-4818-bb64-4003b4c780ce-0617a51.jpg?quality=45&resize=620,413",
+           "https://images.immediate.co.uk/volatile/sites/10/2018/02/71171e9b-d496-4818-bb64-4003b4c780ce-0617a51.jpg?quality=45&resize=620,413",
             "https://media.angieslist.com/s3fs-public/styles/widescreen_large/s3/s3fs-public/home-garden.JPG?37enwB2E.rbKnI5YrW6JZ_irCpGbr5ct&itok=Usbna66n",
             "https://www.foodpowa.com/wp-content/uploads/2018/05/peaches.jpg"
             
@@ -55,36 +46,33 @@ class ListPosts extends Component {
         return(
         <div className='container-fluid'>
             <div className='row'>
-          
             {this.state.user_items === null && <div className="loader centered"></div>}
                 {/* col-sm-6 col-md-4 */}
-                {this.state.user_items && user_items.map(listed => 
+                {this.props.user_items && this.props.user_items.map(listed => 
                 <div className='card-column col-md-6 col-lg-4' 
-                        style={{'paddingTop': '10px'}}
+                        style={{'paddingTop': '10px', overflow:'hidden', maxWidth: '100%'}}
                         key={listed.item_id}>
                     <Link to={`/listing/${listed.item_id}`}>
-              
-                <img className='card-top img-fluid' 
-                     alt='Card top'
-                    src={smallImages[i++ % imageCount]}
-              
-                     />  
-                   <ul className="list-group">
-                  <li className="list-group-item">
-                    <span className="badge"><FaGrinHearts/></span>
+                    <img className='card-top img-fluid' 
+                            alt='Card top'
+                        src={smallImages[i++ % imageCount]}
+                        style={{verticalAlign: 'middle'}}
+                    />  
+                   <ul className='list-group'>
+                        <li className='list-group-item'>
+                            <span className='badge'><FaGrinHearts/></span>
                           {listed.username}
-                  </li>
-                </ul>
+                        </li>
+                    </ul>
                     <div className='card-img-overlay'>
-    
                         <div className='card-subtitle centered' style={{backgroundColor: 'black',  opacity: '0.5'}}>
                             <h3 className='text-center'>{listed.item_name} </h3>
                         </div>
                          {/* <h3 className='card-title text-right'></h3>  */}
                          {/* <button className='btn-success'>barter</button></Link> */}
                     </div>
-                    {/* <p className='card-text'>This is a simple Card example</p> */}
-  </Link>
+                    {/* <p className='card-text'>This is a Card example</p> */}
+                    </Link>
                 </div>
                  )}
             </div>

@@ -20,6 +20,11 @@ toggleFormHidden() {
         isHidden: !this.state.isHidden
     })
 }
+toggleForm() {
+    this.setState({
+      formDisplay: !this.state.formDisplay
+    });
+  }
 
     // componentDidMount() {
     //     const headers = { 'Authorization': `Bearer ${this.props.auth.accessToken}`}
@@ -71,6 +76,7 @@ toggleFormHidden() {
     }
   
     render() {
+        
         return(     
         <div>
 
@@ -79,7 +85,7 @@ toggleFormHidden() {
 
          <div className='card textcenter mt-3 container'>
          <div className='card-header bg-success text-white container-fluid'>
-         <button onClick={this.toggleFormHidden.bind(this)}
+         <button onClick={this.toggleForm}
          className="btn" 
          src={{color : 'white'}}><FaLemon/>
          </button>

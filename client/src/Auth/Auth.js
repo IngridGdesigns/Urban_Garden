@@ -39,13 +39,12 @@ export default class Auth {
     this.auth0.parseHash((err, authResult) => {
 
       if (authResult && authResult.accessToken && authResult.idToken) {
-        //console.log(authResult)
         this.setSession(authResult);
         // this.getProfile();//modified 5/4/19
         // setTimeout( function() { history.replace('/dashboard')}, 2000);//modified read top
-        // history.replace('/dashboard');//i added this line,delete after test
+        
       } else if (err) {
-        history.replace('/home'); //history.replace('/');
+        history.replace('/'); //history.replace('/');
         console.log(err);
         debugger;
         alert(`Error: ${err.error}. Check the console for further details.`);
@@ -137,7 +136,7 @@ export default class Auth {
     if(localStorage.getItem('isLoggedIn')){
         return this.userProfile;
     } else {
-      return ('im crazy or something, !')
+      return ('something, !')
     }
   }
 
@@ -159,7 +158,7 @@ export default class Auth {
     });
 
     // navigate to the home route 
-    history.replace('/');
+    history.replace('/');/////////////
   }
 
   //can be used to authenticate people

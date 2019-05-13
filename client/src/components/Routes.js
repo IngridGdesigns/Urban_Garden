@@ -10,6 +10,8 @@ import BrowseItems from './BrowseItems';
 import Profile from '../components/Profile/Profile';
 import Listing from '../components/Listing';
 import SubmitBarter from '../components/SubmitBarter'
+import SearchPosts from './SearchPosts';
+import Footer from './Footer'
 
 
 
@@ -17,6 +19,7 @@ import SubmitBarter from '../components/SubmitBarter'
 import Callback from './Callback/Callback';
 import Auth from '../Auth/Auth';
 import history from '../history';
+
 
 
 
@@ -37,15 +40,17 @@ export const makeMainRoutes = () => {
 
       <Route path='/landingpage' render={(props) => <LandingPage auth={auth} {...props} />} />
     <Route path='/submitbarter' render={(props) => <SubmitBarter auth={auth} {...props} />}/>
-      <Route exact path='/home' render={(props) => <Home auth={auth} {...props} />} />
+      <Route exact path='/home' render={(props) => <Home {...props} />} />
       <Route path='/dashboard' render={(props) => <Dashboard auth={auth} {...props} />} />
       <Route path='/browseitems' render={(props) => <BrowseItems auth={auth} {...props} />} />
       <Route exact path='/listing/:item_id' render={(props) => <Listing auth={auth} {...props}/>} />
+      <Route path='/searchposts' render={(props) => <SearchPosts auth={auth} {...props} />} />
+      <Route path='/footer' render={(props) => <Footer auth={auth} {...props} />} />
       
     
       <Route path='/profile' render={(props) => (
         !auth.isAuthenticated() ? (
-          <Redirect to='/'/>
+          <Redirect to='/home'/>
         ) : (
           <Profile auth={auth} {...props} /> // original code 
         )
