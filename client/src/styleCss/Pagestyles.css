@@ -1,9 +1,40 @@
-/* home styles */ 
+home styles 
 
 /*home bg image */
 /* body, html{
   height: 100%
 } */
+/* 
+loader
+*/
+.loader {
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid rgb(250, 245, 88);
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite;  /*Safari*/
+  animation: spin 2s linear infinite;
+}
+/* Safari */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+
+
+
+.searchBgImg {
+  background-image:  "url('https://images.pexels.com/photos/1493378/pexels-photo-1493378.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940')";
+  transform: rotate(90deg);
+}
+
 
 /*the image used  Photo by rawpixel.com from Pexels
 */
@@ -45,75 +76,14 @@ height: 100%;
   color: whitesmoke;
 }
 
-
-.featured-crops {
-  background-color: #f0f5f0;
-  padding: 40px inherit 20px
-}
-
-.featured-crops h2 {
-  color: #333333;
-  text-shadow: none;
-  font-size: 2em;
-  padding-top: 1em;
-  margin: 0
-}
-
-.featured-crops .featured-crops-grid {
-  margin-top: 30px
-}
-
-.featured-crops .featured-crops-grid .featured-crop-container {
-  margin-bottom: 30px
-}
-
-.featured-crops .featured-crops-grid .featured-crop-container .featured-crop {
-  position: relative;
-  height: 280px
-}
-
-.featured-crops .featured-crops-grid .featured-crop-container .featured-crop .row {
-  margin: 0;
-  width: 100%
-}
-
-.featured-crops .featured-crops-grid .featured-crop-container .featured-crop:hover .blackness {
-  opacity: 1;
-  -moz-transition: opacity 200ms ease-in-out;
-  -o-transition: opacity 200ms ease-in-out;
-  -webkit-transition: opacity 200ms ease-in-out;
-  transition: opacity 200ms ease-in-out
-}
-
-.featured-crops .featured-crops-grid .featured-crop-container .blackness {
-  background-color: rgba(0,0,0,0.45);
-  opacity: .5
-}
-
-.featured-crops .featured-crops-grid .featured-crop-container .crop-image {
-  background-color: #f5f5f5;
-  background-size: cover;
-  background-position: center
-}
-
-.featured-crops .featured-crops-grid .featured-crop-container .crop-name {
-  color: #ffffff;
-  font-weight: 800;
-  text-align: center;
-  padding: 30px
-}
-
-
-
-
 /*  end of home styles */
 
 
-
+/* 
 body {
-  /* ... other rules ... */
+  /* ... other rules ... 
   margin-top: 5px;
-}
+} */
 
 .theNav {
     /* padding: 10px; */
@@ -142,7 +112,7 @@ body {
   }
   /* Form accessibility - unstead of whit it will be transparent*/
   input { 
-    background-color: transparent !important;
+    background-color: whitesmoke !important;
   }
   
   .color1 {
@@ -299,11 +269,14 @@ body {
     height: 100%;
   }
 
-  
+  */
   /*
    * Footer
    */
-  /* .mastfoot {
-    color: rgba(255, 255, 255, .5);
-  } */
   
+  .bg-image {
+    height:50%;
+    background-attachment: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }

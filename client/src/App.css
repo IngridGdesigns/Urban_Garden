@@ -7,6 +7,12 @@
 
 /*the image used  Photo by rawpixel.com from Pexels
 */
+.add-post  {
+    display: none;
+
+}
+
+
 .homeBg {
    
   
@@ -46,74 +52,16 @@
   }
   
   
-  .featured-crops {
-    background-color: #f0f5f0;
-    padding: 40px inherit 20px
-  }
-  
-  .featured-crops h2 {
-    color: #333333;
-    text-shadow: none;
-    font-size: 2em;
-    padding-top: 1em;
-    margin: 0
-  }
-  
-  .featured-crops .featured-crops-grid {
-    margin-top: 30px
-  }
-  
-  .featured-crops .featured-crops-grid .featured-crop-container {
-    margin-bottom: 30px
-  }
-  
-  .featured-crops .featured-crops-grid .featured-crop-container .featured-crop {
-    position: relative;
-    height: 280px
-  }
-  
-  .featured-crops .featured-crops-grid .featured-crop-container .featured-crop .row {
-    margin: 0;
-    width: 100%
-  }
-  
-  .featured-crops .featured-crops-grid .featured-crop-container .featured-crop:hover .blackness {
-    opacity: 1;
-    -moz-transition: opacity 200ms ease-in-out;
-    -o-transition: opacity 200ms ease-in-out;
-    -webkit-transition: opacity 200ms ease-in-out;
-    transition: opacity 200ms ease-in-out
-  }
-  
-  .featured-crops .featured-crops-grid .featured-crop-container .blackness {
-    background-color: rgba(0,0,0,0.45);
-    opacity: .5
-  }
-  
-  .featured-crops .featured-crops-grid .featured-crop-container .crop-image {
-    background-color: #f5f5f5;
-    background-size: cover;
-    background-position: center
-  }
-  
-  .featured-crops .featured-crops-grid .featured-crop-container .crop-name {
-    color: #ffffff;
-    font-weight: 800;
-    text-align: center;
-    padding: 30px
-  }
-  
-  
   
   
   /*  end of home styles */
   
   
   
-  body {
-    /* ... other rules ... */
+  /* body {
+    /* ... other rules ... 
     margin-top: 5px;
-  }
+  } */
   
   .theNav {
       /* padding: 10px; */
@@ -170,7 +118,7 @@
     a,
     a:focus,
     a:hover {
-      color: #fff;
+      color: rgb(255, 254, 204);
     }
     
     /* Custom default button */
@@ -291,19 +239,35 @@
       background: -o-linear-gradient(45deg, rgba(42, 27, 161, 0.7), rgba(29, 210, 177, 0.7) 100%);
       background: linear-gradient(to 45deg, rgba(42, 27, 161, 0.7), rgba(29, 210, 177, 0.7) 100%);
     }
-  
+/*   
     html,
     body,
     header,
     .view {
       height: 100%;
+    } */
+ 
+
+
+    body {
+      height: 100%;
+      margin: 0;
+
     }
-  
-    
     /*
      * Footer
      */
     /* .mastfoot {
       color: rgba(255, 255, 255, .5);
     } */
-    
+    .footer {
+      position: absolute;
+      left: 0;
+      right:0;
+      bottom: 0;
+      width: 50%;
+      margin-top: 30px;
+      padding-top:30px;
+      text-align: center;
+    }
+
