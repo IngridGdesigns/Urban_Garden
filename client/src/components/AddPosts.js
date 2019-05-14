@@ -1,7 +1,7 @@
 import React from 'react';
 import { FaRegLemon } from 'react-icons/fa';
 import { FaLemon } from 'react-icons/fa';
-//import Profile from './Profile/Profile'
+import Profile from './Profile/Profile'
 // import axios from 'axios';
 
 class AddPosts extends React.Component {
@@ -15,16 +15,16 @@ class AddPosts extends React.Component {
 
 }
 
-toggleFormHidden() {
-    this.setState({
-        isHidden: !this.state.isHidden
-    })
-}
-toggleForm() {
-    this.setState({
-      formDisplay: !this.state.formDisplay
-    });
-  }
+// toggleFormHidden() {
+//     this.setState({
+//         isHidden: !this.state.isHidden
+//     })
+// }
+// toggleForm() {
+//     this.setState({
+//       formDisplay: !this.state.formDisplay
+//     });
+//   }
 
     // componentDidMount() {
     //     const headers = { 'Authorization': `Bearer ${this.props.auth.accessToken}`}
@@ -52,7 +52,6 @@ toggleForm() {
         // this.setState({ user_items: ''})
     }
 
-
     // //Add new post to user_item table -- before Auth0
     addPost = (e) => {
         e.preventDefault(); //prevents page from reloading -- 'e' is for event
@@ -79,25 +78,24 @@ toggleForm() {
         
         return(     
         <div>
-
+    
          <hr/>
-         <h2>AddPosts to Barter stuff</h2>
+         <h3>AddPosts to start bartering!</h3>
+         <h5></h5>
 
          <div className='card textcenter mt-3 container'>
          <div className='card-header bg-success text-white container-fluid'>
-         <button onClick={this.toggleForm}
-         className="btn" 
-         src={{color : 'white'}}><FaLemon/>
-         </button>
+            <button onClick={this.toggleForm}
+                    className="btn" 
+                    src={{color : 'white'}}><FaLemon/>
+            </button>
              {/* <FaLemon data-toggle="collapse"/> Add new item to barter */}
              {!this.state.isHidden}
          </div>
 
                  <div className='card-body'>
                  {/* id='addItem'  */}
-                 <form 
-                 // onSubmit={this.handleSubmit}
-                 >
+                 <form >
                      <div className='form-group form-row'>
                      <label
                          className='col-md-2 col-form-label text-md-right'

@@ -3,6 +3,7 @@ import ListPosts from './ListPosts';
 import SearchPosts from './SearchPosts';
 
 
+
 class BrowseItems extends React.Component {
     constructor(props){
         super(props);
@@ -41,6 +42,7 @@ class BrowseItems extends React.Component {
         return(
             
             <div className='container-fluid'>
+            
                 <SearchPosts 
                 auth={this.props.auth}
                 onChange={(e) => this.onChangeSearch(this.props.march.item_name, e)}

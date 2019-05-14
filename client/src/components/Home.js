@@ -4,6 +4,8 @@ import {FaRecycle, FaCarrot,FaUsers } from 'react-icons/fa';
 import Alert from 'react-bootstrap/Alert'
 
 
+
+
 class Home extends React.Component {
 
     render(){

@@ -29,7 +29,7 @@ class Profile extends Component {
   }
  
 
-  componentWillMount() {
+  componentWillMount() { //mounting profile
     this.setState({ profile: {} });
     const { userProfile, getProfile } = this.props.auth;
     if (!userProfile) {
@@ -40,63 +40,12 @@ class Profile extends Component {
       // console.log(profile.user_metadata)
       this.setState({ profile: userProfile});
      // document.getElementById('picture').textContent = userProfile.user_metadata
-      
+    
       console.log({userProfile},'cool user profile from Profile page')
     }
   }
 
-  //posting
-//   fetch('http://localhost:3005/usersdata', {
-//     method: 'POST',
-//     headers: {
-//       'Content-Type': 'application/json'
-//       // headers
-//     },
-    
-//     // body: JSON.stringify(data);
-//   })
-// }
-
-
-// postingToDB = () => { //CHISOM HELPED
-//   const { getProfile, getAccessToken } = this.props.auth;
-//   const headers = { 'Authorization': `Bearer ${getAccessToken}`}
  
-//   getProfile((err, profile) => {
-//     console.log(profile + "Unsuccessful in my posting")
-//     if(err){
-//       console.log(err)
-//     } else {
-//       axios({
-//         method: 'POST',
-//         headers: headers, 
-//         body: JSON.stringify(data),
-//         url: 'http://localhost:3005/usersdata',
-//         data: profile
-//       })
-//     }
-//   });
-// }
-
-// addUsertoDB = () => { 
-//   const headers = { 'Authorization': `Bearer ${this.props.auth.accessToken}`, 'Content-Type': 'application/json'}
-//   //const id = this.props.match.params.item_id // we grab the ID from the URL
-//   getProfile((err, profile) => {
-//     console.log(profile + "Unsuccessful in my posting")
-//     if(err){
-//       console.log(err)
-//     } else {
-//   axios.post({method: 'POST', headers: headers,
-//    url:`http://localhost:3005/usersdata/`}).data
-// }
-  // console.log(data + 'is this even working?')
-  // fetch('http://localhost:3005/usersdata', {
-  //         method: 'POST',
-  //         headers: headers,
-  //         body: JSON.stringify(data),
-  //     })
-  //     .then(res => res.json(), (console.log(data + 'not working')))
-  // }
 
   postingToDB = () => { //CHISOM HELPED
   
@@ -132,19 +81,19 @@ class Profile extends Component {
     const { profile } = this.state;
     return (
       <div className="container">
-        <div className="profile-area">
-          <h1>{profile.name}</h1>
-          <header header="Profile">
+        <div className="row profile-area">
+          
+          <header header="Profile column">
           {/* <img src="<%= user.user_metadata.picture || user.picture %>">  profile.picture || */}
-            <img src={profile.picture} alt="profile" /> 
-            {/* <img src={profile.user_metadata.picture}/> */}
+            <img src={profile.picture} alt="profile" style={{width: '50%'}}/> 
+           
+            
             <div>
-              <label><FaLemon glyph="user" /> Donut Evangelist</label>
-              <h2>{profile.nickname}</h2>
+            {/* <h6>Welcome: {profile.name}</h6> */}
+              <label><FaLemon glyph='user'/></label>
+              {/* <h2>{profile.nickname}</h2> */}
               <span>
                 <Moment
-              
-                  
                      //Displays from a library called moment to change display of date/time 
                         date={profile.updated_at}
                         parse={profile.updated_at}
@@ -157,8 +106,9 @@ class Profile extends Component {
                 </span>
             </div>
             {/* json string stuff */}
-            <button onClick={this.postingToDB} auth={this.props.auth}>posting user button</button>
-            <pre>{JSON.stringify(profile, null, 2)}</pre> 
+            {/* <button onClick={this.postingToDB} auth={this.props.auth}>posting user button</button>
+            */}
+            {/* <pre>{JSON.stringify(profile, null, 2)}</pre>   */}
           </header>
         
         </div>
@@ -171,17 +121,3 @@ class Profile extends Component {
 
 
 export default Profile;
-// console.log(userProfile + '123456')    
-    // fetch('http://localhost:3005//usersdata', {
-    //         method: 'GET',
-    //         headers: headers //{headers, 'Content-Type': 'application/json'},
-    //         // body: JSON.stringify(data),
-    //     })
-    // this.auth0.client.userInfo(this.accessToken, (err, profile) => {
-    //   if (profile) {
-    //     console.log(profile)
-    //     this.userProfile = profile;
-    //     console.log(this.userProfile)
-    //   }
-    //   // cb(err, profile);
-    // });

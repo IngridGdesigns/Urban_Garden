@@ -246,7 +246,8 @@ app.get('/user_items/:item_id', checkScopes, jwtSecrets, async(req, res) => {
 // GET users_items by ZIPCODE (NEAR ME..try to connect with location api) -- DONE
 app.get('/user_items/find/:zipcode', checkScopes, jwtSecrets, async(req, res) => {
     const client = await pool.connect()
-    let zipcode = req.params.zipcode
+    
+    let zipcode = parseInt(req.params.zipcode)
     console.log(req.params.zipcode)
     // let item_name = req.body.item_name;
     // let username = req.body.username;

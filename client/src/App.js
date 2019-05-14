@@ -4,7 +4,9 @@ import { FaEnvira } from 'react-icons/fa'
 import { Navbar, Button, Jumbotron } from 'react-bootstrap'
 
 import Footer from './components/Footer'
-import LandingPage from './components/LandingPage'
+import Profile from './components/Profile/Profile'
+// import AboutPage from './components/AboutPage'
+// import LandingPage from './components/LandingPage'
 
 
 class App extends Component {
@@ -44,14 +46,17 @@ class App extends Component {
           <nav className='theNav navbar fixed-top' >
               <div className='container'>
              
-                  <NavLink to='/home' className='navbar-brand'> <FaEnvira/> Urbangarden app</NavLink>
+                  <NavLink to='/' className='navbar-brand'> <FaEnvira/> Urbangarden app</NavLink>
                   
               <ul className='nav right'>
-                  <li><a onClick={this.goTo.bind(this, 'home')}>Home</a></li>
-                  <li className='nav-item'><NavLink to='/register'></NavLink></li>
-                  <button id="qsLoginBtn" 
+              <li className='nav-item'><NavLink to='/'>Home</NavLink></li>
+              
+              {/* <li className='nav-item'><NavLink to='/#top'>About us</NavLink></li> */}
+                  {/* <li><a onClick={this.goTo.bind(this, 'home')}>home</a></li> */}
+                  
+                  <Button id="qsLoginBtn" 
                   className='btn btn-primary' 
-                  onClick={this.login.bind(this, 'profile')}>Login</button>
+                  onClick={this.login.bind(this, 'profile')}>Login</Button>
               </ul>
               </div>
           </nav>
@@ -60,22 +65,29 @@ class App extends Component {
           style={{height: '100vh', marginTop: '50px', backgroundPosition: 'center center',
           backgroundImage:"url('https://images.pexels.com/photos/1493378/pexels-photo-1493378.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940')"}}
           title={this.state.jumbotronTitle}>
-          <div className='row'>
-            <div className='col-md-6 text-left'>
-            <h2>Let's start Bartering again!</h2>
-            <p>testing</p>
-            </div>
 
+          <div className='row'>
+            <div className='col-md-6 text-left' style={{backgroundColor: 'whitesmoke', backgroundBlendMode: 'screen'}}>
+              <div style={{padding: '10%'}}>
+                <div className='color1'>
+                <h2>Let's start Bartering!</h2>
+                  <p>If your ready to share your garden with the world go
+                  ahead and clikc to register.
+                  </p>
+                <button id='qsLoginBtn'
+                  className='btn btn-warning' 
+                  onClick={this.login.bind(this, 'profile')}>
+                  Sign up!
+                </button>
+                </div>
+            </div>
+          </div>
             <div className='col-md-6'>
-            
             </div>
           </div>
           </Jumbotron>
-         
-         
 
-          {/* <LandingPage/> */}
-          <div className='container' style={{backgroundColor: 'yellow'}}>
+          <div className='container'>
           <Footer/>
           </div>
       </div>
@@ -93,11 +105,12 @@ class App extends Component {
                   <li className='nav-item'><NavLink to='/home'>home</NavLink></li>
                   <li className='nav-item'><NavLink to='/browseitems'>browse</NavLink></li>
                   <li className='nav-item'><NavLink to='/dashboard'>dashboard</NavLink></li>
+                  <li className='nav-item'><NavLink to='/profile'>profile</NavLink></li>
                   <li className='btn btn-primary'onClick={this.logout.bind(this)}>Logout</li>
               </ul>
               </div>
           </nav>
-        
+          
       </div>
       
         )
@@ -118,9 +131,8 @@ class App extends Component {
 <div className="container">
           {this.props.children}
         
-        
         </div> 
-        
+   
         </div>
 
     );

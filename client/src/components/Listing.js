@@ -8,6 +8,8 @@ class Listing extends Component {
       this.state = {
         offers: [],
         user_items: [],
+        offer_accepted: false,
+        
        
       }
 }
@@ -16,13 +18,15 @@ class Listing extends Component {
   componentDidMount() { 
     const headers = { 'Authorization': `Bearer ${this.props.auth.accessToken}`}
     const id = this.props.match.params.item_id //get by id
-    console.log("HEY WERE INSIDE LISTING.JS")
-    console.log(this.props.match)
+    // console.log("HEY WERE INSIDE LISTING.JS")
+    // console.log(this.props.match)
+
     fetch(`http://localhost:3005/user_items/${id}`,{
         method: 'GET',
         headers: headers, 
   }).then(res => res.json())
-    .then(user_items => this.setState({ user_items }))
+    .then(user_items => this.setState({ user_items })
+    )
     .then(() => fetch(`http://localhost:3005/offers/${id}`, {
         method: 'GET',
         headers: headers, 
@@ -32,23 +36,17 @@ class Listing extends Component {
   ).catch(err => console.log(err))
 }
     
-  componentDidUpdate(prevProps) {
-    // Typical usage (don't forget to compare props):
-    if (this.props.offers !== prevProps.offers) {
-      this.fetchData(this.props.offers);
-    }
-}
-
   handleOfferChange = (e) => {
     e.preventDefault(); //prevents from page reloading
-    this.setState({ offers: [...e.target.value]})
+    this.setState({ offers: [...e.target.value]}) //({ offers: [...e.target.value]})
     console.log('handlechange function on?? was this added now??')
 }
 
   handleSubmit= (e) => {
     e.preventDefault();
     this.props.addPost(...this.state.offers)
-    alert('A post was submitted: ' + this.state.value);
+    console.log(`a post was submitted ${this.state.offers}`)
+    //alert('A post was submitted: ' + this.state.value);
     this.setState({ offers:[]})
 }
 
@@ -72,17 +70,23 @@ addOffer = (id, e) => {
 }
 
 //<div className="loader centered"></div>
-
+handleOfferAccepted = (e)=> {
+  // e.preventDefault
+  this.setState({
+    offer_accepted: !this.state.offer_accepted //sets to true
+  })
+}
     render() {
       const {user_items} = this.state
+     
         return (
             <div>
               
               <div className='container'>
                 <div className='row'>
+               
                 
-                
-                  <div className='jumbotron'>
+                  <div className='card'>
 
                   <div className='row'>
                  
@@ -102,7 +106,7 @@ addOffer = (id, e) => {
              <SubmitBarter 
                   auth={this.props.auth} 
                   item_id={this.props.match.params.item_id}
-                //handleOfferChange={(e) => this.handleOfferChange(e)}
+                  //handleOfferChange={(e) => this.handleOfferChange(e)}
                   addOffer={(e) => this.addOffer(this.props.match.params.item_id, e)}
                   onClick={(e) => this.handleSubmit(e)}
               />
@@ -125,7 +129,11 @@ addOffer = (id, e) => {
                       <p>{barter.asking}</p>
                       </div>
                       <div className='column' style={{'width':'30%'}}>
-                      <button className='btn-primary'>accept{barter.offer_accepted}</button>
+                      <button 
+                      className='btn-primary'
+                      onClick={this.handleOfferAccepted}
+                      >{this.state.offer_accepted ? 'offer accepted' : 'accept'}
+                      </button>
                       </div>
                     </div>
                    

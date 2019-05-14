@@ -122,6 +122,7 @@ export default class Auth {
 //   }
 // }
   getProfile(cb) { //original code //https://curtistimson.co.uk/post/nodejs/auth0-access-user-details-email-nodejs/
+    //let accessToken = this.getaccessToken()
     this.auth0.client.userInfo(this.accessToken, (err, profile) => {
       if (profile) {
         this.userProfile = profile;

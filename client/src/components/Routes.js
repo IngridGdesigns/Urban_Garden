@@ -19,6 +19,7 @@ import Footer from './Footer'
 import Callback from './Callback/Callback';
 import Auth from '../Auth/Auth';
 import history from '../history';
+import AboutPage from './AboutPage';
 
 
 
@@ -37,10 +38,12 @@ export const makeMainRoutes = () => {
     <Router history={history}>
     <div>
       <Route path='/' render={(props) => <App auth={auth} {...props} />} />
+      <Route path='/about' render={(props) => <AboutPage auth={auth} {...props} />} />
 
       <Route path='/landingpage' render={(props) => <LandingPage auth={auth} {...props} />} />
-    <Route path='/submitbarter' render={(props) => <SubmitBarter auth={auth} {...props} />}/>
+      <Route path='/submitbarter' render={(props) => <SubmitBarter auth={auth} {...props} />}/>
       <Route exact path='/home' render={(props) => <Home {...props} />} />
+      
       <Route path='/dashboard' render={(props) => <Dashboard auth={auth} {...props} />} />
       <Route path='/browseitems' render={(props) => <BrowseItems auth={auth} {...props} />} />
       <Route exact path='/listing/:item_id' render={(props) => <Listing auth={auth} {...props}/>} />
