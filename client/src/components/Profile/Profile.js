@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { FaLemon } from 'react-icons/fa';
-import Moment from 'react-moment';
+// import { FaLemon } from 'react-icons/fa';
+// import Moment from 'react-moment';
 import './Profile.css';
 import axios from 'axios'
 
@@ -90,16 +90,16 @@ class Profile extends Component {
             
             <div>
             {/* <h6>Welcome: {profile.name}</h6> */}
-              <label><FaLemon glyph='user'/></label>
+              {/* <label><FaLemon glyph='user'/></label> */}
               {/* <h2>{profile.nickname}</h2> */}
               <span>
-                <Moment
+                {/* <Moment
                      //Displays from a library called moment to change display of date/time 
                         date={profile.updated_at}
                         parse={profile.updated_at}
                         // parse='YYYY-MM-dd hh:mm' //what it looks like in json
                         format='MMM-D'
-                        />
+                        /> */}
                     {/* //how you want it to look like, Month-, day, hour minute, an a for am
                     //will look like: Nov-1 10:15am instead of 2019-11-10:15 12
                     /> */}

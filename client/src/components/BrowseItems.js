@@ -1,6 +1,7 @@
 import React from 'react';
 import ListPosts from './ListPosts';
 import SearchPosts from './SearchPosts';
+import Profile from './Profile/Profile'
 
 
 
@@ -42,20 +43,24 @@ class BrowseItems extends React.Component {
         return(
             
             <div className='container-fluid'>
-            
-                <SearchPosts 
+            <Profile auth={this.props.auth}/>
+
+            {/* Search Bar */}
+            <SearchPosts 
                 auth={this.props.auth}
-                onChange={(e) => this.onChangeSearch(this.props.march.item_name, e)}
-                
-             
+                onChange={(e) => this.onChangeSearch(e)}
                 />
+
                 <hr/>
             
-                <ListPosts 
+            {/* lists the posts from user_items table */}
+            <ListPosts 
                 auth={this.props.auth}
                 user_items={this.state.user_items}
-                
+                search={this.state.search}
                 />
+
+
             </div>
         )
     }

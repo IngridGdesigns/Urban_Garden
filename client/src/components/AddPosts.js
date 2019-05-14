@@ -1,7 +1,7 @@
 import React from 'react';
 import { FaRegLemon } from 'react-icons/fa';
 import { FaLemon } from 'react-icons/fa';
-import Profile from './Profile/Profile'
+
 // import axios from 'axios';
 
 class AddPosts extends React.Component {
@@ -26,17 +26,7 @@ class AddPosts extends React.Component {
 //     });
 //   }
 
-    // componentDidMount() {
-    //     const headers = { 'Authorization': `Bearer ${this.props.auth.accessToken}`}
-    //     fetch('http://localhost:3005/user_items', {
-    //         method: 'GET',
-    //         headers: headers, 
-    //     })
-    //       .then(res => res.json())
-    //       .then(user_items => this.setState({ user_items })
-    //     ).catch(err => res.send(err + 'you have rror'))
-    // }
-
+   
 
     handleChange = (e) => {
         e.preventDefault(); //prevents from page reloading
@@ -78,7 +68,7 @@ class AddPosts extends React.Component {
         
         return(     
         <div>
-    
+            
          <hr/>
          <h3>AddPosts to start bartering!</h3>
          <h5></h5>

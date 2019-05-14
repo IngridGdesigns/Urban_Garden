@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from 'react-router-dom'
+// import {Link} from 'react-router-dom'
 import {FaRecycle, FaCarrot,FaUsers } from 'react-icons/fa';
 import Alert from 'react-bootstrap/Alert'
 
@@ -21,7 +21,7 @@ class Home extends React.Component {
                         </div> */}
                         <p className='lead'>
                         We're so happy you're here! Please login or register to get started!
-                        <Link></Link>
+                        {/* <Link></Link> */}
                         {/* <Link to={`/}> */}
                       
                         </p>

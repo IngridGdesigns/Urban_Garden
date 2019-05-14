@@ -48,7 +48,12 @@ class ListPosts extends Component {
             <div className='row'>
             {this.state.user_items === null && <div className="loader centered"></div>}
                 {/* col-sm-6 col-md-4 */}
-                {this.props.user_items && this.props.user_items.map(listed => 
+                {this.props.user_items && this.props.user_items.filter(item=> {
+                    if(!this.props.search)
+                    return true;
+                    return this.props.search.toLowerCase() === item.item_name.toLowerCase();
+
+                }).map(listed => 
                 <div className='card-column col-md-6 col-lg-4' 
                         style={{'paddingTop': '10px', overflow:'hidden', maxWidth: '100%'}}
                         key={listed.item_id}>

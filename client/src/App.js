@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { NavLink, Link} from 'react-router-dom'
 import { FaEnvira } from 'react-icons/fa'
-import { Navbar, Button, Jumbotron } from 'react-bootstrap'
+import { Button, Jumbotron } from 'react-bootstrap'
+import './App.css'
 
 import Footer from './components/Footer'
-import Profile from './components/Profile/Profile'
+
 // import AboutPage from './components/AboutPage'
 // import LandingPage from './components/LandingPage'
 
@@ -42,14 +43,15 @@ class App extends Component {
     return (
       <div>    { //when it's not authenticated show the navbar below
          !isAuthenticated() && (
-          <div style={{marginBottom: "100px"}}  style={{backgroundColor: 'seagreen'}}> 
+          <div style={{marginBottom: '99px'}}  style={{backgroundColor: 'seagreen'}}> 
           <nav className='theNav navbar fixed-top' >
               <div className='container'>
              
                   <NavLink to='/' className='navbar-brand'> <FaEnvira/> Urbangarden app</NavLink>
                   
               <ul className='nav right'>
-              <li className='nav-item'><NavLink to='/'>Home</NavLink></li>
+              
+              <li className='nav-item'><NavLink to='/home'>Home</NavLink></li>
               
               {/* <li className='nav-item'><NavLink to='/#top'>About us</NavLink></li> */}
                   {/* <li><a onClick={this.goTo.bind(this, 'home')}>home</a></li> */}

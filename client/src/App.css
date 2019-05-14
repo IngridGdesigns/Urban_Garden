@@ -260,14 +260,20 @@
     /* .mastfoot {
       color: rgba(255, 255, 255, .5);
     } */
-    .footer {
+    footer {
       position: absolute;
       left: 0;
       right:0;
-      bottom: 0;
-      width: 50%;
+      /* bottom: 0; */
+      width: 100%;
       margin-top: 30px;
       padding-top:30px;
       text-align: center;
+    }
+
+    .bg-red{
+    width: 500px;
+    height: 500px;
+      background-color: red;
     }
 

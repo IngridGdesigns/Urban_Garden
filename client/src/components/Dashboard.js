@@ -1,6 +1,6 @@
 import React from 'react';
 import AddPosts from './AddPosts'
-import Footer from './Footer'
+// import Footer from './Footer'
 
 import Profile from './Profile/Profile';
 
@@ -19,20 +19,33 @@ class Dashboard extends React.Component {
         }
     }
 
+    componentDidMount() {
+        const headers = { 'Authorization': `Bearer ${this.props.auth.accessToken}`}
+        // const id = this.props.match.params.item_id //get by id
+
+        fetch(`http://localhost:3005/user_items`, {
+            method: 'GET',
+            headers: headers, 
+        })
+         .then(res => res.json())
+        .then(user_items => this.setState({ user_items })
+        ).catch(err => (err))
+    }
+
 
     render() {
         
         return(
         <div>
-        <div className='container'>
+        <div className='container-fluid'>
                 <Profile auth={this.props.auth}/>
          
 
                 <AddPosts addPost={this.addPost} auth={this.props.auth}/>
             </div>
-            <div>
-            <Footer/>
-            </div>
+            
+            {/* <Footer/> */}
+            
         </div>
         )
     }
