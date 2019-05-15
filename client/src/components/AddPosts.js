@@ -10,27 +10,19 @@ class AddPosts extends React.Component {
         this.state = {
           offers: [],
           user_items: [],
-          isHidden: false,
+          formDisplay: false,
         };
-
 }
 
-// toggleFormHidden() {
-//     this.setState({
-//         isHidden: !this.state.isHidden
-//     })
-// }
-// toggleForm() {
-//     this.setState({
-//       formDisplay: !this.state.formDisplay
-//     });
-//   }
+    toggleForm = () => {
+        this.setState({
+        formDisplay: !this.state.formDisplay
+        });
+    }
 
-   
 
     handleChange = (e) => {
-        e.preventDefault(); //prevents from page reloading
-        //const headers = { 'Authorization': `Bearer ${this.props.auth.accessToken}`}
+        e.preventDefault(); 
         this.setState({ user_items: [...e.target.value]})
         console.log('handlechange function on?? was this added now??')
     }
@@ -39,7 +31,7 @@ class AddPosts extends React.Component {
         e.preventDefault();
         this.props.addPost(...this.state.user_items)
         alert('A post was submitted: ' + this.state.value);
-        // this.setState({ user_items: ''})
+        
     }
 
     // //Add new post to user_item table -- before Auth0
@@ -70,79 +62,71 @@ class AddPosts extends React.Component {
         <div>
             
          <hr/>
-         <h3>AddPosts to start bartering!</h3>
-         <h5></h5>
+            <h3>AddPosts to start bartering!</h3>
+         
 
-         <div className='card textcenter mt-3 container'>
-         <div className='card-header bg-success text-white container-fluid'>
-            <button onClick={this.toggleForm}
-                    className="btn" 
-                    src={{color : 'white'}}><FaLemon/>
-            </button>
-             {/* <FaLemon data-toggle="collapse"/> Add new item to barter */}
-             {!this.state.isHidden}
-         </div>
-
-                 <div className='card-body'>
-                 {/* id='addItem'  */}
-                 <form >
-                     <div className='form-group form-row'>
-                     <label
-                         className='col-md-2 col-form-label text-md-right'
-                         htmlFor='itemName'
-                         readOnly
-                     >
-                    Username
-                     </label>
-                     <div className='col-md-4'>
-                         <input 
-                            type='text'
-                            className='form-control'
-                            name='username'
-                            id='nameInput'
-                            placeholder='write username'
-                            value={this.state.username}
-                            onClick={this.handleChange}
-                         />
-                         </div>
-                    Item Name
-                     <div className='col-md-4'>
-                         <input type='text'
-                             className='form-control'
-                             name='item_name'
-                             id='itemInput'
-                             placeholder='Item Name'
-                             value={this.state.item_name}
-                             onClick={this.handleChange}
-                         />
-                         <h1>{this.state.user_items.item_name}</h1>
-                     </div>
-                     </div>
+                <div className='card textcenter mt-3 container'>
+                    <div className='card-header bg-success text-white container-fluid'>
+                        <button onClick={this.toggleForm} className="btn" 
+                                src={{color : 'white'}}><FaLemon/></button>
+           
+                            {this.state.formDisplay ? 'show' : 'hide'}
+                        </div>
+                
+                {this.state.formDisplay && (
+                        <div className='card-body'>
+                        {/* id='addItem'  */}
+                        <form >
+                            <div className='form-group form-row'>
+                                <label className='col-md-2 col-form-label text-md-right'
+                                    htmlFor='itemName'
+                                    readOnly>
+                                    Username
+                                    </label>
+                                    <div className='col-md-4'>
+                                        <input 
+                                        type='text'
+                                        className='form-control'
+                                        name='username'
+                                        id='nameInput'
+                                        placeholder='write username'
+                                        value={this.state.username}
+                                        onClick={this.handleChange}/>
+                                    </div>
+                                    Item Name
+                                <div className='col-md-4'>
+                                    <input type='text'
+                                        className='form-control'
+                                        name='item_name'
+                                        id='itemInput'
+                                        placeholder='Item Name'
+                                        value={this.state.item_name}
+                                        onClick={this.handleChange}/>
+                                <h1>{this.state.user_items.item_name}</h1>
+                            </div>
+                        </div>
              
-                     <div className='form-group form-row'>
-                     <label
-                         className='col-md-2 col-form-label text-md-right'
-                         htmlFor='zipcode'
-                     >
-                         Zipcode
-                     </label>
+                        <div className='form-group form-row'>
+                            <label
+                                className='col-md-2 col-form-label text-md-right'
+                                htmlFor='zipcode'>
+                                Zipcode
+                            </label>
                      <div className='col-md-4'>
                          <input
-                         type='text'
-                         className='form-control'
-                         name='zipcode'
-                         id='zipInput'
-                         value={this.state.zipcode}
-                         onClick={this.handleChange}
-                         />
+                            type='text'
+                            className='form-control'
+                            name='zipcode'
+                            id='zipInput'
+                            value={this.state.zipcode}
+                            onClick={this.handleChange}/>
                      </div>
 
-                     <label
-                         className='col-md-2 col-form-label text-md-right'
-                         htmlFor='aptTime'
-                     >
-                         Time
-                     </label>
+                        <label
+                            className='col-md-2 col-form-label text-md-right'
+                            htmlFor='aptTime'>
+                            Time
+                        </label>
                      <div className='col-md-4'>
                      <FaRegLemon/> 
                          {/* <input
@@ -154,12 +138,12 @@ class AddPosts extends React.Component {
                          //   onChange={this.handleChange}
                          /> */}
                      </div>
-                     </div>
+                    </div>
 
                      <div className='form-group form-row'>
-                     <label className='col-md-2 text-md-right' htmlFor='description'>
-                     Description
-                     </label>
+                        <label className='col-md-2 text-md-right' htmlFor='description'>
+                            Description
+                        </label>
                      <div className='col-md-10'>
                          <textarea
                          className='form-control'
@@ -173,10 +157,10 @@ class AddPosts extends React.Component {
                          onChange={this.handleChange}
                          />
                      </div>
-                     </div>
+                    </div>
 
                      <div className='form-group form-row mb-0'>
-                     <div className='offset-md-2 col-md-10'>
+                        <div className='offset-md-2 col-md-10'>
                      
                      </div>
                      </div>
@@ -187,9 +171,9 @@ class AddPosts extends React.Component {
                  </button>
                  </form>
                  
-                 </div>
+                 </div>)}
              </div>
-            </div>
+        </div>
 
         )
     }
