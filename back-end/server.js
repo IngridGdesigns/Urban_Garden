@@ -305,15 +305,15 @@ app.get('/usersdata', checkScopes, jwtSecrets, async(req, res) => {
     })
 })
 
-app.get('/usersdata/:id', checkScopes, jwtSecrets, async(req, res) => {
+app.get('/usersdata/:user_id', checkScopes, jwtSecrets, async(req, res) => {
     const client = await pool.connect()
 
-    let id = parseInt(req.params.id)
+    let user_id = parseInt(req.params.id)
     let email = req.body.email;
     let sub_auth0 = parseInt(req.body.sub);
     let name = req.body.name;
 
-    await client.query('SELECT * FROM usersdata WHERE sub_auth0 =$1', [id, email, sub_auth0, name], (err, result) => {
+    await client.query('SELECT * FROM usersdata WHERE sub_auth0 =$1', [user_id, email, sub_auth0, name], (err, result) => {
       if (err) {
           res.status(500).send(err);
           client.release()
@@ -612,13 +612,33 @@ app.delete('/offers/:barter_id', async(req, res) => {
 
 //amazon-api - cloudinary storing of images and grabs links in db
 
-app.get('/user', function (req, res, next){
-    res.render('user', {
-        user: req.user
+// app.get('/user', function (req, res, next){
+//     res.render('user', {
+//         user: req.user
+//     })
+// })
+app.get('/usersdata/:user_id', checkScopes, jwtSecrets, async(req, res) => {
+    const client = await pool.connect()
+
+    let user_id = parseInt(req.params.id)
+    let email = req.body.email;
+    let sub_auth0 = parseInt(req.body.sub);
+    let name = req.body.name;
+
+    await client.query('SELECT * FROM usersdata WHERE sub_auth0 =$1', [user_id, email, sub_auth0, name], (err, result) => {
+      if (err) {
+          res.status(500).send(err);
+          client.release()
+      } 
+      else { //res.json(dbitems.rows[0] )
+          res.status(200).json(result.rows[0])
+          client.release()
+      }
     })
-})
+});
 
-
+//SELECT usersdata.user_id, usersdata.sub_auth0, user_items.item_name, user_items.description, 
+//user_items.zipcode FROM usersdata INNER JOIN user_items ON usersdata.user_id = user_items.user_id;
 
 //////////////////////////////////////////////
 

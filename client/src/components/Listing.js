@@ -81,8 +81,33 @@ handleOfferAccepted = (e)=> {
      
         return (
             <div>
-              
               <div className='container'>
+                <div className='row'>
+                  <div className='col-md-6'>
+                    <div className='card' style={{backgroundColor: 'whitesmoke'}}>
+                      <div className='card-body'>
+                        <div className='card-title'> 
+                          <div className='row'>
+                            <div className='col-sm-8 col-md-8 color3'>
+                            <FaLemon style={{color: 'yellow'}}/> Item id:  {user_items.item_id}</div>
+                            <div className='col-sm-4 col-md-4 color3'>zipcode: {user_items.zipcode}</div>
+                          </div>
+                        </div>
+                      <div className='card-text text-center'>
+                        <h3 className='display-3 text-center' style={{color: 'green'}}>{user_items.item_name}</h3>
+                        <p className='lead'>{user_items.description}</p>
+                      </div>
+                    </div>  
+                  </div>
+                  
+                </div>
+                <div className='col-md-6'>
+                  <div>
+                    <h4>something lives here space for the google map goes here</h4>
+                </div>
+              </div>
+          </div>
+
                 <div className='row'>
                
                 

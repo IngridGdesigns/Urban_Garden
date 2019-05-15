@@ -49,9 +49,13 @@ class ListPosts extends Component {
             {this.state.user_items === null && <div className="loader centered"></div>}
                 {/* col-sm-6 col-md-4 */}
                 {this.props.user_items && this.props.user_items.filter(item=> {
-                    if(!this.props.search)
+                    if(!this.props.search){
                     return true;
-                    return this.props.search.toLowerCase() === item.item_name.toLowerCase();
+                    }else if( this.props.search.toLowerCase() === item.item_name.toLowerCase() ||
+                     this.props.search.toLowerCase() === item.username.toLowerCase()){
+                         return true;
+                     }
+                    
 
                 }).map(listed => 
                 <div className='card-column col-md-6 col-lg-4' 
@@ -65,7 +69,7 @@ class ListPosts extends Component {
                     />  
                    <ul className='list-group'>
                         <li className='list-group-item'>
-                            <span className='badge'><FaGrinHearts/></span>
+                            <span id='spanhover' className='badge'><FaGrinHearts/></span>
                           {listed.username}
                         </li>
                     </ul>

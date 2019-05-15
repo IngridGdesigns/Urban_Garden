@@ -106,14 +106,15 @@ class Profile extends Component {
                 </span>
             </div>
             {/* json string stuff */}
-            {/* <button onClick={this.postingToDB} auth={this.props.auth}>posting user button</button>
-            */}
+            <button onClick={this.postingToDB} auth={this.props.auth}>posting user button</button>
+           
             {/* <pre>{JSON.stringify(profile, null, 2)}</pre>   */}
           </header>
         
         </div>
        {/* <AddPosts  auth={this.props.auth}/> */}
        {/* https://stackoverflow.com/questions/51795272/auth0-create-user-in-local-database-after-auth0-sign-up */}
+        <hr/>
       </div>
     );
   }

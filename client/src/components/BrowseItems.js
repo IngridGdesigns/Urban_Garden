@@ -25,6 +25,7 @@ class BrowseItems extends React.Component {
       }
 
       onChangeSearch = (e) => {
+        //const zipNums = /^[0-9\b]+$/;
         this.setState({search: e.target.value})
       }
 

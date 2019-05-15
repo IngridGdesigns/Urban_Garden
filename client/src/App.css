@@ -121,6 +121,9 @@
       color: rgb(255, 254, 204);
     }
     
+    #span:hover {
+      color: powderblue;
+    }
     /* Custom default button */
     .btn-secondary,
     .btn-secondary:hover,
