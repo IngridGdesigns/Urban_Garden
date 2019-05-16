@@ -24,7 +24,7 @@ class GrowStuff extends React.Component {
     render(){
         const { growstuff } = this.state
         
-        const MAX_LENGTH = 55;
+        const MAX_LENGTH = 55; // declared to only show up to 55 characters, more than that gets cut to "Read more" link
       
         return(
             <div className='container'>
