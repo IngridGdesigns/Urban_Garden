@@ -1,5 +1,7 @@
 import React from 'react'
 import { FaHeart, FaLemon } from 'react-icons/fa';
+import { Breadcrumb } from 'react-bootstrap';
+import UserBreadCrumb from './UserBreadCrumb'
 
 class GrowStuff extends React.Component {
     constructor(props){
@@ -22,11 +24,11 @@ class GrowStuff extends React.Component {
     render(){
         const { growstuff } = this.state
         
-        const MAX_LENGTH = 20;
+        const MAX_LENGTH = 55;
       
         return(
             <div className='container'>
-        
+          <UserBreadCrumb />
             <div className='row'>
             <hr/>
             {growstuff.map(crop => 
@@ -36,7 +38,7 @@ class GrowStuff extends React.Component {
                     src={crop.url}
                     alt='different types of crops'
                   />
-                  <div className='card-body' cascade>
+                  <div className='card-body'>
                     <a href='#!' className='text-muted'>
                       <h5>{crop.name}</h5>
                     </a>
@@ -45,23 +47,22 @@ class GrowStuff extends React.Component {
                         <a href={crop.wikipedia_url}>wiki</a>
                       </strong>
                     </div>
+
                     { crop.description.length > MAX_LENGTH ? (
+
                     <div className='card-text'>
-                      {`${crop.description.substring(0, MAX_LENGTH)}...`}
-                      <a className='color3' href='#'>Read more</a>
+                      {`${crop.description.substring(0, MAX_LENGTH)}...`} <a className='color3' href='#'>Read more</a>
                     </div>
-                    ):<div>{crop.description}</div>
+                      ) : <div>{crop.description}</div>
                     }
                     <div className='card-footer px-4'>
-                      <span className='float-left'>cool stuff</span>
+                      <span className='float-left'>{crop.sun_requirements}</span>
                       <span className='float-right'>
                        
                         <div
                           placement='top'
-                          tag='a'
-                          component='i'
-                        //   componentClass='ml-3'
-                        /><FaHeart/> | <FaLemon/>
+                           className='ml-3'
+                        /><FaHeart style={{color: 'pink'}}/>
                       </span>
                     </div>
                   </div>
