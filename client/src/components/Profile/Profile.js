@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 // import { FaLemon } from 'react-icons/fa';
-// import Moment from 'react-moment';
+import Moment from 'react-moment';
 import './Profile.css';
 import axios from 'axios'
 
@@ -80,41 +80,29 @@ class Profile extends Component {
   render() {
     const { profile } = this.state;
     return (
-      <div className="container">
-        <div className="row profile-area">
-          
-          <header header="Profile column">
-          {/* <img src="<%= user.user_metadata.picture || user.picture %>">  profile.picture || */}
-            <img src={profile.picture} alt="profile" style={{width: '50%'}}/> 
-           
+      <div className='container'>
+
+      <header className='row profile-area'>
             
-            <div>
-            {/* <h6>Welcome: {profile.name}</h6> */}
-              {/* <label><FaLemon glyph='user'/></label> */}
-              {/* <h2>{profile.nickname}</h2> */}
-              <span>
-                {/* <Moment
+              <div className='col-sm-8'>
+                <img src={profile.picture} alt='profile' style={{width: '50%'}}/> 
+              </div>
+              <div className='col-sm-4' alt='last sign in' style={{marginTop: '5%'}}> 
+              <Moment 
                      //Displays from a library called moment to change display of date/time 
                         date={profile.updated_at}
                         parse={profile.updated_at}
-                        // parse='YYYY-MM-dd hh:mm' //what it looks like in json
                         format='MMM-D'
-                        /> */}
-                    {/* //how you want it to look like, Month-, day, hour minute, an a for am
-                    //will look like: Nov-1 10:15am instead of 2019-11-10:15 12
-                    /> */}
-                </span>
-            </div>
-            {/* json string stuff */}
+                        />
+                    </div>
+
+            {/* json string */}
             <button onClick={this.postingToDB} auth={this.props.auth}>posting user button</button>
-           
+
             {/* <pre>{JSON.stringify(profile, null, 2)}</pre>   */}
           </header>
-        
-        </div>
-       {/* <AddPosts  auth={this.props.auth}/> */}
-       {/* https://stackoverflow.com/questions/51795272/auth0-create-user-in-local-database-after-auth0-sign-up */}
         <hr/>
+        
       </div>
     );
   }
