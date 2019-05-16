@@ -1,15 +1,18 @@
 //Dependencies
 const express = require('express')
+
 const jwt = require('express-jwt') //authentication middleware  - lets you authenticate HTTP requests using JWT tokens
 //authenticates callers using a JWT. If the token is valid, req.user will be set with the JSON object decoded to be used by later middleware for authorization and access control.
 
 const jwksRsa = require('jwks-rsa'); //A library to retrieve RSA signing keys from a JWKS (JSON Web Key Set) endpoint.
 const jwtAuthz = require('express-jwt-authz') //express jwt authz
 
-const morgan = require('morgan') //
+const morgan = require('morgan') //morgan
 const cors = require('cors') //cors
 
-const DARK_SKY_APIKEY = process.env.DARK_SKY_APIKEY //weather api
+const growstuff = require('../back-end/growstuff.json')//database I made with growstuff API & Openfarm
+
+// const DARK_SKY_APIKEY = process.env.DARK_SKY_APIKEY //weather api
 
 const bodyParser = require('body-parser') //parsing body
 require('dotenv').config({ path: '/Users/tpl3/Desktop/Urban_Garden/.env'})//use dotenv to read .env vars
@@ -70,17 +73,6 @@ const pool = new Pool({
 })
 ////////////////////////////// get -authorized & connection ///////////////
 
-// var request = require("request");
-
-// var options = { method: 'GET',
-//   url: 'http://localhost:3010/api/private',
-//   headers: { authorization: 'Bearer YOUR_ACCESS_TOKEN' } };
-
-// request(options, function (error, response, body) {
-//   if (error) throw new Error(error);
-
-//   console.log(body);
-// });
 
 // This route need authentication
 app.get('/api/private', jwtSecrets, function(req, res) {
@@ -440,16 +432,7 @@ app.post('/user_items', jwtSecrets, checkScopes, async(req, res) => {
 //     })
 // })
 
-// app.post('/rooms/:id/messages', function(req, res){
-//     var room = rooms[req.params.id];
-//     var newMessage = {
-//         username:req.body.username,
-//         timestamp: new Date(),
-//         message: req.body.message
-//     }
-//     room.messages.push(newMessage);
-//     res.json(room);
-// });
+
 
 
 app.post('/offers/:item_id', jwtSecrets, checkScopes, async(req, res) => {
@@ -462,15 +445,15 @@ app.post('/offers/:item_id', jwtSecrets, checkScopes, async(req, res) => {
     let asking  = req.body.asking
     // let accept = req.body.offer_accepted 
     // let author = req.user.author
-    console.log("HELLLOOOOOOOOOO SERVER and body is")
+   
     console.log(req.body)
-    console.log("and just req.asking is")
+  
     console.log(req.body.asking)
-    console.log("111111111111111")
+  
     console.log(req.body.item_name + 'is this ok');
-    console.log("2222222222222")
+  
     console.log(req.body.barter_id)
-    console.log("3333333333333")
+  
     console.log(req.params.item_id)
 
     await client.query('INSERT INTO offers(item_id, asking) VALUES ($1, $2) RETURNING *',
@@ -612,34 +595,36 @@ app.delete('/offers/:barter_id', async(req, res) => {
 
 //amazon-api - cloudinary storing of images and grabs links in db
 
-// app.get('/user', function (req, res, next){
-//     res.render('user', {
-//         user: req.user
+
+// app.get('/usersdata/:user_id', jwtSecrets, async(req, res) => {
+//     const client = await pool.connect()
+
+//     let user_id = parseInt(req.params.id)
+//     let email = req.body.email;
+//     let sub_auth0 = parseInt(req.body.sub);
+//     let name = req.body.name;
+
+//     await client.query('SELECT * FROM usersdata WHERE sub_auth0 =$1', [user_id, email, sub_auth0, name], (err, result) => {
+//       if (err) {
+//           res.status(500).send(err);
+//           client.release()
+//       } 
+//       else { //res.json(dbitems.rows[0] )
+//           res.status(200).json(result.rows[0])
+//           client.release()
+//       }
 //     })
-// })
-app.get('/usersdata/:user_id', checkScopes, jwtSecrets, async(req, res) => {
-    const client = await pool.connect()
-
-    let user_id = parseInt(req.params.id)
-    let email = req.body.email;
-    let sub_auth0 = parseInt(req.body.sub);
-    let name = req.body.name;
-
-    await client.query('SELECT * FROM usersdata WHERE sub_auth0 =$1', [user_id, email, sub_auth0, name], (err, result) => {
-      if (err) {
-          res.status(500).send(err);
-          client.release()
-      } 
-      else { //res.json(dbitems.rows[0] )
-          res.status(200).json(result.rows[0])
-          client.release()
-      }
-    })
-});
+// });
 
 //SELECT usersdata.user_id, usersdata.sub_auth0, user_items.item_name, user_items.description, 
 //user_items.zipcode FROM usersdata INNER JOIN user_items ON usersdata.user_id = user_items.user_id;
 
-//////////////////////////////////////////////
+///////////////////// growstuff API /////////////////////////
+app.get('/growstuff', jwtSecrets, (req, res) => {
+    res.json(growstuff)
+})
+
+
+/////////////////////////////////////////////
 
 app.listen(PORT, () => console.log(`We are live from the foggiest place in Cali, on port ${PORT}`))
