@@ -1,22 +1,8 @@
 import React, { Component } from 'react';
-// import { FaLemon } from 'react-icons/fa';
+import { FaLemon } from 'react-icons/fa';
 import Moment from 'react-moment';
 import './Profile.css';
 import axios from 'axios'
-
-// import '../src/styleCss/styles'
-
-
-// function (user, context, callback) {
-//   var namespace = 'https://my-domain.my-company.com/';
-//   if (context.idToken && user.user_metadata) {
-//     context.idToken[namespace + 'user_metadata'] = user.user_metadata;
-//   }
-//   if (context.idToken && user.app_metadata) {
-//     context.idToken[namespace + 'app_metadata'] = user.app_metadata;
-//   }
-//   callback(null, user, context);
-// }
 
 
 
@@ -58,7 +44,6 @@ class Profile extends Component {
       if(err){
         console.log(err)
       } else {
-        //document.getElementById('picture').textContent = profile.user_metadata
         console.log(profile)
         axios({
           method: 'POST',
@@ -69,13 +54,6 @@ class Profile extends Component {
       }
     });
   }
-
-  // auth0.client.userInfo(authResult.accessToken, function(err, user) {
-  //   // Now you have the user's information
-  //   console.log(auth.client.userInfo)
-  //   console.log(authResult.accessToken)
-  // });
-
 
   render() {
     const { profile } = this.state;
@@ -88,12 +66,17 @@ class Profile extends Component {
                 <img src={profile.picture} alt='profile' style={{width: '50%'}}/> 
               </div>
               <div className='col-sm-4' alt='last sign in' style={{marginTop: '5%'}}> 
-              <Moment 
+              <p>Last login: 
+              <Moment style={{padding: '3px'}}
                      //Displays from a library called moment to change display of date/time 
                         date={profile.updated_at}
                         parse={profile.updated_at}
                         format='MMM-D'
                         />
+                        <FaLemon className='color1' style={{padding: '2px'}}/>
+
+              </p>
+             
                     </div>
 
             {/* json string */}
@@ -102,7 +85,7 @@ class Profile extends Component {
             {/* <pre>{JSON.stringify(profile, null, 2)}</pre>   */}
           </header>
         <hr/>
-        
+
       </div>
     );
   }

@@ -2,8 +2,6 @@ import React from 'react';
 import { FaRegLemon } from 'react-icons/fa';
 import { FaLemon } from 'react-icons/fa';
 
-// import axios from 'axios';
-
 class AddPosts extends React.Component {
     constructor(props) {
         super(props);
@@ -30,7 +28,7 @@ class AddPosts extends React.Component {
     handleSubmit= (e) => {
         e.preventDefault();
         this.props.addPost(...this.state.user_items)
-        alert('A post was submitted: ' + this.state.value);
+        // alert('A post was submitted: ' + this.state.value);
         
     }
 
@@ -39,7 +37,6 @@ class AddPosts extends React.Component {
         e.preventDefault(); //prevents page from reloading -- 'e' is for event
         const headers = { 'Authorization': `Bearer ${this.props.auth.accessToken}`, 'Content-Type': 'application/json'}
        
-        
         let data = {
                     item_name: document.getElementById('itemInput').value,
                     description: document.getElementById('desInput').value,
@@ -59,19 +56,17 @@ class AddPosts extends React.Component {
     render() {
         
         return(     
-        <div>
-            
-         <hr/>
-            <h3>AddPosts to start bartering!</h3>
+        <div className='container'>
          
-
+            <h3>AddPosts to start bartering!</h3>
+  
                 <div className='card textcenter mt-3 container'>
                     <div className='card-header bg-success text-white container-fluid'>
                         <button onClick={this.toggleForm} className="btn" 
                                 src={{color : 'white'}}><FaLemon/></button>
            
-                            {this.state.formDisplay ? 'show' : 'hide'}
-                        </div>
+                            {this.state.formDisplay ? 'hide' : 'Add an Item to Barter'}
+                    </div>
                 
                 {this.state.formDisplay && (
                         <div className='card-body'>
@@ -84,7 +79,7 @@ class AddPosts extends React.Component {
                                     Username
                                     </label>
                                     <div className='col-md-4'>
-                                        <input 
+                                    <input 
                                         type='text'
                                         className='form-control'
                                         name='username'
@@ -93,42 +88,44 @@ class AddPosts extends React.Component {
                                         value={this.state.username}
                                         onClick={this.handleChange}/>
                                     </div>
-                                    Item Name
-                                <div className='col-md-4'>
-                                    <input type='text'
-                                        className='form-control'
-                                        name='item_name'
-                                        id='itemInput'
-                                        placeholder='Item Name'
-                                        value={this.state.item_name}
-                                        onClick={this.handleChange}/>
-                                <h1>{this.state.user_items.item_name}</h1>
+                                        Item Name
+                                    <div className='col-md-4'>
+                                        <input type='text'
+                                            className='form-control'
+                                            name='item_name'
+                                            id='itemInput'
+                                            placeholder='Item Name'
+                                            value={this.state.item_name}
+                                            onClick={this.handleChange}/>
+                                    <h1>{this.state.user_items.item_name}</h1>
+                                </div>
                             </div>
-                        </div>
              
-                        <div className='form-group form-row'>
-                            <label
-                                className='col-md-2 col-form-label text-md-right'
-                                htmlFor='zipcode'>
-                                Zipcode
-                            </label>
-                     <div className='col-md-4'>
-                         <input
-                            type='text'
-                            className='form-control'
-                            name='zipcode'
-                            id='zipInput'
-                            value={this.state.zipcode}
-                            onClick={this.handleChange}/>
-                     </div>
+                            <div className='form-group form-row'>
+                                <label
+                                    className='col-md-2 col-form-label text-md-right'
+                                    htmlFor='zipcode'>
+                                    Zipcode
+                                </label>
+                        <div className='col-md-4'>
+                            <input
+                                type='text'
+                                className='form-control'
+                                name='zipcode'
+                                id='zipInput'
+                                value={this.state.zipcode}
+                                onClick={this.handleChange}/>
+                        </div>
 
                         <label
                             className='col-md-2 col-form-label text-md-right'
-                            htmlFor='aptTime'>
-                            Time
+                            //htmlFor='aptTime'>
+                            htmlFor='imgUpload'>
+                            
                         </label>
                      <div className='col-md-4'>
-                     <FaRegLemon/> 
+                     <FaRegLemon/> Image upload coming soon!
+                     
                          {/* <input
                          type='time'
                          className='form-control'
@@ -180,32 +177,3 @@ class AddPosts extends React.Component {
 }
 
 export default AddPosts;
-
-/* old code 
-
- //     fetch('http://localhost:3005/user_items', {
-    //         method: 'POST',
-    //         headers: headers, 
-    //     })
-
-    // addPost = () => {
-    //     const headers = { 'Authorization': `Bearer ${this.props.auth.accessToken}`}
-         //  const contJson = 'Content-Type': 'application/json'
-    //     let data = {
-    //         item_name: document.getElementById('itemInput').value,
-    //         zipcode: document.getElementById('zipInput').value,
-    //         description: document.getElementById('desInput').value}
-
-    //     fetch('http://localhost:3005/user_items', {
-    //         method: 'POST',
-    //         headers: {headers, contJson},
-    //         body: JSON.stringify(data),
-    //     }).then(result => this.setState({ user_items: [...this.state.user_items, result.data()]})
-    //      .catch(error => console.log('Error', error))
-    //     )
-      
-    //     }*/
-
-
-
-
