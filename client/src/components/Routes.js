@@ -22,7 +22,7 @@ import history from '../history';
 import AboutPage from './AboutPage';
 
 
-
+import GrowStuff from './GrowStuff';
 
 // export const auth = new Auth();
 const auth = new Auth(); //old 
@@ -48,6 +48,8 @@ export const makeMainRoutes = () => {
       <Route path='/browseitems' render={(props) => <BrowseItems auth={auth} {...props} />} />
       <Route exact path='/listing/:item_id' render={(props) => <Listing auth={auth} {...props}/>} />
       <Route path='/searchposts' render={(props) => <SearchPosts auth={auth} {...props} />} />
+
+      <Route path='/growstuff' render={(props) => <GrowStuff auth={auth} {...props} />} />
       <Route path='/footer' render={(props) => <Footer auth={auth} {...props} />} />
       
     

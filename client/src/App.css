@@ -90,7 +90,8 @@
     }
     /* Form accessibility - unstead of whit it will be transparent*/
     input { 
-      background-color: transparent !important;
+      background-color: whitesmoke;
+      /* transparent !important; */
     }
     
     .color1 {
@@ -255,8 +256,14 @@
     body {
       height: 100%;
       margin: 0;
+      /* font-family: 'Open Sans', sans-serif; */
 
     }
+
+    /* .Test {
+      height: 300px;
+      width: 400px;
+    } */
     /*
      * Footer
      */
@@ -280,3 +287,22 @@
       background-color: red;
     }
 
+    .card-img-top {
+      width: 100%;
+      height: 40vh;
+      object-fit: cover;
+      }
+
+      .growStuff-img {
+        height: auto;
+        max-height: 200px;
+        width: auto;
+        max-width: 320px;
+        
+      }
+
+      .growStuff-card {
+        margin-top: 20px;
+        width: 320px;
+        height: 375px;
+      }

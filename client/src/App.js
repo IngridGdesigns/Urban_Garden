@@ -107,6 +107,7 @@ class App extends Component {
                   <li className='nav-item'><NavLink to='/home'>home</NavLink></li>
                   <li className='nav-item'><NavLink to='/browseitems'>browse</NavLink></li>
                   <li className='nav-item'><NavLink to='/dashboard'>dashboard</NavLink></li>
+                  <li className='nav-item'><NavLink to='/growstuff'>growstuff</NavLink></li>
                   <li className='nav-item'><NavLink to='/profile'>profile</NavLink></li>
                   <li className='btn btn-primary'onClick={this.logout.bind(this)}>Logout</li>
               </ul>
