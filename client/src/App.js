@@ -51,7 +51,7 @@ class App extends Component {
                   
               <ul className='nav right'>
               
-              <li className='nav-item'><NavLink to='/home'>Home</NavLink></li>
+              {/* <li className='nav-item'><NavLink to='/home'>Home</NavLink></li> */}
               
               {/* <li className='nav-item'><NavLink to='/#top'>About us</NavLink></li> */}
                   {/* <li><a onClick={this.goTo.bind(this, 'home')}>home</a></li> */}
@@ -74,7 +74,7 @@ class App extends Component {
                 <div className='color1'>
                 <h2>Let's start Bartering!</h2>
                   <p>If your ready to share your garden with the world go
-                  ahead and clikc to register.
+                  ahead and click below to register.
                   </p>
                 <button id='qsLoginBtn'
                   className='btn btn-warning' 
@@ -105,7 +105,7 @@ class App extends Component {
                   
               <ul className='nav right'>
                   <li className='nav-item'><NavLink to='/home'>home</NavLink></li>
-                  <li className='nav-item'><NavLink to='/browseitems'>browse</NavLink></li>
+                  <li className='nav-item'><NavLink to='/barter'>barter</NavLink></li>
                   <li className='nav-item'><NavLink to='/dashboard'>dashboard</NavLink></li>
                   <li className='nav-item'><NavLink to='/growstuff'>growstuff</NavLink></li>
                   <li className='nav-item'><NavLink to='/profile'>profile</NavLink></li>

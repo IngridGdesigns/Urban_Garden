@@ -29,8 +29,6 @@ class BrowseItems extends React.Component {
         this.setState({search: e.target.value})
       }
 
-    
-
 
     render() {
 

@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
-import { FaLemon} from 'react-icons/fa';
-import SubmitBarter from './SubmitBarter';
+import { FaLemon} from 'react-icons/fa'
+import SubmitBarter from './SubmitBarter'
+import UserBreadCrumb from './UserBreadCrumb'
 
 class Listing extends Component {
     constructor(props) {
@@ -77,7 +78,8 @@ handleOfferAccepted = (e)=> {
       const {user_items} = this.state
      
         return (
-            <div className='containter-fluid'>
+            <div className='container-fluid'>
+            <UserBreadCrumb/>
               <div className='container'>
                 <div className='row'>
                   <div className='col-md-6'>
@@ -100,7 +102,7 @@ handleOfferAccepted = (e)=> {
                 </div>
                 <div className='col-md-6'>
                   <div>
-                    <h4>something lives here space for the google map goes here</h4>
+                    <h4 style={{color: 'green'}}>Posted by: {user_items.username}</h4>
                 </div>
               </div>
           </div>           

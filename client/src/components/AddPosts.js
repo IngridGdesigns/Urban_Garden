@@ -58,14 +58,15 @@ class AddPosts extends React.Component {
         return(     
         <div className='container'>
          
-            <h3>AddPosts to start bartering!</h3>
+            <h3>Welcome!</h3>
+                <h4>Use the form to start adding items to barter</h4>
   
                 <div className='card textcenter mt-3 container'>
                     <div className='card-header bg-success text-white container-fluid'>
                         <button onClick={this.toggleForm} className="btn" 
                                 src={{color : 'white'}}><FaLemon/></button>
            
-                            {this.state.formDisplay ? 'hide' : 'Add an Item to Barter'}
+                            {this.state.formDisplay ? 'hide' : 'show form'}
                     </div>
                 
                 {this.state.formDisplay && (

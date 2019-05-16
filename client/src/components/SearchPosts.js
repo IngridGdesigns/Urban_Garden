@@ -11,24 +11,11 @@ class SearchPosts extends React.Component {
       console.log(props.user_items)
   }
 
-//https://react.tips/reactjs-and-geocoding/
-   //query items by zip or name
- 
-//    searchListingHandler = (e) => {
-//     e.preventDefault()
-//    this.setState({ search: this.state.search
-//          ///check this.state.search and this.state.searchType
-//    })
-// }
 
-//   onChangeSearch = (e) => {
-//   this.setState({[e.target.name]: e.target.value})
-// }
-
-onChangeSearch = (e) => {
-  this.setState({search: e.target.value})
-  this.props.onChange(e);
-}
+    onChangeSearch = (e) => {
+      this.setState({search: e.target.value})
+      this.props.onChange(e);
+    }
 
     render() {
         return(
@@ -52,17 +39,13 @@ onChangeSearch = (e) => {
                         ref='search'
                         value={this.state.search}
                         onChange={this.onChangeSearch}
-                      /> 
-
-                          
+                      />    
                 </div>
-            
               </form>
           </div>
           <button 
             className='btn btn-primary'
             type='submit'
-          
           >search</button>
         </div> 
     </div>
@@ -72,4 +55,3 @@ onChangeSearch = (e) => {
 
 export default SearchPosts;
 
-//https://codepen.io/iamtimsmith/pen/zJPzwN?editors=0010

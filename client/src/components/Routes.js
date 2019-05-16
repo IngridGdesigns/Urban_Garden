@@ -45,7 +45,7 @@ export const makeMainRoutes = () => {
       <Route exact path='/home' render={(props) => <Home {...props} />} />
       
       <Route path='/dashboard' render={(props) => <Dashboard auth={auth} {...props} />} />
-      <Route path='/browseitems' render={(props) => <BrowseItems auth={auth} {...props} />} />
+      <Route path='/barter' render={(props) => <BrowseItems auth={auth} {...props} />} />
       <Route exact path='/listing/:item_id' render={(props) => <Listing auth={auth} {...props}/>} />
       <Route path='/searchposts' render={(props) => <SearchPosts auth={auth} {...props} />} />
 

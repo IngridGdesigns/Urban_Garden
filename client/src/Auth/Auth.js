@@ -16,7 +16,7 @@ export default class Auth {
     redirectUri: AUTH_CONFIG.callbackUrl,
     audience: AUTH_CONFIG.apiUrl, //audience added
     responseType: 'token id_token',
-    scope: 'openid profile email write:user_items post:usersdata read:usersdata read:messages user_metadata' //scopes for users
+    scope: 'openid profile email write:user_items post:usersdata read:usersdata read:messages user_metadata app_metadata' //scopes for users
   });
 
   constructor() {
@@ -130,6 +130,17 @@ export default class Auth {
       cb(err, profile);
     });
   }
+
+
+  // send_profile_to_db (profile) {
+  //           const headers = { 'Authorization': `Bearer ${this.props.auth.accessToken}`}
+  //           const data = profile
+  //           axios.post('/usersdata', data)
+  //           .then(() => axios.get('/usersdata', {params: {email: profile.profile.email}} )
+  //           .then(res => this.props.db_profile_success(res.data))
+  //           .then(history.replace('/')))
+  //         }
+
 
 
   //get profile @2

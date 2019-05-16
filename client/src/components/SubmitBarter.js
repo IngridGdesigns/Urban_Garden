@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
-import { FaLemon } from 'react-icons/fa';
-import { FaRegLemon } from 'react-icons/fa';
+import { FaLemon } from 'react-icons/fa'
+
 
 
 class SubmitBarter extends Component {
@@ -17,7 +17,7 @@ class SubmitBarter extends Component {
   render() {
       return(
         <div className='container' style={{paddingTop: '5%'}}>
-              <div className='form-group text-left'><FaRegLemon style={{color: 'green'}}/>
+              <div className='form-group text-left'>
                 <label htmlFor='asking'>   Question:</label>
                 <input
                   type='text'

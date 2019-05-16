@@ -82,8 +82,8 @@ class Profile extends Component {
 
             {/* json string */}
             <button onClick={this.postingToDB} auth={this.props.auth}>posting user button</button>
-{/* 
-            <pre>{JSON.stringify(profile, null, 2)}</pre>   */}
+
+            {/* <pre>{JSON.stringify(profile, null, 2)}</pre>   */}
           </header>
           
         <hr/>
@@ -92,6 +92,8 @@ class Profile extends Component {
             <div>
               <h4>Username: {profile.nickname}</h4>
               <h4>Email: {profile.email}</h4>
+              
+             
             </div>
 
 

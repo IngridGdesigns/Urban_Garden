@@ -26,13 +26,13 @@ class Dashboard extends React.Component {
         ).catch(err => (err))
     }
 
-
     render() {
         
         return(
         <div className='container'>
             <div>
                 <UserBreadCrumb/>
+                
                 <AddPosts addPost={this.addPost} auth={this.props.auth}/>
             </div>
             
