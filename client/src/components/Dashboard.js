@@ -1,5 +1,6 @@
 import React from 'react';
 import AddPosts from './AddPosts'
+import UserBreadCrumb from './UserBreadCrumb'
 
 class Dashboard extends React.Component {
     
@@ -29,9 +30,9 @@ class Dashboard extends React.Component {
     render() {
         
         return(
-        <div>
-        <div className='container-fluid'>
-
+        <div className='container'>
+            <div>
+                <UserBreadCrumb/>
                 <AddPosts addPost={this.addPost} auth={this.props.auth}/>
             </div>
             

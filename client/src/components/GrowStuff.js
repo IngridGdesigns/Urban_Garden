@@ -28,7 +28,8 @@ class GrowStuff extends React.Component {
       
         return(
             <div className='container'>
-          <UserBreadCrumb />
+              <UserBreadCrumb />
+              
             <div className='row'>
             <hr/>
             {growstuff.map(crop => 

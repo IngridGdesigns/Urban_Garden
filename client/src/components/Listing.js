@@ -9,7 +9,6 @@ class Listing extends Component {
         offers: [],
         user_items: [],
         offer_accepted: false,
-        
        
       }
 }
@@ -18,8 +17,7 @@ class Listing extends Component {
   componentDidMount() { 
     const headers = { 'Authorization': `Bearer ${this.props.auth.accessToken}`}
     const id = this.props.match.params.item_id //get by id
-    // console.log("HEY WERE INSIDE LISTING.JS")
-    // console.log(this.props.match)
+
 
     fetch(`http://localhost:3005/user_items/${id}`,{
         method: 'GET',
@@ -46,7 +44,6 @@ class Listing extends Component {
     e.preventDefault();
     this.props.addPost(...this.state.offers)
     console.log(`a post was submitted ${this.state.offers}`)
-    //alert('A post was submitted: ' + this.state.value);
     this.setState({ offers:[]})
 }
 
@@ -80,7 +77,7 @@ handleOfferAccepted = (e)=> {
       const {user_items} = this.state
      
         return (
-            <div>
+            <div className='containter-fluid'>
               <div className='container'>
                 <div className='row'>
                   <div className='col-md-6'>
@@ -89,13 +86,13 @@ handleOfferAccepted = (e)=> {
                         <div className='card-title'> 
                           <div className='row'>
                             <div className='col-sm-8 col-md-8 color3'>
-                            <FaLemon style={{color: 'yellow'}}/> Item id:  {user_items.item_id}</div>
+                            <FaLemon style={{color: 'green'}}/> Item id:  {user_items.item_id}</div>
                             <div className='col-sm-4 col-md-4 color3'>zipcode: {user_items.zipcode}</div>
                           </div>
                         </div>
                       <div className='card-text text-center'>
                         <h3 className='display-3 text-center' style={{color: 'green'}}>{user_items.item_name}</h3>
-                        <p className='lead'>{user_items.description}</p>
+                        <p className='lead text-left'>{user_items.description}</p>
                       </div>
                     </div>  
                   </div>
@@ -106,28 +103,9 @@ handleOfferAccepted = (e)=> {
                     <h4>something lives here space for the google map goes here</h4>
                 </div>
               </div>
-          </div>
-
-                <div className='row'>
+          </div>           
+     
                
-                
-                  <div className='card'>
-
-                  <div className='row'>
-                 
-                      <div className='col-sm-6 font-weight-bold color1'>
-                      <FaLemon/> Item id:  {user_items.item_id}</div>
-                      <div className='col-sm-3 text-right color3'> {user_items.zipcode}</div>
-                  </div>
-
-                  
-                  <h6 className='color1'>Listing: {user_items.username}</h6>
-                      <h4 className='display-3 text-center color2'>{user_items.item_name}</h4>
-                      <p className='lead'>{user_items.description}</p>
-                    <hr/>
-                  </div>
-                  
-                </div>
              <SubmitBarter 
                   auth={this.props.auth} 
                   item_id={this.props.match.params.item_id}
@@ -136,7 +114,7 @@ handleOfferAccepted = (e)=> {
                   onClick={(e) => this.handleSubmit(e)}
               />
 
-
+          
             <div className='row'>
                 <div className='column' style={{'width':'75%'}}>
                     <h5>Offers:</h5>

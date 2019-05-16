@@ -10,14 +10,12 @@ class ListPosts extends Component {
         super(props);
         this.state = {
             user_items: [],
-           
-            
+ 
         }
     }
 
     render(){
-     
-        
+           
  //place images from web to here...
         let smallImages = [ 
             "https://foodrevolution.org/wp-content/uploads/2019/01/iStock-950322084-olindana.jpg",
@@ -56,13 +54,12 @@ class ListPosts extends Component {
                          return true;
                      }
                     
-
                 }).map(listed => 
                 <div className='card-column col-md-6 col-lg-4' 
-                        style={{'paddingTop': '10px', overflow:'hidden', maxWidth: '100%'}}
+                        // style={{'paddingTop': '10px', overflow:'hidden', maxWidth: '100%'}}
                         key={listed.item_id}>
                     <Link to={`/listing/${listed.item_id}`}>
-                    <img className='card-top img-fluid' 
+                    <img className='Test card-top img-fluid' 
                             alt='Card top'
                         src={smallImages[i++ % imageCount]}
                         style={{verticalAlign: 'middle'}}
@@ -77,10 +74,7 @@ class ListPosts extends Component {
                         <div className='card-subtitle centered' style={{backgroundColor: 'black',  opacity: '0.5'}}>
                             <h3 className='text-center'>{listed.item_name} </h3>
                         </div>
-                         {/* <h3 className='card-title text-right'></h3>  */}
-                         {/* <button className='btn-success'>barter</button></Link> */}
                     </div>
-                    {/* <p className='card-text'>This is a Card example</p> */}
                     </Link>
                 </div>
                  )}

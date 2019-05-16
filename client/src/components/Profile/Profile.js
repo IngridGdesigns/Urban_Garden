@@ -57,6 +57,7 @@ class Profile extends Component {
 
   render() {
     const { profile } = this.state;
+    const url = 'https://icodenow:auth0:com/user';
     return (
       <div className='container'>
 
@@ -81,11 +82,20 @@ class Profile extends Component {
 
             {/* json string */}
             <button onClick={this.postingToDB} auth={this.props.auth}>posting user button</button>
-
-            {/* <pre>{JSON.stringify(profile, null, 2)}</pre>   */}
+{/* 
+            <pre>{JSON.stringify(profile, null, 2)}</pre>   */}
           </header>
+          
         <hr/>
 
+        <div>
+            <div>
+              <h4>Username: {profile.nickname}</h4>
+              <h4>Email: {profile.email}</h4>
+            </div>
+
+
+        </div>
       </div>
     );
   }
