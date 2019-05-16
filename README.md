@@ -18,8 +18,8 @@ Features
 Styleguide
 Bright cool greens, yellow and blue. Usage of icons, Open sans type, user frienldy layout. 
 
-# Urban_Garden
-##CREATING ENVIRONMENT AND PROJECT
+
+#CREATING ENVIRONMENT AND PROJECT
 1. open terminal
 
 2. mkdir - myproject
@@ -34,7 +34,7 @@ Bright cool greens, yellow and blue. Usage of icons, Open sans type, user frienl
 
 7. run npm init  -y    // to create a package json -add name, //github if you want remember to add entry point: (index.js or server.js)
 
-##Express.js & dependencies ---
+#Express.js & dependencies ---
 8. npm install express
 
 9. npm install dotenv 
@@ -102,7 +102,7 @@ Bright cool greens, yellow and blue. Usage of icons, Open sans type, user frienl
     morgan: This is a library that adds some logging capabilities to your Express app.
 
 
-##front end
+#front end
 make another directory in root folder, call it client and type:
 
 1. npx create-react-app my-cool-app OR yarn create react-app my-app
@@ -110,12 +110,22 @@ make another directory in root folder, call it client and type:
 2. cd my-cool-app and npm start to see that its running on port 3000
 
 3. my-cool-app’s package.json add (make sure it is the last object), ”proxy": "http://localhost:3005”}
-.  - this is the express port to get yr api’s
+.  - this is the express port to get your api’s
 
 4. npm install react-router 
 
-5. npm install react-bootstrap bootstrap
+5. npm install react-bootstrap bootstrap -  for styling
 
 5. yarn add popper.js
 
-6. npm install auth0
+6. npm install auth0 - Auth0 authentication
+
+7. npm install react-icons - library of Fa icons and Glyphicons
+
+8. npm install react-moment && moment && moment-timezone if needed (see moment.js documentation) - 
+
+9. npm axios (only used to get users from Auth0) - fetch's cool brother
+
+10. create account with Auth0, follow documentation for react SPA & look into securing backend -- see node guidelines in Auth0. 
+
+
