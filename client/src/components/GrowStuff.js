@@ -16,6 +16,7 @@ class GrowStuff extends React.Component {
         fetch('http://localhost:3005/growstuff', {
             method: 'GET',
             headers: headers, 
+            
         })
           .then(res => res.json())
           .then(data => this.setState({ growstuff: data.growstuff })

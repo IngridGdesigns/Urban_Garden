@@ -1,10 +1,5 @@
 import React from 'react';
-// import {Link} from 'react-router-dom'
 import {FaRecycle, FaCarrot,FaUsers } from 'react-icons/fa';
-// import Alert from 'react-bootstrap/Alert'
-
-
-
 
 class About extends React.Component {
 
@@ -12,12 +7,14 @@ class About extends React.Component {
         return (
             <div>
               
-             <div className='container'style={{paddingBottom: '10px'}}>
+              <div className='container'style={{paddingBottom: '10px'}}>
               <div className='row'>
+              <div>
                 <h1 className='color1'>What is Urban Garden?</h1>
-                <h4>Urban Garden is an app made for anyone who grows edible plants, fruit,
-                  herbs and wants to trade with others, or donate to those in need.
+                <h4>Urban Garden is an app made for anyone who grows fruits, veggies or 
+                  herbs and wants to barter or donate to those in need. Our mission:
                 </h4>
+                </div>
               </div>
             </div> 
           
@@ -32,7 +29,7 @@ class About extends React.Component {
                   
                     <h4><FaUsers style={{color: 'grey'}}/> Build Community</h4>
                     
-                    <p>Make friends and barter for some yummy avocados!</p>
+                    <p>Make friends, get to know your neighbors and barter for some yummy avocados!</p>
                   </div>
                   <div className='col-sm-6 col-md-4 color3' >
 
@@ -44,7 +41,7 @@ class About extends React.Component {
                   </div>
                   <div className='col-sm-6 col-md-4 color3 '>
                     <h4><FaCarrot style={{color: 'orange'}} /> Reduce food waste</h4>
-                    <p>Keep giving to other who want food you don't want anymore.</p>
+                    <p>Keep giving to other's, don't let your food go to waste, donate!</p>
                   </div>
                   </section>
                 </div>

@@ -2,9 +2,9 @@
 const express = require('express')
 
 const jwt = require('express-jwt') //authentication middleware  - lets you authenticate HTTP requests using JWT tokens
-//authenticates callers using a JWT. If the token is valid, req.user will be set with the JSON object decoded to be used by later middleware for authorization and access control.
+                                    //authenticates callers using a JWT. If the token is valid, req.user will be set with the JSON object decoded to be used by later middleware for authorization and access control.
 
-const jwksRsa = require('jwks-rsa'); //A library to retrieve RSA signing keys from a JWKS (JSON Web Key Set) endpoint.
+const jwksRsa = require('jwks-rsa');     //A library to retrieve RSA signing keys from a JWKS (JSON Web Key Set) endpoint.
 const jwtAuthz = require('express-jwt-authz') //express jwt authz
 
 const morgan = require('morgan') //morgan
@@ -61,8 +61,6 @@ const checkScopes = jwtAuthz(['openid', 'profile', 'email', 'write:user_items', 
 
 app.use(jwtSecrets);
 
-//Routes
-// app.use('/users', require('./routes/users'));
 
 //Posgresql connection configuration
 const pool = new Pool({
@@ -71,6 +69,7 @@ const pool = new Pool({
     password: process.env.DB_PASSWORD,
     port: 5432,
 })
+
 ////////////////////////////// get -authorized & connection ///////////////
 
 
@@ -95,6 +94,7 @@ app.get('/', async(req, res ) => {
     res.send('We are live from the foggiest place in Cali' + { hello: 'world' })
     console.log('This is on now yay!!')
 })
+
 //////////////////////////// dark sky api /////////////////////
 // app.post('/weather', async(req, res) => {
 //     console.log('server started')
@@ -158,22 +158,7 @@ app.get('/offers', jwtSecrets, async(req, res) => {
         }
     })
 })
-//GET offers by barter_id - a single item -
-// app.get('/offers/:barter_id', jwtSecrets, async(req, res) => {
-//     const client = await pool.connect()
-//     let id = parseInt(req.params.barter_id)
-//     console.log(id)
-//     await client.query('SELECT * FROM offers WHERE barter_id =$1', [id], (err, result) => {
-//       if (err) {
-//           res.status(500).send(err);
-//           client.release()
-//       } 
-//       else { //res.json(dbitems.rows[0] )
-//           res.status(200).json(result.rows[0])
-//           client.release()
-//       }
-//     })
-// });
+
 
 //GET offers by item_id - a single item -
 app.get('/offers/:item_id', jwtSecrets, async(req, res) => {
@@ -505,8 +490,8 @@ console.log(req.body)
         [item_name, description, zipcode, available_status, id])
         res.status(200).json(`This item was updated with id: ${id}`)
     } catch (err) {
-        console.log('you have an error')
-        console.log(err)
+        // console.log('you have an error')
+        // console.log(err)
         res.status(500).send(err)
     }   finally {
         client.release();
@@ -593,28 +578,7 @@ app.delete('/offers/:barter_id', async(req, res) => {
    })
 })
 
-//amazon-api - cloudinary storing of images and grabs links in db
 
-
-// app.get('/usersdata/:user_id', jwtSecrets, async(req, res) => {
-//     const client = await pool.connect()
-
-//     let user_id = parseInt(req.params.id)
-//     let email = req.body.email;
-//     let sub_auth0 = parseInt(req.body.sub);
-//     let name = req.body.name;
-
-//     await client.query('SELECT * FROM usersdata WHERE sub_auth0 =$1', [user_id, email, sub_auth0, name], (err, result) => {
-//       if (err) {
-//           res.status(500).send(err);
-//           client.release()
-//       } 
-//       else { //res.json(dbitems.rows[0] )
-//           res.status(200).json(result.rows[0])
-//           client.release()
-//       }
-//     })
-// });
 
 //SELECT usersdata.user_id, usersdata.sub_auth0, user_items.item_name, user_items.description, 
 //user_items.zipcode FROM usersdata INNER JOIN user_items ON usersdata.user_id = user_items.user_id;
@@ -624,6 +588,9 @@ app.get('/growstuff', jwtSecrets, (req, res) => {
     res.json(growstuff)
 })
 
+
+// app.get('/growstuff/:id', jwtSecrets (req, res) => {
+// })
 
 /////////////////////////////////////////////
 
