@@ -5,6 +5,8 @@ import { Button, Jumbotron } from 'react-bootstrap'
 import './App.css'
 
 import Footer from './components/Footer'
+import Home from './components/Home'
+import About from './components/About'
 
 // import AboutPage from './components/AboutPage'
 // import LandingPage from './components/LandingPage'
@@ -43,11 +45,11 @@ class App extends Component {
     return (
       <div>    { //when it's not authenticated show the navbar below
          !isAuthenticated() && (
-          <div style={{marginBottom: '99px'}}  style={{backgroundColor: 'seagreen'}}> 
+          <div style={{marginBottom: '99px'}} > 
           <nav className='theNav navbar fixed-top' >
               <div className='container'>
              
-                  <NavLink to='/' className='navbar-brand'> <FaEnvira/> Urbangarden app</NavLink>
+                  <NavLink to='/' className='navbar-brand'> <FaEnvira/> Urbangarden</NavLink>
                   
               <ul className='nav right'>
               
@@ -64,9 +66,11 @@ class App extends Component {
           </nav>
           
           <Jumbotron className='jumbotron text-center img-fluid' 
-          style={{height: '100vh', marginTop: '50px', backgroundPosition: 'center center',
+          style={{height: '50vh', marginTop: '50px', backgroundPosition: 'center center',
           backgroundImage:"url('https://images.pexels.com/photos/1493378/pexels-photo-1493378.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940')"}}
           title={this.state.jumbotronTitle}>
+
+                  
 
           <div className='row'>
             <div className='col-md-6 text-left' style={{backgroundColor: 'whitesmoke', backgroundBlendMode: 'screen'}}>
@@ -88,10 +92,13 @@ class App extends Component {
             </div>
           </div>
           </Jumbotron>
-
+          
           <div className='container'>
-          <Footer/>
+          <About/>
+         
           </div>
+          <Footer className='footer' style={{backgroundColor: 'yellow'}}/>
+          
       </div>
       
          )
@@ -101,10 +108,10 @@ class App extends Component {
           <div style={{marginBottom: "60px"}}> 
             <nav className='theNav navbar fixed-top' >
               <div className='container'>
-                <Link to='/home' className='navbar-brand'> <FaEnvira/> Urbangarden app</Link>
+                <Link to='/barter' className='navbar-brand'> <FaEnvira/> Urbangarden app</Link>
                   
               <ul className='nav right'>
-                  <li className='nav-item'><NavLink to='/home'>home</NavLink></li>
+                  {/* <li className='nav-item'><NavLink to='/home'>home</NavLink></li> */}
                   <li className='nav-item'><NavLink to='/barter'>barter</NavLink></li>
                   <li className='nav-item'><NavLink to='/dashboard'>dashboard</NavLink></li>
                   <li className='nav-item'><NavLink to='/growstuff'>growstuff</NavLink></li>

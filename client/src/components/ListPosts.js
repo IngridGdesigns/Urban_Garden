@@ -64,9 +64,10 @@ class ListPosts extends Component {
                         src={smallImages[i++ % imageCount]}
                         style={{verticalAlign: 'middle'}}
                     />  
-                   <ul className='list-group'>
+                   <ul className='list-group listposts'>
                         <li className='list-group-item'>
-                            <span id='spanhover' className='badge'><FaGrinHearts/></span>
+                            <span className='badge float-left'><FaGrinHearts/></span>
+                            <span className='float-right'>{listed.zipcode}</span>
                           {listed.username}
                         </li>
                     </ul>

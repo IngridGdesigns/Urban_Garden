@@ -48,32 +48,32 @@ class Listing extends Component {
     this.setState({ offers:[]})
 }
 
-addOffer = (id, e) => {
-  e.preventDefault(); 
-  const headers = { 'Authorization': `Bearer ${this.props.auth.accessToken}`, 'Content-Type': 'application/json'}
-  //const { match: { params } } = this.props;
-  //const id = this.props.item_id //get by id
-  // console.log(id)
-  
-  let data = {
-    asking: document.getElementById('askBarter').value,
-}
-  fetch(`http://localhost:3005/offers/${id}`, {
-      method: 'POST',
-      headers: headers,
-      body: JSON.stringify(data),
-  })
-  .then(res => res.json())
-  .then(response => this.setState({ offers: [...this.state.offers, response]}))
-}
+  addOffer = (id, e) => {
+    e.preventDefault(); 
+    const headers = { 'Authorization': `Bearer ${this.props.auth.accessToken}`, 'Content-Type': 'application/json'}
+    //const { match: { params } } = this.props;
+    //const id = this.props.item_id //get by id
+    // console.log(id)
+    
+    let data = {
+      asking: document.getElementById('askBarter').value,
+  }
+    fetch(`http://localhost:3005/offers/${id}`, {
+        method: 'POST',
+        headers: headers,
+        body: JSON.stringify(data),
+    })
+    .then(res => res.json())
+    .then(response => this.setState({ offers: [...this.state.offers, response]}))
+  }
 
 //<div className="loader centered"></div>
-handleOfferAccepted = (e)=> {
-  // e.preventDefault
-  this.setState({
-    offer_accepted: !this.state.offer_accepted //sets to true
-  })
-}
+  handleOfferAccepted = (e)=> {
+    // e.preventDefault
+    this.setState({
+      offer_accepted: !this.state.offer_accepted //sets to true
+    })
+  }
     render() {
       const {user_items} = this.state
      

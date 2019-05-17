@@ -6,7 +6,7 @@ import {FaRecycle, FaCarrot,FaUsers } from 'react-icons/fa';
 
 
 
-class Home extends React.Component {
+class About extends React.Component {
 
     render(){
         return (
@@ -14,7 +14,7 @@ class Home extends React.Component {
               
              <div className='container'style={{paddingBottom: '10px'}}>
               <div className='row'>
-                <h1 className='color1'>Welcome to Urban Garden!</h1>
+                <h1 className='color1'>What is Urban Garden?</h1>
                 <h4>Urban Garden is an app made for anyone who grows edible plants, fruit,
                   herbs and wants to trade with others, or donate to those in need.
                 </h4>
@@ -55,5 +55,5 @@ class Home extends React.Component {
     }
 }
 
-export default Home;
+export default About;
 

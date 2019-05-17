@@ -5,6 +5,7 @@ import App from '../App';
 import LandingPage from './LandingPage'
 
 import Home from './Home';
+import About from './About'
 import Dashboard from './Dashboard';
 import BrowseItems from './BrowseItems';
 import Profile from '../components/Profile/Profile';
@@ -48,6 +49,7 @@ export const makeMainRoutes = () => {
       <Route path='/barter' render={(props) => <BrowseItems auth={auth} {...props} />} />
       <Route exact path='/listing/:item_id' render={(props) => <Listing auth={auth} {...props}/>} />
       <Route path='/searchposts' render={(props) => <SearchPosts auth={auth} {...props} />} />
+      <Route path='/about' render={(props) => <About auth={auth} {...props}/>} />
 
       <Route path='/growstuff' render={(props) => <GrowStuff auth={auth} {...props} />} />
       <Route path='/footer' render={(props) => <Footer auth={auth} {...props} />} />

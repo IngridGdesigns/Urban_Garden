@@ -29,11 +29,14 @@ class GrowStuff extends React.Component {
         return(
             <div className='container'>
               <UserBreadCrumb />
-              
+              <h3>Welcome to the community growstuff page, you can find just about any fruit or veggie!</h3>
+            <div className='containter-fluid'>
             <div className='row'>
             <hr/>
+
+            {/* col-sm-4 clearfix d-none d-md-block */}
             {growstuff.map(crop => 
-                <div className='col-sm-4 clearfix d-none d-md-block' key={crop.id}>
+                <div className='card-column col-md-6 col-lg-4' key={crop.id}>
                 <div className='card mb-2 growStuff-card'>
                   <img className='growStuff-img'
                     src={crop.url}
@@ -45,7 +48,7 @@ class GrowStuff extends React.Component {
                     </a>
                     <div className='card-title'>
                       <strong>
-                        <a href={crop.wikipedia_url}>wiki</a>
+                        <a href={crop.wikipedia_url}>wikipedia</a>
                       </strong>
                     </div>
 
@@ -69,9 +72,9 @@ class GrowStuff extends React.Component {
                   </div>
                 </div> 
                  </div>  )}
-            </div>   
-
+             </div>   
             </div>
+          </div>
         )
     }
 }
