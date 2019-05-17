@@ -28,12 +28,10 @@ class AddPosts extends React.Component {
         e.preventDefault();
         
         // let inputItemName = document.getElementById('itemInput')
-        // console.log(inputItemName.value)
+        console.log('hello')
             
         this.props.addPost(...this.state.user_items)
         
-      
-
 
         // this.setState({user_items: []})
         
@@ -60,6 +58,21 @@ class AddPosts extends React.Component {
         })
         .then(res => res.json())
         .then(response => this.setState({ user_items: [...this.state.user_items, response]}))
+        console.log(`hello again`);
+
+        //  let inputItemName = document.getElementById('itemInput')
+         //inputItemName.value = ''
+
+         //resetting the State... cant do it anywhere else for now...
+         let zipcodeName = document.getElementById('zipInput')
+         let usernameInput = document.getElementById('nameInput')
+         let itemInputName = document.getElementById('itemInput')
+         let desInputName = document.getElementById('desInput')
+         itemInputName.value = '';
+         usernameInput.value ='';
+         desInputName.value = '';
+         zipcodeName.value = '';
+         
     }
   
     render() {

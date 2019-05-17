@@ -15,6 +15,9 @@
   
   }
 
+  .logo {
+    color: rgb(252, 244, 190);
+  }
   
   
   .btn {
@@ -278,3 +281,27 @@
         background-color: rgb(0, 0, 0);
         opacity: 0.5;
       }
+
+      /*:focus-within`    https://css-tricks.com/solved-with-css-dropdown-menus/ */
+ul li:hover > ul,
+ul li:focus-within > ul,
+ul li ul:hover {
+  visibility: visible;
+  opacity: 1;
+  color:rgb(0, 184, 43);
+  display: block;
+}
+
+li:hover,
+li:focus-within {
+   color: rgb(14, 133, 42);
+}
+
+li:focus-within a {
+    outline: none;
+  }
+
+  /*hamburger has a border*/
+.navbar-toggle {
+  border: solid rgb(17, 75, 38);
+}
