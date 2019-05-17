@@ -45,7 +45,7 @@ class Listing extends Component {
     e.preventDefault();
     this.props.addPost(...this.state.offers)
     console.log(`a post was submitted ${this.state.offers}`)
-    this.setState({ offers:[]})
+    this.setState({ offers: ''})
 }
 
   addOffer = (id, e) => {
@@ -65,6 +65,11 @@ class Listing extends Component {
     })
     .then(res => res.json())
     .then(response => this.setState({ offers: [...this.state.offers, response]}))
+
+    let askQuery = document.getElementById('askBarter')
+  
+    askQuery.value = '';
+  
   }
 
 //<div className="loader centered"></div>
