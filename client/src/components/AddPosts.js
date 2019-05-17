@@ -22,12 +22,13 @@ class AddPosts extends React.Component {
     handleChange = (e) => {
         e.preventDefault(); 
         this.setState({ user_items: [...e.target.value]})
-        console.log('handlechange function on?? was this added now??')
+        
     }
 
     handleSubmit= (e) => {
         e.preventDefault();
         this.props.addPost(...this.state.user_items)
+        
         // alert('A post was submitted: ' + this.state.value);
         
     }
@@ -58,8 +59,12 @@ class AddPosts extends React.Component {
         return(     
         <div className='container'>
          
-            
-                <h4>Use the form below to start adding items to barter</h4>
+         <h3 className='h1-responsive text-center'>Welcome to the dashboard!</h3>
+                
+
+               
+                <p className='text-center dark-grey-text w-responsive mx-auto mb-5'>
+                Hi, you could add items to barter or browse the growstuff item of the day!</p>
   
                 <div className='card textcenter mt-3 container'>
                     <div className='card-header bg-success text-white container-fluid'>

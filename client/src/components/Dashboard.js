@@ -41,8 +41,9 @@ class Dashboard extends React.Component {
             <div>
                 <UserBreadCrumb/>
                 
-                <GrowCrop auth={this.props.auth}/>
+                
                 <AddPosts addPost={this.addPost} auth={this.props.auth}/>
+                <GrowCrop auth={this.props.auth}/>
             </div>
             
             {/* <Footer/> */}

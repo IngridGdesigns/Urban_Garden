@@ -13,6 +13,7 @@ import Listing from '../components/Listing';
 import SubmitBarter from '../components/SubmitBarter'
 import SearchPosts from './SearchPosts';
 import Footer from './Footer'
+import GrowCrop from './GrowCrop'
 
 
 
@@ -52,6 +53,8 @@ export const makeMainRoutes = () => {
       <Route path='/about' render={(props) => <About auth={auth} {...props}/>} />
 
       <Route path='/growstuff' render={(props) => <GrowStuff auth={auth} {...props} />} />
+      <Route path='/growcrop' render={(props) => <GrowCrop auth={auth} {...props} />} />
+      
       <Route path='/footer' render={(props) => <Footer auth={auth} {...props} />} />
       
     
