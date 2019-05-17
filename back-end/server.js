@@ -585,13 +585,48 @@ app.delete('/offers/:barter_id', async(req, res) => {
 
 ///////////////////// growstuff API /////////////////////////
 app.get('/growstuff', jwtSecrets, (req, res) => {
-    res.json(growstuff)
+    res.status(200).json(growstuff)
 })
 
 
-// app.get('/growstuff/:id', jwtSecrets (req, res) => {
+// app.get('/growstuff/:id', jwtSecrets, (req, res) => {
+  
+//     var found = growstuff.growstuff.find(function(specificId) {
+//         if(req.params.id === specificId.id){
+//             return res.json(growstuff);
+//         }
+//       });
+//       res.json(found);
+// //    console.log(req.body)
+// //   res.status(200).json(growstuff)
+//     // res.json(growstuff)
 // })
 
+
+//GET specific item
+//this method is passing as a string, not an integer to params, request and respond
+app.get('/growstuff/:id', jwtSecrets, (req, res) => {
+    //middleware that pulls the data
+    //console.log(req.params.id); //It is a string
+    //a user variable was made to hold our action of converting the string to number
+    //Number is converting the param to a numbers using the method Number.
+    let id = parseInt(req.params.id);
+    // console.log(id); //it is now a number, 
+    //And then we are console logging the command that we actually are using then to send data to our client.
+
+    // console.log(req.body.name);
+    // console.log(req.body)
+    //const { name, description, url } = req.body
+   console.log(growstuff.growstuff[id])
+    //console.log(req.body)
+    //everything above is middleware
+     //we are returning the object we request in postman for example "localhose3000/item/04 
+    res.json(growstuff.growstuff[id])
+   
+     //calls next and jumps to the second function, creating your middleware if you want, you can only
+    //response only once
+}
+);
 /////////////////////////////////////////////
 
 app.listen(PORT, () => console.log(`We are live from the foggiest place in Cali, on port ${PORT}`))

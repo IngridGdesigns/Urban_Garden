@@ -1,15 +1,19 @@
 import React from 'react';
 import AddPosts from './AddPosts'
 import UserBreadCrumb from './UserBreadCrumb'
+import GrowCrop from './GrowCrop';
+
+
+  
 
 class Dashboard extends React.Component {
-    
+
     constructor(props){
         super(props);
 
         this.state = {
             user_items: [],
-            profile: {}
+            
         }
     }
 
@@ -21,10 +25,14 @@ class Dashboard extends React.Component {
             method: 'GET',
             headers: headers, 
         })
-         .then(res => res.json())
+        .then(res => res.json())
         .then(user_items => this.setState({ user_items })
         ).catch(err => (err))
     }
+
+  
+   
+
 
     render() {
         
@@ -33,6 +41,7 @@ class Dashboard extends React.Component {
             <div>
                 <UserBreadCrumb/>
                 
+                <GrowCrop auth={this.props.auth}/>
                 <AddPosts addPost={this.addPost} auth={this.props.auth}/>
             </div>
             

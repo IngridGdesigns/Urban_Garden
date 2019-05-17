@@ -8,9 +8,6 @@ import Footer from './components/Footer'
 import Home from './components/Home'
 import About from './components/About'
 
-// import AboutPage from './components/AboutPage'
-// import LandingPage from './components/LandingPage'
-
 
 class App extends Component {
   constructor(props){
@@ -105,13 +102,13 @@ class App extends Component {
        }
       { //access to this stuff
         isAuthenticated() && (
-          <div style={{marginBottom: "60px"}}> 
+          <div style={{marginBottom: '60px'}}> 
             <nav className='theNav navbar fixed-top' >
               <div className='container'>
                 <Link to='/barter' className='navbar-brand'> <FaEnvira/> Urbangarden app</Link>
                   
               <ul className='nav right'>
-                  {/* <li className='nav-item'><NavLink to='/home'>home</NavLink></li> */}
+                  <li className='nav-item'><NavLink to='/home'>home</NavLink></li>
                   <li className='nav-item'><NavLink to='/barter'>barter</NavLink></li>
                   <li className='nav-item'><NavLink to='/dashboard'>dashboard</NavLink></li>
                   <li className='nav-item'><NavLink to='/growstuff'>growstuff</NavLink></li>

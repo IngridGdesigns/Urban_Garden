@@ -58,8 +58,8 @@ class AddPosts extends React.Component {
         return(     
         <div className='container'>
          
-            <h3>Welcome!</h3>
-                <h4>Use the form to start adding items to barter</h4>
+            
+                <h4>Use the form below to start adding items to barter</h4>
   
                 <div className='card textcenter mt-3 container'>
                     <div className='card-header bg-success text-white container-fluid'>

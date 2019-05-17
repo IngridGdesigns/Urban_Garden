@@ -91,21 +91,22 @@
       
     }
     
-    .theNav li {
-      padding: 0 12px;
-    }
     
     .theNav li {
       padding: 0 12px;
       list-style: none;
     }
     
-    
     .theNav a,
     .theNav a:focus,
     .theNav a:hover{
-      color:   rgb(252, 244, 190);
+      color: rgb(252, 244, 190);
     }
+
+    .theNav .active {
+      color: rgb(229, 199, 250);
+    }
+    
     /* Look into Form accessibility */
 
     input { 
@@ -135,6 +136,8 @@
     a:hover {
       color: rgb(33, 211, 196);
     }
+
+
     
   
     /* Custom default button */
@@ -171,6 +174,7 @@
     
     }
     
+   
     
     /*
      * Cover*/
