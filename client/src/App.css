@@ -100,7 +100,10 @@
       list-style: none;
     }
     
-    .theNav a {
+    
+    .theNav a,
+    .theNav a:focus,
+    .theNav a:hover{
       color:   rgb(252, 244, 190);
     }
     /* Look into Form accessibility */
@@ -130,7 +133,7 @@
     a,
     a:focus,
     a:hover {
-      color: rgb(255, 254, 204);
+      color: rgb(33, 211, 196);
     }
     
   
@@ -153,15 +156,18 @@
       color: rgb(78, 76, 76);
     }
     
+    
+
     .breadcrumb {
       color: blue;
     }
     .breadcrumb .breadcrumb-item:hover{
-      color: yellowgreen;
+      color: rgb(123, 169, 30);
     }
   
     .breadcrumb-item .active {
       color: rgba(163, 42, 147, 0.829);
+      font-display: bold;
     
     }
     
@@ -205,6 +211,8 @@
       padding-top:10;
       text-align: center;
     }
+
+    
 
     .card-img-top {
       width: 100%;
@@ -255,4 +263,13 @@
       
       .listposts {
         color: yellowgreen;
+      }
+
+      /* .listposts-card {
+       
+      } */
+
+      .imgPosts {
+        background-color: rgb(0, 0, 0);
+        opacity: 0.5;
       }
