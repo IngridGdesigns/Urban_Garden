@@ -1,25 +1,44 @@
 # Urban_Garden
-UrbanGarden MVP app
-A barter app where you can exchange food grown in your garden with other urban farmers or  anyone who wants to eat better, reduce food waste and form a community.
+
+A Food barter app where you can exchange food grown in your garden with other urban farmers or  anyone who wants to eat better, reduce food waste and form a community.
+
+### Where would it happen?
+* People could make their own meetups at parks around the city or barter at the community gardens, recreation centers. 
+
+### Demographic
+* 18 - 80 years old people.
+* Users who are foodies/bee keepers / urban gardeners / fashionistas / thrifters. 
+
+### Features
+* Browse items
+* Add posts - new items 
+* Barter - write in individual posts
+
+### Styleguide
+* Bright cool greens, yellow and blue. Usage of icons, Open sans type, user frienldy layout. 
+
+### Tools
+* Express - Node.js 
+* Posgresql
+* Auth0 - User authentication & authorization
+* React UX/UI
+
+### API - Created file based on two open source API's 
+*  Growstuff API  - https://github.com/Growstuff/growstuff/wiki/API  
+*  OpenFarm -  https://github.com/openfarmcc/OpenFarm 
 
 
-Where would it happen?
-People could make their own meetups at parks around the city or barter at the community gardens, recreation centers. 
+### Data 
+*  Growstuff API  - https://github.com/Growstuff/growstuff 
+*  OpenFarm -  https://github.com/openfarmcc/OpenFarm 
+free and open database and web application for farming and gardening knowledge
+* Wikipedia - https://en.wikipedia.org/wiki/Main_Page
 
-Demographic?
-18 - 80 years old people.
-Users who are foodies/bee keepers / urban gardeners / fashionistas / thrifters. 
+### Shoutouts:
+* Thanks you Tony, Shweta, Julia, Agrima, David, Shalani and everyone I might of missed who are great volunteers and awesome.
 
-Features
-- Browse items
-- Add posts - new items 
-- Barter - write in individual posts
-
-Styleguide
-Bright cool greens, yellow and blue. Usage of icons, Open sans type, user frienldy layout. 
-
-
-#CREATING ENVIRONMENT AND PROJECT
+# to get started: 
+## CREATING ENVIRONMENT AND PROJECT
 1. open terminal
 
 2. mkdir - myproject
@@ -34,7 +53,7 @@ Bright cool greens, yellow and blue. Usage of icons, Open sans type, user frienl
 
 7. run npm init  -y    // to create a package json -add name, //github if you want remember to add entry point: (index.js or server.js)
 
-#Express.js & dependencies ---
+## Express.js & dependencies ---
 8. npm install express
 
 9. npm install dotenv 
@@ -102,7 +121,7 @@ Bright cool greens, yellow and blue. Usage of icons, Open sans type, user frienl
     morgan: This is a library that adds some logging capabilities to your Express app.
 
 
-#front end
+## front end
 make another directory in root folder, call it client and type:
 
 1. npx create-react-app my-cool-app OR yarn create react-app my-app
