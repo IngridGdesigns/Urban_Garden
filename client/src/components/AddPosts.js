@@ -26,8 +26,15 @@ class AddPosts extends React.Component {
 
     handleSubmit= (e) => {
         e.preventDefault();
+        
+        // let inputItemName = document.getElementById('itemInput')
+        // console.log(inputItemName.value)
+            
         this.props.addPost(...this.state.user_items)
         
+      
+
+
         // this.setState({user_items: []})
         
         // alert('A post was submitted: ' + this.state.value);

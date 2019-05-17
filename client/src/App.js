@@ -43,28 +43,24 @@ class App extends Component {
       <div>    { //when it's not authenticated show the navbar below
          !isAuthenticated() && (
           <div className='container'> 
-          <Navbar className='theNav navbar' expand="lg" role='navigation' aria-label='Main menu'>
-            <Navbar className='theNav' style={{paddingTop: '20px'}}>
-              <Navbar.Brand><Link to='/' className='logo'> <FaEnvira/> Urbangarden app</Link></Navbar.Brand>
-           </Navbar>
-            <Navbar.Toggle aria-controls="theNav basic-navbar-nav" />
-           <Navbar.Collapse id="basic-navbar-nav text-right">
-             <Nav className="ml-auto" style={{float: 'right'}}>
-               <ul className='nav right'>
-  
-                
-                  <li className='btn btn-primary'onClick={this.login.bind(this, 'profile')}>Login</li>
-              </ul>
-            </Nav>
-          </Navbar.Collapse>
-         </Navbar>
+            <Navbar className='theNav navbar' expand="lg" role='navigation' aria-label='Main menu'>
+              <Navbar className='theNav' style={{paddingTop: '20px'}}>
+                <Navbar.Brand><Link to='/' className='logo'> <FaEnvira/> Urbangarden app</Link></Navbar.Brand>
+              </Navbar>
+              <Navbar.Toggle aria-controls="theNav basic-navbar-nav" />
+              <Navbar.Collapse id="basic-navbar-nav text-right">
+                <Nav className="ml-auto" style={{float: 'right'}}>
+                  <ul className='nav right'>
+                    <li className='btn btn-primary'onClick={this.login.bind(this, 'profile')}>Login</li>
+                </ul>
+              </Nav>
+            </Navbar.Collapse>
+            </Navbar>
           
           <Jumbotron className='jumbotron text-center img-fluid' 
           style={{height: '50vh', marginTop: '50px', backgroundPosition: 'center center',
           backgroundImage:"url('https://images.pexels.com/photos/1493378/pexels-photo-1493378.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940')"}}
           title={this.state.jumbotronTitle}>
-
-                  
 
           <div className='row'>
             <div className='col-md-6 text-left' style={{backgroundColor: 'whitesmoke', backgroundBlendMode: 'screen'}}>

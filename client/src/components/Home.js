@@ -27,7 +27,7 @@ class Home extends React.Component {
                     with awesome people.
                     
                   </h4>
-                  <div className='mr-auto'>
+                  <div className='mr-auto mb-3'>
                     <button type='button' 
                     className='btn btn-lily btn-margin btn-rounded'>Get started 
                     <FaHeart style={{color: 'pink', paddingLeft: '3px'}}/></button>
