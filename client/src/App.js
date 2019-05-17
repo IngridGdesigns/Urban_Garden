@@ -42,20 +42,22 @@ class App extends Component {
     return (
       <div>    { //when it's not authenticated show the navbar below
          !isAuthenticated() && (
-          <div style={{marginBottom: '99px'}} > 
-          <nav className='theNav navbar fixed-top' >
-              <div className='container'>
-             
-                  <NavLink to='/' className='navbar-brand'> <FaEnvira/> Urbangarden</NavLink>
-                  
-              <ul className='nav right'>
-              
-                  <Button id="qsLoginBtn" 
-                  className='btn btn-primary' 
-                  onClick={this.login.bind(this, 'profile')}>Login</Button>
+          <div className='container'> 
+          <Navbar className='theNav navbar' expand="lg" role='navigation' aria-label='Main menu'>
+            <Navbar className='theNav' style={{paddingTop: '20px'}}>
+              <Navbar.Brand><Link to='/' className='logo'> <FaEnvira/> Urbangarden app</Link></Navbar.Brand>
+           </Navbar>
+            <Navbar.Toggle aria-controls="theNav basic-navbar-nav" />
+           <Navbar.Collapse id="basic-navbar-nav text-right">
+             <Nav className="ml-auto" style={{float: 'right'}}>
+               <ul className='nav right'>
+  
+                
+                  <li className='btn btn-primary'onClick={this.login.bind(this, 'profile')}>Login</li>
               </ul>
-              </div>
-          </nav>
+            </Nav>
+          </Navbar.Collapse>
+         </Navbar>
           
           <Jumbotron className='jumbotron text-center img-fluid' 
           style={{height: '50vh', marginTop: '50px', backgroundPosition: 'center center',
@@ -97,7 +99,7 @@ class App extends Component {
        }
       { //access to this stuff
         isAuthenticated() && (
-           <div className='container-fluid' > 
+           <div> 
           <Navbar className='theNav navbar' expand="lg" role='navigation' aria-label='Main menu'>
             <Navbar className='theNav' style={{paddingTop: '20px'}}>
               <Navbar.Brand><Link to='/barter' className='logo'> <FaEnvira/> Urbangarden app</Link></Navbar.Brand>
