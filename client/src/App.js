@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { NavLink, Link} from 'react-router-dom'
 import { FaEnvira } from 'react-icons/fa'
-import { Button, Jumbotron } from 'react-bootstrap'
+import { Button, Jumbotron, Navbar, Nav, } from 'react-bootstrap'
 import './App.css'
 
 import Footer from './components/Footer'
@@ -50,11 +50,6 @@ class App extends Component {
                   
               <ul className='nav right'>
               
-              {/* <li className='nav-item'><NavLink to='/home'>Home</NavLink></li> */}
-              
-              {/* <li className='nav-item'><NavLink to='/#top'>About us</NavLink></li> */}
-                  {/* <li><a onClick={this.goTo.bind(this, 'home')}>home</a></li> */}
-                  
                   <Button id="qsLoginBtn" 
                   className='btn btn-primary' 
                   onClick={this.login.bind(this, 'profile')}>Login</Button>
@@ -102,38 +97,30 @@ class App extends Component {
        }
       { //access to this stuff
         isAuthenticated() && (
-          <div style={{marginBottom: '60px'}}> 
-            <nav className='theNav navbar fixed-top' >
-              <div className='container'>
-                <Link to='/barter' className='navbar-brand'> <FaEnvira/> Urbangarden app</Link>
-                  
-              <ul className='nav right'>
+           <div className='container-fluid' > 
+          <Navbar className='theNav navbar' expand="lg" role='navigation' aria-label='Main menu'>
+            <Navbar className='theNav' style={{paddingTop: '20px'}}>
+              <Navbar.Brand><Link to='/barter' className='logo'> <FaEnvira/> Urbangarden app</Link></Navbar.Brand>
+           </Navbar>
+            <Navbar.Toggle aria-controls="theNav basic-navbar-nav" />
+           <Navbar.Collapse id="basic-navbar-nav text-right">
+             <Nav className="ml-auto" style={{float: 'right'}}>
+               <ul className='nav right'>
                   <li className='nav-item'><NavLink to='/home'>home</NavLink></li>
                   <li className='nav-item'><NavLink to='/barter'>barter</NavLink></li>
-                  <li className='nav-item'><NavLink to='/dashboard'>dashboard</NavLink></li>
+                   <li className='nav-item'><NavLink to='/dashboard'>dashboard</NavLink></li>
                   <li className='nav-item'><NavLink to='/growstuff'>growstuff</NavLink></li>
                   <li className='nav-item'><NavLink to='/profile'>profile</NavLink></li>
                   <li className='btn btn-primary'onClick={this.logout.bind(this)}>Logout</li>
               </ul>
-              </div>
-          </nav>
-          
+            </Nav>
+          </Navbar.Collapse>
+         </Navbar>
       </div>
       
         )
       } 
-      {/* {
-        isAuthenticated() && (
-            <Button
-              id="qsLogoutBtn"
-              bsStyle="primary"
-              className="btn-margin"
-              onClick={this.logout.bind(this)}
-            >
-              Log Out
-            </Button>
-          )
-      } */}
+      
 
 <div className="container">
           {this.props.children}
@@ -149,141 +136,4 @@ class App extends Component {
 export default App;
 
 
-      // what i had before linkedin and auth0
-      // <BrowserRouter>
-      //   <div className='App'>
-      //   {/* NavBar component */}
-      //     <NavBar/>
-      //     <UserBreadCrumb />
-      //       <div className="container">
-      //         <Switch> 
-      //             <Route exact path='/landing' component={LandingPage} />
-      //             <Route exact path='/home' component={Home} />
-      //             <Route path='/aboutpage' component={AboutPage}/>
-      //             <Route path='/login' component={LoginForm} />
-      //         {/* User signed in Routes only below */}
-      //             <Route path='/browse' component={BrowseItems} />
-      //             <Route path='/dashboard' component={Dashboard} />
-      //             <Route path='/register' component={Registration} />
-      //             <Route path='/test'  component={TestPage} />
-      //           {/* <Route path='/UserProfile/:user_id' component={} /> */}
-      //         </Switch>
-             
-      //   </div>
-      //   </div>
-      // </BrowserRouter>
-
-
-
-
-
-//from AuthO
-/* <Navbar fluid>
-          <Navbar.Header>
-            <Navbar.Brand>
-              <a href="#">Auth0 - React</a>
-            </Navbar.Brand>
-            <Button
-              bsStyle="primary"
-              className="btn-margin"
-              onClick={this.goTo.bind(this, 'home')}
-            >
-              Home
-            </Button>
-            {
-              !isAuthenticated() && (
-                  <Button
-                    id="qsLoginBtn"
-                    bsStyle="primary"
-                    className="btn-margin"
-                    onClick={this.login.bind(this)}
-                  >
-                    Log In
-                  </Button>
-                )
-            }
-            {
-              isAuthenticated() && (
-                  <Button
-                    bsStyle="primary"
-                    className="btn-margin"
-                    onClick={this.goTo.bind(this, 'profile')}
-                  >
-                    Profile
-                  </Button>
-                )
-            }
-            {
-              isAuthenticated() && (
-                  <Button
-                    id="qsLogoutBtn"
-                    bsStyle="primary"
-                    className="btn-margin"
-                    onClick={this.logout.bind(this)}
-                  >
-                    Log Out
-                  </Button>
-                )
-            }
-          </Navbar.Header>
-        </Navbar>
-        <div className="container">
-          {this.props.children}
-        </div> */
-
-
-
-      //linkedin Video stuff
-  //      { //when it's not authenticated show the navbar below
-  //    !isAuthenticated() && (
-  //     <div style={{marginBottom: "100px"}}> 
-  //     <nav className='theNav navbar fixed-top' >
-  //         <div className='container'>
-         
-  //             <NavLink to='/home' className='navbar-brand'> <FaEnvira/> Urbangarden app</NavLink>
-              
-  //         <ul className='nav right'>
-  //             <li><a onClick={this.goTo.bind(this, 'home')}>Home</a></li>
-  //             <li className='nav-item'><NavLink to='/register'></NavLink></li>
-  //             <li id="qsLoginBtn" 
-  //             className='btn btn-primary' 
-  //             onClick={this.login.bind(this, 'profile')}>Login to Profile</li>
-  //         </ul>
-  //         </div>
-  //     </nav>
-  //     <Jumbotron title={this.state.jumbotronTitle}></Jumbotron>
-  // </div>
-  
-  //    )
-  //  }
-  // { //access to this stuff
-  //   isAuthenticated() && (
-  //     <div style={{marginBottom: "100px"}}> 
-  //       <nav className='theNav navbar fixed-top' >
-  //         <div className='container'>
-  //           <Link to='/home' className='navbar-brand'> <FaEnvira/> Urbangarden app</Link>
-              
-  //         <ul className='nav right'>
-  //             <li className='nav-item'><NavLink to='/home'>Home</NavLink></li>
-  //             <li className='nav-item'><NavLink to='/dashboard'>dashboard</NavLink></li>
-  //             <li className='nav-item'><NavLink to='/browse'>browse</NavLink></li>
-  //             <li className='btn btn-primary'onClick={this.logout.bind(this)}>Logout</li>
-  //         </ul>
-  //         </div>
-  //     </nav>
-  //     
-  // </div>
-  //<Jumbotron title={this.state.jumbotronTitle}></Jumbotron>
-  //   )
-  // } {
-  //   isAuthenticated() && (
-  //       <Button
-  //         id="qsLogoutBtn"
-  //         bsStyle="primary"
-  //         className="btn-margin"
-  //         onClick={this.logout.bind(this)}
-  //       >
-  //         Log Out
-  //       </Button>
-  //     )
-  // }
+      
