@@ -95,13 +95,6 @@ app.get('/', async(req, res ) => {
     console.log('This is on now yay!!')
 })
 
-//////////////////////////// dark sky api /////////////////////
-// app.post('/weather', async(req, res) => {
-//     console.log('server started')
-// })
-
-
-/////////////////////////end of dark sky api calls /////////////
 
 ///////////////// GET THE WHOLE TABLE FROM USERS, USER_ITEMS & OFFERS //////////////////////////////////
 
@@ -180,8 +173,6 @@ app.get('/offers/:item_id', jwtSecrets, async(req, res) => {
 });
 
 
-
-
 //////////////////////////////////////////// GET BY ID & ZIPCODE //////////////
 
 //GET users by id - a single item - DONE
@@ -226,10 +217,7 @@ app.get('/user_items/find/:zipcode', checkScopes, jwtSecrets, async(req, res) =>
     
     let zipcode = parseInt(req.params.zipcode)
     console.log(req.params.zipcode)
-    // let item_name = req.body.item_name;
-    // let username = req.body.username;
-    // let description = req.body.description;
-    // let available_status = req.body.available_status;
+    
 
     await client.query('SELECT * FROM user_items WHERE zipcode = $1',[zipcode], (err, result) => {
         if (err) {
@@ -248,7 +236,7 @@ app.get('/user_items/find/:zipcode', checkScopes, jwtSecrets, async(req, res) =>
 app.get('/user_items/search/:item_name', checkScopes, jwtSecrets, async(req, res) => {
     const client = await pool.connect()
     let item_name = req.params.item_name;
-//SELECT item_name, email, username, available_status FROM user_items WHERE item_name = $1
+
 
     await client.query("SELECT * FROM user_items WHERE item_name ILIKE $1", ['%' + item_name + '%'], (err, result) => {
         if (err) {
@@ -356,8 +344,8 @@ app.post('/user_items', jwtSecrets, checkScopes, async(req, res) => {
     let description = req.body.description;
     let zipcode = req.body.zipcode;
     let available_status = req.body.available_status;
-    console.log(req)
-    console.log(req.body)
+    // console.log(req)
+    // console.log(req.body)
     await client.query('INSERT INTO user_items(item_name, username, description, zipcode, available_status) VALUES($1, $2, $3, $4, $5) RETURNING *', 
     [item_name, username, description, zipcode, available_status], (err, result) => {
 
@@ -373,73 +361,12 @@ app.post('/user_items', jwtSecrets, checkScopes, async(req, res) => {
     })
 })
 
-//POST - Add a New barter offers to offers table -- food to barter posts -- DONE
-// item_id |  item_name   | user_id_offering | 
-//user2_asking | offer_accepted | *barter_id  -- PRIMARY SERIAL KEY
-// app.post('/offers', jwtSecrets, checkScopes, async (req, res) => {
-//     const client = await pool.connect();
-   
-//     // let id = parseInt(req.body.item_id)
-
-//     // let item = req.item_name;
-//     // let offering = parseInt(req.body.user_id_offering)
-//     // let queryAsk = parseInt(req.body.user2_asking)
-//     // let offer_accepted = req.body.offer_accepted
-//     let asking = req.asking
-//     // let writer = req.body.author
-//     console.log("HERE WE SHOULD SEE THE ASKING TEXT")
-//     console.log(req)
-    
-//     // await client.query('INSERT INTO offers(item_name, user_id_offering, user2_asking, offer_accepted, asking, author) VALUES($1, $2, $3, $4, $5, $6) RETURNING *', 
-//     // [item, offering, queryAsk, offer_accepted, asking, writer], (err, result) => {
-//     //     if(err){
-//     //         console.log(err)
-//     //         res.status(500).send('Server error')
-//     //         client.release()
-//     //     }
-//     //     else {
-//     //         res.status(200).json(result.rows[0])
-//     //         client.release()
-//     //     }
-//     // })
-
-//     await client.query('INSERT INTO offers(asking) VALUES($1) RETURNING *', 
-//     [asking], (err, result) => {
-//         if(err){
-//             console.log(err)
-//             res.status(500).send('Server error')
-//             client.release()
-//         }
-//         else {
-//             res.status(200).json(result.rows[0])
-//             client.release()
-//         }
-//     })
-// })
-
-
-
 
 app.post('/offers/:item_id', jwtSecrets, checkScopes, async(req, res) => {
     const client = await pool.connect();
-
-    //let id = parseInt(req.body.barter_id)
-    let item_id = req.params.item_id
-    // let offering = parseInt(req.body.user_id_offering)
-    // let username = parseInt(req.body.user2_asking)
+                                 
+    let item_id = req.params.item_id                             
     let asking  = req.body.asking
-    // let accept = req.body.offer_accepted 
-    // let author = req.user.author
-   
-    console.log(req.body)
-  
-    console.log(req.body.asking)
-  
-    console.log(req.body.item_name + 'is this ok');
-  
-    console.log(req.body.barter_id)
-  
-    console.log(req.params.item_id)
 
     await client.query('INSERT INTO offers(item_id, asking) VALUES ($1, $2) RETURNING *',
     [item_id, asking], (err, result) => {
@@ -463,7 +390,8 @@ app.put('/users/:user_id', jwtSecrets, async(req, res) => {
     const client = await pool.connect();
     const id = parseInt(req.params.user_id) //turns string into a integer
     const { username, email, password, zipcode } = req.body
-console.log(req.body)
+
+// console.log(req.body)
     try {
     let results = await client.query(
         'UPDATE users SET username = $1, email = $2, password = $3, zipcode = $4 WHERE user_id = $5 RETURNING *',
@@ -578,31 +506,22 @@ app.delete('/offers/:barter_id', async(req, res) => {
    })
 })
 
-
-
 //SELECT usersdata.user_id, usersdata.sub_auth0, user_items.item_name, user_items.description, 
 //user_items.zipcode FROM usersdata INNER JOIN user_items ON usersdata.user_id = user_items.user_id;
 
-///////////////////// growstuff API /////////////////////////
+///////////////////// growstuff & openfarm json mash file API /////////////////////////
 app.get('/growstuff', jwtSecrets, (req, res) => {
     res.status(200).json(growstuff)
 })
 
-
-
 //GET specific item
-//this method is passing as a string, not an integer to params, request and respond
 app.get('/growstuff/:id', jwtSecrets, (req, res) => {
     
-    let id = parseInt(req.params.id);
+    let id = parseInt(req.params.id) //this method is passing as a string, not an integer to params, request and respond
     
-   console.log(growstuff.growstuff[id])
-    
+//    console.log(growstuff.growstuff[id])
     res.json(growstuff.growstuff[id])
-   
-     //calls next and jumps to the second function, creating your middleware if you want, you can only
-    //response only once
-}
+    }
 );
 /////////////////////////////////////////////
 
