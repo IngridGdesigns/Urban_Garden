@@ -104,7 +104,8 @@
     }
 
     .theNav .active {
-      color: rgb(229, 199, 250);
+      color: rgb(255, 255, 255);
+      font-style: bold;
     }
     
     /* Look into Form accessibility */

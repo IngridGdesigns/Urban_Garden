@@ -21,7 +21,7 @@ class Home extends React.Component {
 
                 <div className='d-flex flex-column justify-content-center align-items-center h-100'>
                   <h1 className='heading display-3 color1'>Welcome to Urban Garden!</h1>
-                  <h4 className='subheading font-weight-bold'>
+                  <h4 className='subheading mb-3'>
                     You are more than welcome to visit our barter page
                     to start seeing great opportunities to swap fresh food
                     with awesome people.

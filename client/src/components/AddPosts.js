@@ -22,12 +22,13 @@ class AddPosts extends React.Component {
     handleChange = (e) => {
         e.preventDefault(); 
         this.setState({ user_items: [...e.target.value]})
-        
     }
 
     handleSubmit= (e) => {
         e.preventDefault();
         this.props.addPost(...this.state.user_items)
+        
+        // this.setState({user_items: []})
         
         // alert('A post was submitted: ' + this.state.value);
         

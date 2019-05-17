@@ -55,8 +55,8 @@ class GrowCrop extends React.Component {
                                 </div>
 
                                 <div className='news-data d-flex justify-content-between'>
-                                        <Link to={`/growstuff`} className='light-blue-text'>
-                                        <h6 className='font-weight-bold'><FaHeart className='pr-2'/>Read more</h6>
+                                        <Link to={`/growstuff`} className='light-blue-text color3'>
+                                        <h6 className='font-weight-bold'><FaHeart style={{color: 'pink'}}/>Read more</h6>
                                         </Link> 
                                         <p className='font-weight-bold dark-grey-text'>{growstuff.created_on}</p>
                                 </div>
@@ -68,14 +68,15 @@ class GrowCrop extends React.Component {
                                     <h3 className='font-weight-bold dark-grey-text mb-3'><a>{growstuff.name}</a></h3>
                                         <p className='dark-grey-text mb-2'>{growstuff.description}</p>
 
-                                    <h4 className='font-weight-bold dark-grey-text mb-2'>sun requirements</h4>
+                                    <h4 className='font-weight-bold dark-grey-text mb-3'>sun requirements</h4>
                                         <p className='dark-grey-text mb-2'>{growstuff.sun_requirements}</p>
 
-                                    <h4 className='font-weight-bold dark-grey-text mb-2'>getting started</h4>
+                                    <h4 className='font-weight-bold dark-grey-text mb-3'>getting started</h4>
                                     <p className='dark-grey-text mb-2'>{growstuff.sowing_method}</p>
 
-                                    <h4 className='font-weight-bold dark-grey-text mb-2'>find out more</h4>
-                                    <p className='dark-grey-text mb-2'>{growstuff.wikipedia_url}</p>
+                                    <h4 className='font-weight-bold dark-grey-text mb-3'>find out more</h4>
+                                    <p className='dark-grey-text mb-2'>
+                                    <a style={{color: 'yellowgreen'}} href={growstuff.wikipedia_url}>wiki</a></p>
                                 </div>
                                 
                                
