@@ -1,5 +1,5 @@
 # Urban_Garden
-
+### by Ingrid García 
 A Food barter app where you can exchange food grown in your garden with other urban farmers or  anyone who wants to eat better, reduce food waste and form a community.
 
 ### Where would it happen?
@@ -27,18 +27,20 @@ A Food barter app where you can exchange food grown in your garden with other ur
 *  Growstuff API  - https://github.com/Growstuff/growstuff/wiki/API  
 *  OpenFarm -  https://github.com/openfarmcc/OpenFarm 
 
-
 ### Data 
 *  Growstuff API  - https://github.com/Growstuff/growstuff 
 *  OpenFarm -  https://github.com/openfarmcc/OpenFarm 
 free and open database and web application for farming and gardening knowledge
 * Wikipedia - https://en.wikipedia.org/wiki/Main_Page
 
+### Techtonica Project
+* cohort 2019
+
 ### Shoutouts:
-* Thanks you Tony, Shweta, Julia, Agrima, David, Shalani and everyone I might of missed who are great volunteers and awesome.
+#### Thanks you Tony, Shweta, Julia, Agrima, David, Shalani, Danielle, the cohort and everyone I might of missed who are great volunteers and awesome.
 
 # to get started: 
-## CREATING ENVIRONMENT AND PROJECT
+## CREATING ENVIRONMENT && PROJECT
 1. open terminal
 
 2. mkdir - myproject
@@ -121,7 +123,7 @@ free and open database and web application for farming and gardening knowledge
     morgan: This is a library that adds some logging capabilities to your Express app.
 
 
-## front end
+## Front end
 make another directory in root folder, call it client and type:
 
 1. npx create-react-app my-cool-app OR yarn create react-app my-app
