@@ -21,3 +21,8 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+/client/src/components/Ping/Ping
+
+client/src/components/Ping/Ping.js
+client/src/components/Image.js

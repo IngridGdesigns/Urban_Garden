@@ -4,8 +4,6 @@ import UserBreadCrumb from './UserBreadCrumb'
 import GrowCrop from './GrowCrop';
 
 
-  
-
 class Dashboard extends React.Component {
 
     constructor(props){
@@ -20,7 +18,6 @@ class Dashboard extends React.Component {
     componentDidMount() {
         const headers = { 'Authorization': `Bearer ${this.props.auth.accessToken}`}
         // const id = this.props.match.params.item_id //get by id
-
         fetch(`http://localhost:3005/user_items`, {
             method: 'GET',
             headers: headers, 
@@ -30,17 +27,13 @@ class Dashboard extends React.Component {
         ).catch(err => (err))
     }
 
-  
-   
-
-
+ 
     render() {
         
         return(
         <div className='container'>
             <div>
                 <UserBreadCrumb/>
-                
                 
                 <AddPosts addPost={this.addPost} auth={this.props.auth}/>
                 <GrowCrop auth={this.props.auth}/>

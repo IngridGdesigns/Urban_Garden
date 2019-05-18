@@ -5,7 +5,6 @@ import './Profile.css';
 import axios from 'axios'
 
 
-
 class Profile extends Component {
   constructor(props) {
     super(props)
@@ -31,8 +30,6 @@ class Profile extends Component {
     }
   }
 
- 
-
   postingToDB = () => { //CHISOM HELPED
   
   const { getProfile } = this.props.auth;
@@ -57,16 +54,18 @@ class Profile extends Component {
 
   render() {
     const { profile } = this.state;
-    const url = 'https://icodenow:auth0:com/user';
+
     return (
       <div className='container'>
 
       <header className='row profile-area'>
             
-              <div className='col-sm-8'>
+            <div className='col-sm-8'>
                 <img src={profile.picture} alt='profile' style={{width: '50%'}}/> 
-              </div>
-              <div className='col-sm-4' alt='last sign in' style={{marginTop: '5%'}}> 
+            </div>
+
+            <div className='col-sm-4' alt='last sign in' style={{marginTop: '5%'}}> 
+
               <p>Last login: 
               <Moment style={{padding: '3px'}}
                      //Displays from a library called moment to change display of date/time 
@@ -76,7 +75,7 @@ class Profile extends Component {
                         />
                         <FaLemon className='color1' style={{padding: '2px'}}/>
 
-              </p>
+                   </p>
              
                     </div>
 
@@ -89,14 +88,11 @@ class Profile extends Component {
         <hr/>
 
         <div>
-            <div>
-              <h4>Username: {profile.nickname}</h4>
-              <h4>Email: {profile.email}</h4>
-              
-             
-            </div>
-
-
+          <div>
+            <h4>Username: {profile.nickname}</h4>
+            <h4>Email: {profile.email}</h4>
+            
+          </div>
         </div>
       </div>
     );

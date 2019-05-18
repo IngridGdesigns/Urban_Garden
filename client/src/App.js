@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { NavLink, Link} from 'react-router-dom'
 import { FaEnvira } from 'react-icons/fa'
-import { Button, Jumbotron, Navbar, Nav, } from 'react-bootstrap'
+import { Jumbotron, Navbar, Nav, } from 'react-bootstrap'
 import './App.css'
 
 import Footer from './components/Footer'
-import Home from './components/Home'
+// import Home from './components/Home'
 import About from './components/About'
 
 
@@ -42,9 +42,10 @@ class App extends Component {
     return (
       <div>    { //when it's not authenticated show the navbar below
          !isAuthenticated() && (
-          <div className='container'> 
+          <div> 
+          {/* start of Navbar */}
             <Navbar className='theNav navbar' expand="lg" role='navigation' aria-label='Main menu'>
-              <Navbar className='theNav' style={{paddingTop: '20px'}}>
+              <Navbar className='theNav'>
                 <Navbar.Brand><Link to='/' className='logo'> <FaEnvira/> Urbangarden app</Link></Navbar.Brand>
               </Navbar>
               <Navbar.Toggle aria-controls="theNav basic-navbar-nav" />
@@ -56,7 +57,9 @@ class App extends Component {
               </Nav>
             </Navbar.Collapse>
             </Navbar>
-          
+          {/* end of Navbar */}
+
+          {/* start jumbotron */}
           <Jumbotron className='jumbotron text-center img-fluid' 
           style={{height: '50vh', marginTop: '50px', backgroundPosition: 'center center',
           backgroundImage:"url('https://images.pexels.com/photos/1493378/pexels-photo-1493378.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940')"}}
@@ -83,22 +86,22 @@ class App extends Component {
           </div>
           </Jumbotron>
           
+
           <div className='container'>
-          <About/>
-         
-          </div>
-          <Footer className='footer' style={{backgroundColor: 'yellow'}}/>
-          
+            <About/>
+            </div>
+            <Footer className='footer' style={{backgroundColor: 'yellow'}}/>
       </div>
       
          )
        }
       { //access to this stuff
         isAuthenticated() && (
-           <div> 
+          <div>
+          
           <Navbar className='theNav navbar' expand="lg" role='navigation' aria-label='Main menu'>
             <Navbar className='theNav' style={{paddingTop: '20px'}}>
-              <Navbar.Brand><Link to='/barter' className='logo'> <FaEnvira/> Urbangarden app</Link></Navbar.Brand>
+              <Navbar.Brand><Link to='/home' className='logo'> <FaEnvira/> Urbangarden</Link></Navbar.Brand>
            </Navbar>
             <Navbar.Toggle aria-controls="theNav basic-navbar-nav" />
            <Navbar.Collapse id="basic-navbar-nav text-right">
@@ -115,7 +118,8 @@ class App extends Component {
           </Navbar.Collapse>
          </Navbar>
       </div>
-      
+         
+     
         )
       } 
       

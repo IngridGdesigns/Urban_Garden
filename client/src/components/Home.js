@@ -1,7 +1,8 @@
-import React from 'react';
-// import {Link} from 'react-router-dom'
-import {FaRecycle, FaCarrot, FaUsers, FaHeart} from 'react-icons/fa';
-// import Alert from 'react-bootstrap/Alert'
+import React from 'react'
+import {Link} from 'react-router-dom'
+import {FaHeart} from 'react-icons/fa'
+
+
 
 
 
@@ -10,8 +11,8 @@ class Home extends React.Component {
 
     render(){
         return (
-            <div>
-             <div className='container'style={{paddingBottom: '10px'}}>
+          <div>
+            <div className='container'style={{paddingBottom: '10px'}}>
  
             <section className='view'>
 
@@ -28,9 +29,14 @@ class Home extends React.Component {
                     
                   </h4>
                   <div className='mr-auto mb-3'>
-                    <button type='button' 
-                    className='btn btn-lily btn-margin btn-rounded'>Get started 
-                    <FaHeart style={{color: 'pink', paddingLeft: '3px'}}/></button>
+
+                  <Link to={`/dashboard`}> 
+                  <button type='button' 
+                    className='btn btn-lily btn-margin btn-rounded'
+                    >Get started 
+                    <FaHeart style={{color: 'pink', paddingLeft: '3px'}}/>
+                  </button></Link>
+
                   </div>
                 </div>
 
@@ -50,6 +56,7 @@ class Home extends React.Component {
             </div>
           </section>
         </div>
+       
     </div>
             
         )

@@ -80,7 +80,7 @@ export default class Auth {
     this.expiresAt = expiresAt;
 
     // navigate to the home route
-    history.replace('/home');//testing with linkedin video
+   history.replace('/home');//testing with linkedin video
   }
 
   renewSession() {
@@ -95,32 +95,6 @@ export default class Auth {
     });
   }
 
-// getProfile(cb) {
-//     let accessToken = this.getAccessToken();
-//     if(accessToken) {
-//       this.auth0.client.userInfo(this.accessToken, (err, profile) => {
-//         if (profile) {
-//           this.userProfile =  profile; //modified 5/5 
-//           console.log('WHAT is it?')
-//           console.log(this.userProfile)
-//         }
-//         cb(err, profile);
-//       });
-//     }
-//   }
-
-// getUser() {
-//   if (localStorage.getItem('user')) {
-//     console.log(localStorage.getItem('user') + 'What is the information?? MAY 5')
-//     return JSON.parse(localStorage.getItem('user'));
-//   }
-// }
-
-// getUserName() {
-//   if (this.getUser()) {
-//     return this.getUser().name + console.log(this.getUser().name);
-//   }
-// }
   getProfile(cb) { //original code //https://curtistimson.co.uk/post/nodejs/auth0-access-user-details-email-nodejs/
     //let accessToken = this.getaccessToken()
     this.auth0.client.userInfo(this.accessToken, (err, profile) => {
@@ -130,18 +104,6 @@ export default class Auth {
       cb(err, profile);
     });
   }
-
-
-  // send_profile_to_db (profile) {
-  //           const headers = { 'Authorization': `Bearer ${this.props.auth.accessToken}`}
-  //           const data = profile
-  //           axios.post('/usersdata', data)
-  //           .then(() => axios.get('/usersdata', {params: {email: profile.profile.email}} )
-  //           .then(res => this.props.db_profile_success(res.data))
-  //           .then(history.replace('/')))
-  //         }
-
-
 
   //get profile @2
   getProfile2(){

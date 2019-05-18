@@ -2,7 +2,6 @@ import React, {Component} from 'react'
 import { FaLemon } from 'react-icons/fa'
 
 
-
 class SubmitBarter extends Component {
     constructor(props){
         super(props);

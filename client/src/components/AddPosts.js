@@ -24,19 +24,9 @@ class AddPosts extends React.Component {
         this.setState({ user_items: [...e.target.value]})
     }
 
-    handleSubmit= (e) => {
+    handleSubmit= (e) => { //acordate del estado
         e.preventDefault();
-        
-        // let inputItemName = document.getElementById('itemInput')
-        console.log('hello')
-            
-        this.props.addPost(...this.state.user_items)
-        
-
-        // this.setState({user_items: []})
-        
-        // alert('A post was submitted: ' + this.state.value);
-        
+        this.props.addPost(...this.state.user_items) 
     }
 
     // //Add new post to user_item table -- before Auth0
@@ -72,7 +62,7 @@ class AddPosts extends React.Component {
          usernameInput.value ='';
          desInputName.value = '';
          zipcodeName.value = '';
-         
+         alert(`your post has been added!`)
     }
   
     render() {
@@ -81,8 +71,6 @@ class AddPosts extends React.Component {
         <div className='container'>
          
          <h3 className='h1-responsive text-center'>Welcome to the dashboard!</h3>
-                
-
                
                 <p className='text-center dark-grey-text w-responsive mx-auto mb-5'>
                 Hi, you could add items to barter or browse the growstuff item of the day!</p>

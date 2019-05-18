@@ -55,7 +55,7 @@ class GrowStuff extends React.Component {
                     { crop.description.length > MAX_LENGTH ? (
 
                     <div className='card-text'>
-                      {`${crop.description.substring(0, MAX_LENGTH)}...`} <a className='color3' href='#'>Read more</a>
+                      {`${crop.description.substring(0, MAX_LENGTH)}...`} <a className='color3' href='/growstuff'>Read more</a>
                     </div>
                       ) : <div>{crop.description}</div>
                     }
