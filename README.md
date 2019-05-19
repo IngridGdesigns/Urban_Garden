@@ -15,7 +15,7 @@ A Food barter app where you can exchange food grown in your garden with other ur
 * Barter - write in individual posts
 
 ### Styleguide
-* Bright cool greens, yellow and blue. Usage of icons, Open sans type, user frienldy layout. 
+* Bright cool greens, yellow and blue. Usage of icons, Open sans type, user friendly layout. 
 
 ### Tools
 * Express - Node.js 
@@ -38,7 +38,7 @@ free and open database and web application for farming and gardening knowledge
 
 ### Shoutouts:
 #### Thanks to: Tony, Julia, Shweta, Agrima, David, Shalani, Danielle, the cohort and everyone I might of missed who are great volunteers and that are awesome.
-
+![ingridg UB5](https://user-images.githubusercontent.com/16828218/57988205-1e846700-7a40-11e9-945c-f53f97dc3d99.gif)
 
 ![ingridg UB](https://user-images.githubusercontent.com/16828218/57988072-905bb100-7a3e-11e9-8d91-e49dbef303c0.gif)
 
