@@ -37,7 +37,7 @@ free and open database and web application for farming and gardening knowledge
 * cohort 2019
 
 ### Shoutouts:
-#### Thanks you Tony, Shweta, Julia, Agrima, David, Shalani, Danielle, the cohort and everyone I might of missed who are great volunteers and that are awesome.
+#### Thanks to: Tony, Julia, Shweta, Agrima, David, Shalani, Danielle, the cohort and everyone I might of missed who are great volunteers and that are awesome.
 
 # to get started: 
 ## CREATING ENVIRONMENT && PROJECT
