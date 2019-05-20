@@ -15,6 +15,8 @@ const growstuff = require('../back-end/growstuff.json')//database I made with gr
 // const DARK_SKY_APIKEY = process.env.DARK_SKY_APIKEY //weather api
 
 const bodyParser = require('body-parser') //parsing body
+// this file should be in the root folder of the repository so that others can clone the repository and launch the app
+// e.g., { path: './.env' }
 require('dotenv').config({ path: '/Users/tpl3/Desktop/Urban_Garden/.env'})//use dotenv to read .env vars
 
 //require posgresql
@@ -166,7 +168,6 @@ app.get('/offers/:item_id', jwtSecrets, async(req, res) => {
       else { //res.json(dbitems.rows[0] )
             console.log(result.rows)
           res.status(200).json(result.rows)
-         
           client.release()
       }
     })
