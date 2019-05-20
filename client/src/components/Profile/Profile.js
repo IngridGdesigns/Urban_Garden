@@ -15,6 +15,7 @@ class Profile extends Component {
  
 
   componentWillMount() { //mounting profile
+    // do you need this setState? You already initialize an empty profile in the constructor.
     this.setState({ profile: {} });
     const { userProfile, getProfile } = this.props.auth;
     if (!userProfile) {
@@ -32,10 +33,10 @@ class Profile extends Component {
 
   postingToDB = () => { //CHISOM HELPED
   
-  const { getProfile } = this.props.auth;
-  const headers = { 'Authorization': `Bearer ${this.props.auth.accessToken}`}
-  console.log(this.props.auth.accessToken)
- 
+    const { getProfile } = this.props.auth;
+    const headers = { 'Authorization': `Bearer ${this.props.auth.accessToken}`}
+    console.log(this.props.auth.accessToken)
+
     getProfile((err, profile) => {
       console.log(profile + "its not posting")
       if(err){
