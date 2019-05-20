@@ -6,6 +6,7 @@ class SubmitBarter extends Component {
     constructor(props){
         super(props);
         this.state = {
+            // do these need to be in the state?
             offers: [],
             item_id: props.item_id
             
