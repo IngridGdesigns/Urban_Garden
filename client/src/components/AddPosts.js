@@ -21,6 +21,7 @@ class AddPosts extends React.Component {
 
     handleChange = (e) => {
         e.preventDefault(); 
+        // how does this work?
         this.setState({ user_items: [...e.target.value]})
     }
 
@@ -33,7 +34,7 @@ class AddPosts extends React.Component {
     addPost = (e) => {
         e.preventDefault(); //prevents page from reloading -- 'e' is for event
         const headers = { 'Authorization': `Bearer ${this.props.auth.accessToken}`, 'Content-Type': 'application/json'}
-       
+        // const data
         let data = {
                     item_name: document.getElementById('itemInput').value,
                     description: document.getElementById('desInput').value,
@@ -52,7 +53,7 @@ class AddPosts extends React.Component {
 
         //  let inputItemName = document.getElementById('itemInput')
          //inputItemName.value = ''
-
+        // this could be a separate function. also it can be written as a loop through the different input IDs
          //resetting the State... cant do it anywhere else for now...
          let zipcodeName = document.getElementById('zipInput')
          let usernameInput = document.getElementById('nameInput')
