@@ -1,6 +1,7 @@
 import React from 'react'
 import { FaHeart} from 'react-icons/fa';
 import UserBreadCrumb from './UserBreadCrumb'
+import { Link } from 'react-router-dom'
 
 class GrowStuff extends React.Component {
     constructor(props){
@@ -55,7 +56,9 @@ class GrowStuff extends React.Component {
                     { crop.description.length > MAX_LENGTH ? (
 
                     <div className='card-text'>
-                      {`${crop.description.substring(0, MAX_LENGTH)}...`} <a className='color3' href='/growstuff'>Read more</a>
+                      {`${crop.description.substring(0, MAX_LENGTH)}...`} 
+                      <Link className='color3' to={`/growinstructions/${crop.id}`}>Read more</Link>
+           
                     </div>
                       ) : <div>{crop.description}</div>
                     }

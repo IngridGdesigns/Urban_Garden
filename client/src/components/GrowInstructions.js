@@ -13,7 +13,7 @@ class GrowInstructions extends React.Component {
 
     componentDidMount() {
         const headers = { 'Authorization': `Bearer ${this.props.auth.accessToken}`}
-        const id = this.match.params.id;
+        const id = this.props.match.params.id;
 
         fetch(`http://localhost:3005/growstuff/${id}`, {
             method: 'GET',
@@ -31,7 +31,7 @@ class GrowInstructions extends React.Component {
         console.log(growstuff)
         
         return(
-            <div>
+            <div className='container-fluid'>
                  <hr/>
                     <div className='magazine-section my-5'>
 

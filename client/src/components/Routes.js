@@ -25,6 +25,7 @@ import AboutPage from './AboutPage';
 
 
 import GrowStuff from './GrowStuff';
+import GrowInstructions from './GrowInstructions';
 
 // export const auth = new Auth();
 const auth = new Auth(); //old 
@@ -51,10 +52,10 @@ export const makeMainRoutes = () => {
       <Route exact path='/listing/:item_id' render={(props) => <Listing auth={auth} {...props}/>} />
       <Route path='/searchposts' render={(props) => <SearchPosts auth={auth} {...props} />} />
       <Route path='/about' render={(props) => <About auth={auth} {...props}/>} />
-
+    
       <Route path='/growstuff' render={(props) => <GrowStuff auth={auth} {...props} />} />
       <Route path='/growcrop' render={(props) => <GrowCrop auth={auth} {...props} />} />
-      
+      <Route path='/growinstructions/:id' render={(props) => <GrowInstructions auth={auth} {...props}/>}/>
       <Route path='/footer' render={(props) => <Footer auth={auth} {...props} />} />
       
     
