@@ -54,4 +54,4 @@ class BrowseItems extends React.Component {
     }
 }
 
-export default BrowseItems;
+export default BrowseItems
