@@ -520,7 +520,7 @@ app.get('/growstuff', jwtSecrets, (req, res) => {
 app.get('/growstuff/:id', jwtSecrets, (req, res) => {
     
     let id = parseInt(req.params.id) //this method is passing as a string, not an integer to params, request and respond
-    
+    console.log(id)
 //    console.log(growstuff.growstuff[id])
     res.json(growstuff.growstuff[id])
     }

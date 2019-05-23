@@ -29,7 +29,6 @@ class GrowInstructions extends React.Component {
 
     render() {
         const {growstuff} = this.state
-        //console.log(growstuff)
         
         return(
             <div className='container-fluid'>
