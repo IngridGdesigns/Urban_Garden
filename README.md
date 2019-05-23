@@ -1,5 +1,7 @@
 # Urban_Garden
 ### by Ingrid García
+desktop view:
+![ingridg UB](https://user-images.githubusercontent.com/16828218/57988072-905bb100-7a3e-11e9-8d91-e49dbef303c0.gif)
 A Food barter app where you can exchange food grown in your garden with other urban farmers or  anyone who wants to eat better, reduce food waste and form a community.
 
 ### Where would it happen?
@@ -38,11 +40,14 @@ free and open database and web application for farming and gardening knowledge
 
 ### Shoutouts:
 #### Thanks to: Tony, Julia, Shweta, Agrima, David, Shalani, Danielle, the cohort and everyone I might of missed who are great volunteers and that are awesome.
-![ingridg UB5](https://user-images.githubusercontent.com/16828218/57988205-1e846700-7a40-11e9-945c-f53f97dc3d99.gif)
 
-![ingridg UB](https://user-images.githubusercontent.com/16828218/57988072-905bb100-7a3e-11e9-8d91-e49dbef303c0.gif)
+
 
 ![ingridg UB2](https://user-images.githubusercontent.com/16828218/57988091-d4e74c80-7a3e-11e9-8e30-aba2118cf7d3.gif)
+
+
+mobile view:
+![ingridg UB5](https://user-images.githubusercontent.com/16828218/57988205-1e846700-7a40-11e9-945c-f53f97dc3d99.gif)
 
 # to get started: 
 ## CREATING ENVIRONMENT && PROJECT

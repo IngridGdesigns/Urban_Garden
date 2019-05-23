@@ -11,6 +11,7 @@ class GrowStuff extends React.Component {
         }
     }
 
+
     componentDidMount() {
         const headers = { 'Authorization': `Bearer ${this.props.auth.accessToken}`, 'Content-Type': 'application/json'}
         fetch('http://localhost:3005/growstuff', {
@@ -37,16 +38,18 @@ class GrowStuff extends React.Component {
 
             {/* col-sm-4 clearfix d-none d-md-block */}
             {growstuff.map(crop => 
-                <div className='card-column col-md-6 col-lg-4' key={crop.id}>
+            
+                <div className='card-column col-md-6 col-lg-4' key={crop.id} >
                 <div className='card mb-2 growStuff-card'>
-                  <img className='growStuff-img'
+               
+                 <img className='growStuff-img'
                     src={crop.url}
                     alt='different types of crops'
-                  />
+                  />  
                   <div className='card-body'>
-                    <a href='#!' className='text-muted'>
+                    <Link to={`/growinstructions/${crop.id}`} className='text-muted'>
                       <h5>{crop.name}</h5>
-                    </a>
+                    </Link>
                     <div className='card-title'>
                       <strong>
                         <a href={crop.wikipedia_url}>wikipedia</a>

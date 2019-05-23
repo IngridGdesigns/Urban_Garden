@@ -10,17 +10,18 @@ class GrowInstructions extends React.Component {
             growstuff: '',
         }
     }
+    
 
     componentDidMount() {
         const headers = { 'Authorization': `Bearer ${this.props.auth.accessToken}`}
         const id = this.props.match.params.id;
-
+       
         fetch(`http://localhost:3005/growstuff/${id}`, {
             method: 'GET',
             headers: headers
         })
         .then(res => res.json())
-        .then(data => this.setState({ growstuff: data})
+        .then(growstuff => this.setState({ growstuff})
         ).catch(err => (err))
       }
 
@@ -28,7 +29,7 @@ class GrowInstructions extends React.Component {
 
     render() {
         const {growstuff} = this.state
-        console.log(growstuff)
+        //console.log(growstuff)
         
         return(
             <div className='container-fluid'>
@@ -48,7 +49,7 @@ class GrowInstructions extends React.Component {
 
                                 <div className='news-data d-flex justify-content-between'>
                                         <Link to='/growstuff' className='light-blue-text color3'>
-                                        <h6 className='font-weight-bold'><FaHeart style={{color: 'pink'}}/>Read more</h6>
+                                        <h6 className='font-weight-bold'><FaHeart style={{color: 'pink'}}/>Go back</h6>
                                         </Link> 
                                         <p className='font-weight-bold dark-grey-text'>{growstuff.created_on}</p>
                                 </div>
