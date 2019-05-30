@@ -1,9 +1,7 @@
 import history from '../history';
 import auth0 from 'auth0-js';
 import axios from 'axios';
-
 import { AUTH_CONFIG } from './auth0-variables';
-//require('dotenv').config({ path: '/Users/tpl3/Desktop/Urban_Garden/.env'})
 
 export default class Auth {
   accessToken;
@@ -54,10 +52,6 @@ export default class Auth {
     });
   }
 
-  // getAccessToken() { //original code
-  //   return this.accessToken;
-  // }
-
   getAccessToken() { 
     const accessToken = localStorage.getItem('access token');
     if(!accessToken) {
@@ -68,7 +62,7 @@ export default class Auth {
 
   getIdToken() {
     return this.idToken;
-    //console.log(this.idToken)
+ 
   }
 
   setSession(authResult) {
@@ -97,7 +91,7 @@ export default class Auth {
     });
   }
 
-  getProfile(cb) { //original code //https://curtistimson.co.uk/post/nodejs/auth0-access-user-details-email-nodejs/
+  getProfile(cb) {
     //let accessToken = this.getaccessToken()
     this.auth0.client.userInfo(this.accessToken, (err, profile) => {
       if (profile) {
@@ -108,7 +102,6 @@ export default class Auth {
   }
 
   postingToDB () { 
-    //let profile = this.getProfile
     this.getProfile((err, profile) => {
       if(err) {
         console.log(err)
@@ -130,38 +123,25 @@ export default class Auth {
     }) 
   }
 
-  //get profile @2
-  // getProfile2(){
-  //   if(localStorage.getItem('isLoggedIn')){
-  //       return this.userProfile;
-  //   } else {
-  //     return ('something, !')
-  //   }
-  // }
-
   logout() {
-    // Remove tokens and expiry time
-    this.accessToken = null;
+    this.accessToken = null; // Remove tokens and expiry time
     this.idToken = null;
     this.expiresAt = 0;
-
-     // Remove user profile
-     this.userProfile = null;
-     console.log('Logged Out')
+    this.userProfile = null;   // Remove user profile
+    console.log('Logged Out')
 
     // Remove isLoggedIn flag from localStorage
     localStorage.removeItem('isLoggedIn');
-    localStorage.removeItem( 'access token' );
+    localStorage.removeItem( 'access token');
 
     this.auth0.logout({
       returnTo: window.location.origin
     });
 
     // navigate to the home route 
-    history.replace('/');/////////////
+    history.replace('/');
   }
 
-  //can be used to authenticate people
   isAuthenticated() {
     // Check whether the current time is past the// access token's expiry time
     let expiresAt = this.expiresAt;
