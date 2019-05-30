@@ -1,5 +1,6 @@
 import history from '../history';
 import auth0 from 'auth0-js';
+import axios from 'axios';
 
 import { AUTH_CONFIG } from './auth0-variables';
 //require('dotenv').config({ path: '/Users/tpl3/Desktop/Urban_Garden/.env'})
@@ -28,21 +29,22 @@ export default class Auth {
     this.getIdToken = this.getIdToken.bind(this);
     this.renewSession = this.renewSession.bind(this);
     this.getProfile = this.getProfile.bind(this);
+    this.postingToDB = this.postingToDB.bind(this);
   }
 
   login() {
     this.auth0.authorize();
   }
 
-//changed from linkedin video ---fix this code 5/5
+
+
   handleAuthentication() {
     this.auth0.parseHash((err, authResult) => {
 
       if (authResult && authResult.accessToken && authResult.idToken) {
         this.setSession(authResult);
-        // this.getProfile();//modified 5/4/19
-        // setTimeout( function() { history.replace('/dashboard')}, 2000);//modified read top
         
+        this.postingToDB();
       } else if (err) {
         history.replace('/'); //history.replace('/');
         console.log(err);
@@ -61,7 +63,7 @@ export default class Auth {
     if(!accessToken) {
     return new Error('No access token found');
     } 
-    return this.accessToken;
+    return accessToken;
   }
 
   getIdToken() {
@@ -78,7 +80,7 @@ export default class Auth {
     this.accessToken = authResult.accessToken;
     this.idToken = authResult.idToken;
     this.expiresAt = expiresAt;
-
+    localStorage.setItem('access token', authResult.accessToken)
     // navigate to the home route
    history.replace('/home');//testing with linkedin video
   }
@@ -105,14 +107,37 @@ export default class Auth {
     });
   }
 
-  //get profile @2
-  getProfile2(){
-    if(localStorage.getItem('isLoggedIn')){
-        return this.userProfile;
-    } else {
-      return ('something, !')
-    }
+  postingToDB () { 
+    //let profile = this.getProfile
+    this.getProfile((err, profile) => {
+      if(err) {
+        console.log(err)
+        return 
+      }
+      const headers = { 'Authorization': `Bearer ${this.getAccessToken()}`}
+      axios({
+        method: 'POST',
+        headers,
+        url: 'http://localhost:3005/usersdata',
+        data: profile
+      })
+      .then(res => {
+        console.log(`the res is ${res}`)
+      })
+      .catch(err => {
+        console.log('post error', err);
+      });
+    }) 
   }
+
+  //get profile @2
+  // getProfile2(){
+  //   if(localStorage.getItem('isLoggedIn')){
+  //       return this.userProfile;
+  //   } else {
+  //     return ('something, !')
+  //   }
+  // }
 
   logout() {
     // Remove tokens and expiry time
@@ -126,6 +151,7 @@ export default class Auth {
 
     // Remove isLoggedIn flag from localStorage
     localStorage.removeItem('isLoggedIn');
+    localStorage.removeItem( 'access token' );
 
     this.auth0.logout({
       returnTo: window.location.origin
@@ -137,8 +163,7 @@ export default class Auth {
 
   //can be used to authenticate people
   isAuthenticated() {
-    // Check whether the current time is past the
-    // access token's expiry time
+    // Check whether the current time is past the// access token's expiry time
     let expiresAt = this.expiresAt;
     return new Date().getTime() < expiresAt;
   }
