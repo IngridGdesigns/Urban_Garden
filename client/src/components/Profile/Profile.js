@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { FaLemon } from 'react-icons/fa';
 import Moment from 'react-moment';
 import './Profile.css';
-import axios from 'axios'
+
 
 
 class Profile extends Component {
@@ -13,7 +13,6 @@ class Profile extends Component {
     }
   }
  
-
   componentWillMount() { //mounting profile
     this.setState({ profile: {} });
     const { userProfile, getProfile } = this.props.auth;
@@ -22,34 +21,10 @@ class Profile extends Component {
         this.setState({ profile });
       });
     } else {
-      // console.log(profile.user_metadata)
       this.setState({ profile: userProfile});
-     // document.getElementById('picture').textContent = userProfile.user_metadata
     
       console.log({userProfile},'cool user profile from Profile page')
     }
-  }
-
-  postingToDB = () => { //CHISOM HELPED
-  
-  const { getProfile } = this.props.auth;
-  const headers = { 'Authorization': `Bearer ${this.props.auth.accessToken}`}
-  console.log(this.props.auth.accessToken)
- 
-    getProfile((err, profile) => {
-      console.log(profile + "its not posting")
-      if(err){
-        console.log(err)
-      } else {
-        console.log(profile)
-        axios({
-          method: 'POST',
-          headers,
-          url: 'http://localhost:3005/usersdata',
-         data: profile
-        })
-      }
-    });
   }
 
   render() {
@@ -80,7 +55,6 @@ class Profile extends Component {
                     </div>
 
             {/* json string */}
-            <button onClick={this.postingToDB} auth={this.props.auth}>posting user button</button>
 
             {/* <pre>{JSON.stringify(profile, null, 2)}</pre>   */}
           </header>
