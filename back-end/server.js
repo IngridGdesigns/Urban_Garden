@@ -17,7 +17,7 @@ const growstuff = require('../back-end/growstuff.json')//database I made with gr
 const bodyParser = require('body-parser') //parsing body
 // this file should be in the root folder of the repository so that others can clone the repository and launch the app
 // e.g., { path: './.env' }
-require('dotenv').config({ path: '/Users/tpl3/Desktop/Urban_Garden/.env'})//use dotenv to read .env vars
+require('dotenv').config({path: '.back_end/.env_secret'})   //use dotenv to read .env vars
 
 //require posgresql
 const Pool = require('pg').Pool;
