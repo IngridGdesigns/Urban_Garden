@@ -300,8 +300,8 @@
       max-height: 320px;
       width: auto;
       max-width: 400px;
-    object-fit: cover;
-    background: #1abc9c;
+      object-fit: cover;
+      background: #1abc9c;
   }
 
     .card-top {
@@ -312,7 +312,7 @@
 
   .card-img-overlay {
     width: auto;
-    max-width: 500px;
+    max-width: 510px;
     object-fit: cover;
   }
 
