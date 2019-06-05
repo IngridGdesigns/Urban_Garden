@@ -238,13 +238,20 @@
       text-align: center;
     }
 
-    
 
-    .card-img-top {
-      width: 100%;
-      height: 40vh;
-      object-fit: cover;
-      }
+  .card-img-top {
+    width: 100%;
+    height: 40vh;
+    object-fit: cover;
+    background: #1abc9c;
+  }
+
+
+
+
+
+
+    
 
 /* GrowStuff component styling of card */
       .growStuff-img {
@@ -286,19 +293,29 @@
         background-size: cover;
       }
 
-      
-      .listposts {
-        color: yellowgreen;
-      }
+  /* Hover Opacity - on list of the Posts to barter - ListPosts page */
+    .listposts {
+      color: rgb(140, 191, 39);
+    }
 
-      /* .listposts-card {
-       
-      } */
+    .listposts-card img {
+      opacity: 1;
+      -webkit-transition: .3s ease-in-out;
+      transition: .3s ease-in-out;
+    }
+  
+    .listposts-card:hover img {
+      opacity: .5;
+    }
 
-    .imgPosts {
+
+
+    /* .imgPosts {
       background-color: rgb(0, 0, 0);
       opacity: 0.5;
-    }
+    } */
+
+    
 
       /*:focus-within`    https://css-tricks.com/solved-with-css-dropdown-menus/ */
     ul li:hover > ul,
