@@ -48,6 +48,7 @@ class Listing extends Component {
     this.setState({ offers: ''})
 }
 
+
   addOffer = (id, e) => {
     e.preventDefault(); 
     const headers = { 'Authorization': `Bearer ${this.props.auth.accessToken}`, 'Content-Type': 'application/json'}
@@ -73,15 +74,19 @@ class Listing extends Component {
   }
 
 //<div className="loader centered"></div>
+
   handleOfferAccepted = (e)=> {
-    // e.preventDefault
-    this.setState({
-      offer_accepted: !this.state.offer_accepted //sets to true
+    e.preventDefault();
+    this.setState(prevState => ({
+      offer_accepted: !prevState.offer_accepted//sets to true e.value.target//
     })
+    )
   }
+
+
     render() {
       const {user_items} = this.state
-     
+      
         return (
             <div className='container-fluid'>
             <UserBreadCrumb/>
@@ -147,8 +152,9 @@ class Listing extends Component {
                       </div>
                       <div className='column' style={{'width':'30%'}}>
                       <button 
-                      className='btn-primary'
-                      onClick={this.handleOfferAccepted}
+                      className='btn-primary' //addOffer={(e) => this.addOffer(this.props.match.params.item_id, e)}
+                      id='offerAccepted'
+                      onClick={(e) => this.handleOfferAccepted(e)}
                       >{this.state.offer_accepted ? 'offer accepted' : 'accept'}
                       </button>
                       </div>

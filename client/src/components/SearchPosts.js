@@ -48,8 +48,9 @@ class SearchPosts extends React.Component {
                   
               </div>
               <button 
-                className='btn btn-primary'
+                className='btnSearch btn-primary'
                 type='submit'
+                
               >search</button>
             </div> 
         </div>

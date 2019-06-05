@@ -63,7 +63,8 @@ mobile view:
 
 6. ### `brew install node`
 
-7. run npm init  -y    // to create a package json -add name, //github if you want remember to add entry point: (index.js or server.js)
+7. ### `run npm init -y`    
+// to create a package json -add name, //github if you want remember to add entry point: (index.js or server.js)
 
 ## Express.js & dependencies ---
 8. ### `npm install express`

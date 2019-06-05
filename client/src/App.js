@@ -5,7 +5,6 @@ import { Jumbotron, Navbar, Nav, } from 'react-bootstrap'
 import './App.css'
 
 import Footer from './components/Footer'
-// import Home from './components/Home'
 import About from './components/About'
 
 
@@ -32,6 +31,7 @@ class App extends Component {
   componentDidMount() {
     const { renewSession } = this.props.auth;
     if (localStorage.getItem('isLoggedIn') === 'true') {
+
       renewSession();
     }
   }

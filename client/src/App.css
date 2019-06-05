@@ -1,13 +1,11 @@
 /* home styles */ 
-
-
 /*the image used on home, and browse items is from Photo by rawpixel.com from Pexels
 */
 
 .homeBg {
-  /*full heigh*/
-  height: 100%;
-  
+    /*full heigh*/
+    height: 100%;
+
     /* Center and scale the image nicely */
     background-position: center;
     background-repeat: no-repeat;
@@ -29,9 +27,18 @@
     cursor: pointer; /* Mouse pointer on hover */
   }
   
+  .btnSearch {
+    background-color:  rgb(23, 154, 45); /* teal background */
+    border: none; /* Remove borders */
+    color: white; /* White text */
+    padding: 6px 16px; /* Some padding */
+    font-size: 16px; /* Set a font size */
+    cursor: pointer; /* Mouse pointer on hover */
+  }
   /* Darker background on mouse-over */
-  .btn:hover {
-    background-color: rgb(12, 138, 136);
+  .btn:hover, .btnSearch:hover {
+    background-color: rgb(9, 122, 121);
+    color: whitesmoke;
   }
 
   
@@ -87,6 +94,8 @@
       color: white;
       /* background-blend-mode: color; */
       background-color:  #00B1A5;
+      top: 0;
+      
       margin-bottom: 30px;
       display: flex;
       flex-flow: row wrap;
@@ -111,6 +120,13 @@
       font-style: bold;
     }
     
+    .sticky {
+      position: fixed;
+      top: 0;
+      width: 100%;
+    }
+
+
     /* Look into Form accessibility */
 
     input { 
@@ -279,31 +295,35 @@
        
       } */
 
-      .imgPosts {
-        background-color: rgb(0, 0, 0);
-        opacity: 0.5;
-      }
+    .imgPosts {
+      background-color: rgb(0, 0, 0);
+      opacity: 0.5;
+    }
 
       /*:focus-within`    https://css-tricks.com/solved-with-css-dropdown-menus/ */
-ul li:hover > ul,
-ul li:focus-within > ul,
-ul li ul:hover {
-  visibility: visible;
-  opacity: 1;
-  color:rgb(0, 184, 43);
-  display: block;
-}
+    ul li:hover > ul,
+    ul li:focus-within > ul,
+    ul li ul:hover {
+      visibility: visible;
+      opacity: 1;
+      color:rgb(0, 184, 43);
+      display: block;
+    }
 
-li:hover,
-li:focus-within {
-   color: rgb(14, 133, 42);
-}
+    li:hover,
+    li:focus-within {
+      color: rgb(14, 133, 42);
+    }
 
-li:focus-within a {
-    outline: none;
-  }
+    li:focus-within a {
+        outline: none;
+      }
 
-  /*hamburger has a border*/
-.navbar-toggle {
-  border: solid rgb(17, 75, 38);
-}
+      /*hamburger has a border*/
+    .navbar-toggle {
+      border: solid rgb(17, 75, 38);
+    }
+
+    .offer-close-toggle {
+      background-color: rgba(42, 27, 161, 0.7);
+    }
