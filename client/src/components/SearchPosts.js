@@ -21,9 +21,9 @@ class SearchPosts extends React.Component {
         return(
           
             <div className= 'jumbotron text-center img-fluid' 
-              style={{color: 'seagreen', backgroundPosition: 'center center', backgroundImage:'url("https://images.pexels.com/photos/1493378/pexels-photo-1493378.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940")'}}>
+              style={{backgroundPosition: 'center center', backgroundImage:'url("https://images.pexels.com/photos/1493378/pexels-photo-1493378.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940")'}}>
               <div>
-                <h4 className='color1'>Welcome to your SearchPosts page</h4>
+                <h4>Welcome to your SearchPosts page</h4>
               </div>
 
               <div className='row justify-content-center my-4'>

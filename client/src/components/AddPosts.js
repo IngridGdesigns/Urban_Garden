@@ -38,7 +38,8 @@ class AddPosts extends React.Component {
                     item_name: document.getElementById('itemInput').value,
                     description: document.getElementById('desInput').value,
                     zipcode: document.getElementById('zipInput').value,
-                    username: document.getElementById('nameInput').value
+                    username: document.getElementById('nameInput').value,
+                    url: document.getElementById('urlInput').value
         }
 
         fetch('http://localhost:3005/user_items', {
@@ -58,10 +59,12 @@ class AddPosts extends React.Component {
          let usernameInput = document.getElementById('nameInput')
          let itemInputName = document.getElementById('itemInput')
          let desInputName = document.getElementById('desInput')
+         let urlInputName = document.getElementById('urlInput')
          itemInputName.value = '';
          usernameInput.value ='';
          desInputName.value = '';
          zipcodeName.value = '';
+         urlInputName.value = '';
          alert(`your post has been added!`)
     }
   
@@ -131,24 +134,18 @@ class AddPosts extends React.Component {
                                 value={this.state.zipcode}
                                 onClick={this.handleChange}/>
                         </div>
-
-                        <label
-                            className='col-md-2 col-form-label text-md-right'
-                            //htmlFor='aptTime'>
-                            htmlFor='imgUpload'>
-                            
-                        </label>
+                        Upload url
+                        
                      <div className='col-md-4'>
-                     <FaRegLemon/> Image upload coming soon!
-                     
-                         {/* <input
-                         type='time'
+                         <input
+                         type='text'
+                         placeholder='Add image url'
                          className='form-control'
-                         name='createdAt'
-                         id='createdOn'
-                         //   value={this.state.createdOn}
-                         //   onChange={this.handleChange}
-                         /> */}
+                         name='url'
+                         id='urlInput'
+                         value={this.state.url}
+                           onChange={this.handleChange}
+                         />
                      </div>
                     </div>
 

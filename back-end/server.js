@@ -17,6 +17,7 @@ const growstuff = require('../back-end/growstuff.json')//database I made with gr
 const bodyParser = require('body-parser') //parsing body
 // this file should be in the root folder of the repository so that others can clone the repository and launch the app
 // e.g., { path: './.env' }
+
 require('dotenv').config({path: '.back_end/.env_secret'})   //use dotenv to read .env vars
 
 //require posgresql
@@ -345,11 +346,12 @@ app.post('/user_items', jwtSecrets, checkScopes, async(req, res) => {
     let username = req.body.username;
     let description = req.body.description;
     let zipcode = req.body.zipcode;
+    let url = req.body.url;
     let available_status = req.body.available_status;
     // console.log(req)
     // console.log(req.body)
-    await client.query('INSERT INTO user_items(item_name, username, description, zipcode, available_status) VALUES($1, $2, $3, $4, $5) RETURNING *', 
-    [item_name, username, description, zipcode, available_status], (err, result) => {
+    await client.query('INSERT INTO user_items(item_name, username, description, zipcode, url, available_status) VALUES($1, $2, $3, $4, $5, $6) RETURNING *', 
+    [item_name, username, description, zipcode, url, available_status], (err, result) => {
 
         //console.log(result.rows[0])
         if(err){
