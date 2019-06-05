@@ -80,7 +80,7 @@ class AddPosts extends React.Component {
                         <button onClick={this.toggleForm} className="btn" 
                                 src={{color : 'white'}}><FaLemon/></button>
            
-                            {this.state.formDisplay ? 'hide' : 'show form'}
+                            {this.state.formDisplay ? ' hide form' : ' show form'}
                     </div>
                 
                 {this.state.formDisplay && (

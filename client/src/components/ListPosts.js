@@ -62,8 +62,7 @@ class ListPosts extends Component {
 
                     <Link to={`/listing/${listed.item_id}`}>
 
-                    <img className='Test card-top img-fluid' 
-                        alt='Card top'
+                    <img className='card-top img-fluid' 
                         src={smallImages[i++ % imageCount]}
                         style={{verticalAlign: 'middle'}}
                     />  
