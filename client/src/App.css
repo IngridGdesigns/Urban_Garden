@@ -278,7 +278,11 @@
         background-size: cover;
       }
 
-  /* Hover Opacity - on list of the Posts to barter - ListPosts page */
+  /* Hover Opacity - on list of the Posts to barter - ListPosts page 
+  https://code.tutsplus.com/tutorials/say-hello-to-webkit-filters--net-23318
+  https://codepen.io/nxworld/pen/ZYNOBZ?editors=1100
+  
+  */
     .listposts {
       color: rgb(140, 191, 39);
       width: auto;
@@ -295,6 +299,7 @@
       opacity: .5;
     }
 
+    
     .card-img-top {
       height: auto;
       max-height: 320px;
@@ -310,10 +315,10 @@
       width: 480px;
   }
 
-  .card-img-overlay {
-    width: auto;
-    max-width: 510px;
-    object-fit: cover;
+    .card-img-overlay {
+      width: auto;
+      max-width: 510px;
+      object-fit: cover;
   }
 
     /* .imgPosts {
