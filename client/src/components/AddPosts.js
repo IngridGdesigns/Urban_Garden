@@ -32,8 +32,10 @@ class AddPosts extends React.Component {
     // //Add new post to user_item table -- before Auth0
     addPost = (e) => {
         e.preventDefault(); //prevents page from reloading -- 'e' is for event
-        const headers = { 'Authorization': `Bearer ${this.props.auth.accessToken}`, 'Content-Type': 'application/json'}
        
+        const headers = { 'Authorization': `Bearer ${this.props.auth.accessToken}`, 'Content-Type': 'application/json'}
+        const test = this.props.auth;
+        debugger
         let data = {
                     item_name: document.getElementById('itemInput').value,
                     description: document.getElementById('desInput').value,
