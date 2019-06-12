@@ -4,10 +4,11 @@
   "private": true,
   "dependencies": {
     "@babel/core": "^7.0.0-0",
+    "acorn": "^6.1.1",
     "auth0-js": "^9.10.2",
     "axios": "^0.18.0",
     "bootstrap": "^4.3.1",
-    "jest": "^24.8.0",
+    "jest": "23.6.0",
     "jquery": "^3.4.0",
     "moment": "^2.24.0",
     "moment-timezone": "^0.5.25",
@@ -40,7 +41,6 @@
   "devDependencies": {
     "@babel/preset-env": "^7.4.5",
     "@babel/preset-react": "^7.0.0",
-    "babel-jest": "^24.8.0",
     "react-test-renderer": "^16.8.6"
   }
 }
