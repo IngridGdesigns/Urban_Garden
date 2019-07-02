@@ -25,7 +25,17 @@ class BrowseItems extends React.Component {
 
 
       onChangeSearch = (e) => {
+        e.preventDefault();
         this.setState({search: e.target.value})
+      }
+
+
+    enter = (event) => {
+        if(event.key === 'Enter'){
+          event.preventDefault();
+          event.stopPropagation();
+          this.onChangeSearch();
+        }
       }
 
 
@@ -39,7 +49,7 @@ class BrowseItems extends React.Component {
                 <SearchPosts 
                     auth={this.props.auth}
                     onChange={(e) => this.onChangeSearch(e)}
-                    />
+                    onKeyDown={this.enter}/>
 
                 <hr/>
             

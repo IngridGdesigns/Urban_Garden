@@ -1,5 +1,4 @@
 import React from 'react';
-import { FaRegLemon } from 'react-icons/fa';
 import { FaLemon } from 'react-icons/fa';
 
 class AddPosts extends React.Component {
@@ -18,6 +17,9 @@ class AddPosts extends React.Component {
         });
     }
 
+    // validateForm() {
+    //     var x = document.forms['form']
+    // }
 
     handleChange = (e) => {
         e.preventDefault(); 
@@ -34,7 +36,7 @@ class AddPosts extends React.Component {
         e.preventDefault(); //prevents page from reloading -- 'e' is for event
        
         const headers = { 'Authorization': `Bearer ${this.props.auth.accessToken}`, 'Content-Type': 'application/json'}
-        const test = this.props.auth;
+        //const test = this.props.auth;
         debugger
         let data = {
                     item_name: document.getElementById('itemInput').value,
@@ -91,7 +93,7 @@ class AddPosts extends React.Component {
                 {this.state.formDisplay && (
                         <div className='card-body'>
                         {/* id='addItem'  */}
-                        <form >
+                        <form name='form'>
                             <div className='form-group form-row'>
                                 <label className='col-md-2 col-form-label text-md-right'
                                     htmlFor='itemName'

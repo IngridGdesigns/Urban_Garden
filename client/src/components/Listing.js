@@ -119,7 +119,7 @@ class Listing extends Component {
                 </div>
                 <div className='col-md-6'>
                   <div>
-                    <h4 style={{color: 'green'}}>Posted by: {user_items.username}</h4>
+                    <h4 >Posted by: {user_items.username}</h4>
                 </div>
               </div>
           </div>           

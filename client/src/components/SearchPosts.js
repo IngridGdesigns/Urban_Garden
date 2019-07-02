@@ -12,10 +12,11 @@ class SearchPosts extends React.Component {
   }
 
     onChangeSearch = (e) => {
-      e.preventDefault(); 
       this.setState({search: e.target.value})
       this.props.onChange(e);
     }
+
+
 
     render() {
         return(
