@@ -5,7 +5,7 @@ desktop view:
 A Food barter app where you can exchange food grown in your garden with other urban farmers or  anyone who wants to eat better, reduce food waste and form a community.
 
 ### Where would it happen?
-* People could make their own meetups at parks around the city or barter at the community gardens, recreation centers. 
+* People could make their own meetups at parks around the city or barter at their neares community garden, recreation centers, food banks. 
 
 ### Demographic
 * 18 - 80 years old people.
