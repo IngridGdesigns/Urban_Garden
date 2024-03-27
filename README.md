@@ -41,8 +41,6 @@ free and open database and web application for farming and gardening knowledge
 ### Shoutouts:
 #### Thanks to: Tony, Julia, Shweta, Agrima, David, Shalani, Danielle, the cohort and everyone I might of missed who are great volunteers and that are awesome.
 
-
-
 ![ingridg UB2](https://user-images.githubusercontent.com/16828218/57988091-d4e74c80-7a3e-11e9-8e30-aba2118cf7d3.gif)
 
 
