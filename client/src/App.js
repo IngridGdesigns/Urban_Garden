@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { NavLink, Link} from 'react-router-dom'
 import { FaEnvira } from 'react-icons/fa'
-import { Jumbotron, Navbar, Nav, } from 'react-bootstrap'
+import { Navbar, Nav, } from 'react-bootstrap'
 import './App.css'
 
 import Footer from './components/Footer'
@@ -60,7 +60,7 @@ class App extends Component {
           {/* end of Navbar */}
 
           {/* start jumbotron */}
-          <Jumbotron className='jumbotron text-center img-fluid' 
+          <div className='jumbotron text-center img-fluid' 
           style={{height: '50vh', marginTop: '50px', backgroundPosition: 'center center',
           backgroundImage:"url('https://images.pexels.com/photos/1493378/pexels-photo-1493378.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940')"}}
           title={this.state.jumbotronTitle}>
@@ -84,7 +84,7 @@ class App extends Component {
             <div className='col-md-6'>
             </div>
           </div>
-          </Jumbotron>
+          </div>
           
 
           <div className='container'>
