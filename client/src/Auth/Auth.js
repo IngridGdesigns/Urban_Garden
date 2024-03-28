@@ -1,7 +1,8 @@
 import history from '../history';
 import auth0 from 'auth0-js';
 import axios from 'axios';
-import { AUTH_CONFIG } from './auth0-variables';
+import { AUTH_CONFIG } from '../config'
+
 
 export default class Auth {
   accessToken;
