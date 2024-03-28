@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { NavLink, Link} from 'react-router-dom'
 import { FaEnvira } from 'react-icons/fa'
 import { Navbar, Nav, } from 'react-bootstrap'
+// import { AUTH_CONFIG } from './config';
 import './App.css'
 
 import Footer from './components/Footer'
@@ -15,7 +16,7 @@ class App extends Component {
       jumbotronTitle: 'Welcome!'
     }
   }
-
+  
   goTo(route) {
     this.props.history.replace(`${route}`)
   }
@@ -37,7 +38,9 @@ class App extends Component {
   }
 
   render() {
-    const { isAuthenticated} = this.props.auth;
+    const { isAuthenticated } = this.props.auth;
+    // console.log(AUTH_CONFIG);
+    // console.log(process.env.REACT_APP_AUTH0_DOMAIN);
 
     return (
       <div>    { //when it's not authenticated show the navbar below
