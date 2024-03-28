@@ -1,8 +1,9 @@
 //Dependencies
 const express = require('express')
 
-const jwt = require('express-jwt') //authentication middleware  - lets you authenticate HTTP requests using JWT tokens
-                                    //authenticates callers using a JWT. If the token is valid, req.user will be set with the JSON object decoded to be used by later middleware for authorization and access control.
+const { expressjwt: jwt } = require('express-jwt') //authentication middleware  - lets you authenticate HTTP requests using JWT tokens
+//authenticates callers using a JWT. If the token is valid, req.user will be set 
+//with the JSON object decoded to be used by later middleware for authorization and access control.
 
 const jwksRsa = require('jwks-rsa');     //A library to retrieve RSA signing keys from a JWKS (JSON Web Key Set) endpoint.
 const jwtAuthz = require('express-jwt-authz') //express jwt authz
@@ -30,8 +31,6 @@ const app = express()
 
 //create port to connect to
 const PORT = process.env.PORT || 3005;
-
-
 
 //MAKING SURE AUTH0 IS IN .env
 if (!process.env.REACT_APP_AUTH0_DOMAIN || !process.env.REACT_APP_AUTH0_AUDIENCE) {
