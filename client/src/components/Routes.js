@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Router, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Navigate as Redirect} from 'react-router-dom';
 import App from '../App';
 
 import LandingPage from './LandingPage'
@@ -39,7 +39,7 @@ const handleAuthentication = ({location}) => {
 export const makeMainRoutes = () => {
   return (
     <Router history={history}>
-    <div>
+    <Routes>
       <Route path='/' render={(props) => <App auth={auth} {...props} />} />
       <Route path='/about' render={(props) => <AboutPage auth={auth} {...props} />} />
 
@@ -70,7 +70,7 @@ export const makeMainRoutes = () => {
         handleAuthentication(props);
         return <Callback {...props} /> 
       }}/>        
-    </div>
+    </Routes>
   </Router>
   );
 }
