@@ -18,7 +18,9 @@ const bodyParser = require('body-parser') //parsing body
 // this file should be in the root folder of the repository so that others can clone the repository and launch the app
 // e.g., { path: './.env' }
 
-require('dotenv').config({path: '.back_end/.env_secret'})   //use dotenv to read .env vars
+// require('dotenv').config({path: '.back_end/.env_secret'})   //use dotenv to read .env vars
+require('dotenv').config({debug: true}) // {path: '../back-end/.env'}
+console.log(process.env)
 
 //require posgresql
 const Pool = require('pg').Pool;
@@ -29,9 +31,11 @@ const app = express()
 //create port to connect to
 const PORT = process.env.PORT || 3005;
 
+
+
 //MAKING SURE AUTH0 IS IN .env
-if (!process.env.AUTH0_DOMAIN || !process.env.AUTH0_AUDIENCE) {
-    throw 'Make sure you have AUTH0_DOMAIN, and AUTH0_AUDIENCE in your .env file'
+if (!process.env.REACT_APP_AUTH0_DOMAIN || !process.env.REACT_APP_AUTH0_AUDIENCE) {
+    throw 'Make sure you have REACT_APP_AUTH0_DOMAIN, and REACT_APP_AUTH0_AUDIENCE in your .env file'
 }
 
 //Middleware
@@ -51,12 +55,12 @@ const jwtSecrets = jwt({
     cache: true,
     rateLimit: true,
     jwksRequestsPerMinute: 5,
-    jwksUri: `https://${process.env.AUTH0_DOMAIN}/.well-known/jwks.json`
+    jwksUri: `https://${process.env.REACT_APP_AUTH0_DOMAIN}/.well-known/jwks.json`
   }),
 
   // Validate the audience and the issuer.
-  audience: process.env.AUTH0_AUDIENCE,
-  issuer: `https://${process.env.AUTH0_DOMAIN}/`,
+  audience: process.env.REACT_APP_AUTH0_AUDIENCE,
+  issuer: `https://${process.env.REACT_APP_AUTH0_DOMAIN}/`,
   algorithms: ['RS256']
 });
 
