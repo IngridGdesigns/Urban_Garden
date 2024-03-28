@@ -1,5 +1,8 @@
+/* eslint-disable jsx-a11y/anchor-has-content */
+/* eslint-disable jsx-a11y/anchor-is-valid */
+/* eslint-disable react/jsx-no-comment-textnodes */
 import React, { Component } from "react";
-import { FaLemon, FaPen } from "react-icons/fa";
+import { FaLemon} from "react-icons/fa";
 import Moment from "react-moment";
 import "./Profile.css";
 
@@ -29,7 +32,6 @@ class Profile extends Component {
   }
 
   
-
   render() {
     const { profile } = this.state;
 
@@ -71,6 +73,7 @@ class Profile extends Component {
           <div>
             <div className="alert alert-success">
               <strong>hello!</strong> see past barters{" "}
+              // eslint-disable-next-line jsx-a11y/anchor-has-content
               <a href="#" className="alert-link" />
             </div>
 

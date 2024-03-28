@@ -3,9 +3,6 @@ import { Link, NavLink, withRouter } from 'react-router-dom';
 import './App.css';
 import { FaEnvira } from 'react-icons/fa'
 
-
-
-
 const NavBar = (props) => {
         // const { history, location, match } = props;
         // console.log('location', location)
